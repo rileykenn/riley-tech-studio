@@ -55,6 +55,12 @@ const PARTICLE_CONFIG = {
   glowBoostNearCursor: 0.35,
 };
 
+// Simple Safari detection (to hide visible orbs there)
+const isSafari =
+  typeof window !== "undefined" &&
+  typeof navigator !== "undefined" &&
+  /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animationFrameRef = useRef<number | null>(null);
@@ -90,13 +96,12 @@ export default function Hero() {
 
     const dpr = window.devicePixelRatio || 1;
 
-    const initParticles = () => {
-      const { innerWidth, innerHeight } = window;
+    const initParticles = (width: number, height: number) => {
       const particles: Particle[] = [];
 
       for (let i = 0; i < PARTICLE_CONFIG.count; i++) {
-        const x = Math.random() * innerWidth;
-        const y = Math.random() * innerHeight;
+        const x = Math.random() * width;
+        const y = Math.random() * height;
         particles.push({
           x,
           y,
@@ -116,13 +121,18 @@ export default function Hero() {
     };
 
     const resize = () => {
-      const { innerWidth, innerHeight } = window;
-      canvas.width = innerWidth * dpr;
-      canvas.height = innerHeight * dpr;
-      canvas.style.width = `${innerWidth}px`;
-      canvas.style.height = `${innerHeight}px`;
+      const heroEl = heroRef.current;
+      const rect = heroEl?.getBoundingClientRect();
+      const width = rect?.width ?? window.innerWidth;
+      const height = rect?.height ?? window.innerHeight;
+
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      initParticles();
+      initParticles(width, height);
     };
 
     resize();
@@ -184,7 +194,13 @@ export default function Hero() {
 
     const draw = (timeMs: number) => {
       const t = (timeMs - startTime) / 1000;
-      const { innerWidth: w, innerHeight: h } = window;
+
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+
+      const w = canvas.width / dpr;
+      const h = canvas.height / dpr;
+
       const mouse = mouseRef.current;
       const mx = mouse.x * w;
       const my = mouse.y * h;
@@ -353,10 +369,14 @@ export default function Hero() {
         if (alpha > 1) alpha = 1;
         if (alpha < 0) alpha = 0;
 
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size * twinkle, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${PARTICLE_CONFIG.color},${alpha})`;
-        ctx.fill();
+        // Safari is drawing the orbs as solid circles – keep the physics
+        // but skip the actual visible draw there.
+        if (!isSafari) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size * twinkle, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${PARTICLE_CONFIG.color},${alpha})`;
+          ctx.fill();
+        }
       }
 
       for (let i = 0; i < ribbonCount; i++) {
@@ -680,7 +700,7 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative h-screen w-full overflow-hidden bg-black text-white flex items-center"
+      className="relative w-full overflow-hidden bg-black text-white flex items-center min-h-screen min-h-[100svh]"
     >
       <canvas
         ref={canvasRef}
@@ -832,17 +852,16 @@ export default function Hero() {
         }
 
         @keyframes hero-shine {
-  0% {
-    background-position: 130% 0;   /* start off RIGHT */
-  }
-  65% {
-    background-position: -130% 0;  /* sweep to LEFT */
-  }
-  100% {
-    background-position: -130% 0;
-  }
-}
-
+          0% {
+            background-position: 130% 0; /* start off RIGHT */
+          }
+          65% {
+            background-position: -130% 0; /* sweep to LEFT */
+          }
+          100% {
+            background-position: -130% 0;
+          }
+        }
 
         /* GRID BEHIND TEXT */
         .hero-grid {

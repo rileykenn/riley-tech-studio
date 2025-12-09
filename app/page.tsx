@@ -9,10 +9,14 @@ import NavBar from "./components/NavBar";
 
 export default function Home() {
   return (
-    <div className="min-h-screen w-full bg-black text-white">
+    // Root wrapper:
+    // - min-h-[100svh] fixes iOS Safari dynamic toolbar height
+    // - bg set to deep hero blue so any tiny gaps blend in
+    <div className="min-h-screen min-h-[100svh] w-full bg-[#003c86] text-white">
       <NavBar />
 
-      <main className="w-full">
+      {/* stop any accidental horizontal scroll from canvas / ribbons */}
+      <main className="w-full overflow-x-hidden">
         <section id="hero" data-section="hero">
           <Hero />
         </section>
