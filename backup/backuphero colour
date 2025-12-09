@@ -716,16 +716,14 @@ export default function Hero() {
           <div className="space-y-4">
   <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">
     Engineering{" "}
-    <span className="hero-accent hero-accent--1">beautiful websites</span>,
+    <span className="hero-accent">beautiful websites</span>,
   </h1>
 
   <h2 className="text-3xl font-semibold tracking-tight md:text-5xl">
-    <span className="hero-accent hero-accent--2">Automations</span>, and{" "}
-    <span className="hero-accent hero-accent--3">MVP apps.</span>
+    <span className="hero-accent">Automations</span>, and{" "}
+    <span className="hero-accent">MVP apps.</span>
   </h2>
 </div>
-
-
 
 
 
@@ -785,60 +783,16 @@ export default function Hero() {
     animation: arrow-bounce 1.4s ease-in-out infinite;
   }
 
-  /* GRADIENT + TEXT-CLIPPED SHINE SWEEP */
+  /* gradient accent for hero keywords (no pill) */
   .hero-accent {
-    position: relative;
-    font-weight: 700;
-
-    /* layer 1: static blue gradient
-       layer 2: bright streak that sweeps across */
-    background-image:
-      linear-gradient(120deg, #60a5ff, #8bcdff, #38bdf8),
-      linear-gradient(
-        120deg,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0) 30%,
-        rgba(255, 255, 255, 0.95) 50%,
-        rgba(255, 255, 255, 0) 70%,
-        rgba(255, 255, 255, 0) 100%
-      );
-
-    /* base stays fixed, streak is huge + moves */
-    background-size: 100% 100%, 260% 100%;
-    background-position: 0% 0%, -260% 0%;
-    background-repeat: no-repeat;
-
+    background: linear-gradient(120deg, #60a5ff, #8bcdff, #38bdf8);
     -webkit-background-clip: text;
     background-clip: text;
-    -webkit-text-fill-color: transparent;
     color: transparent;
-
-    animation: hero-shine 6s ease-in-out infinite;
+    font-weight: 700;
   }
 
-  .hero-accent--1 {
-    animation-delay: 0s;
-  }
-  .hero-accent--2 {
-    animation-delay: 0.8s;
-  }
-  .hero-accent--3 {
-    animation-delay: 1.6s;
-  }
-
-  @keyframes hero-shine {
-    0% {
-      background-position: 0% 0%, -260% 0%;
-    }
-    45% {
-      background-position: 0% 0%, 260% 0%;
-    }
-    100% {
-      background-position: 0% 0%, 260% 0%;
-    }
-  }
-
-  /* GRID BEHIND TEXT */
+  /* GRID BEHIND TEXT – this is what you lost */
   .hero-grid {
     position: relative;
     width: 2200px;
@@ -878,9 +832,6 @@ export default function Hero() {
       );
   }
 `}</style>
-
-
-
 
     </section>
   );
