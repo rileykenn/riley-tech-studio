@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Shoalhaven Technology",
-  description: "hoalhaven’s premium web and automation studio, delivering fast, modern websites and custom-built workflows for real operators and growing businesses.",
+  title: "Technology",
+  description: "Shoalhaven’s premium web and automation studio, delivering fast, modern websites and custom-built workflows for real operators and growing businesses.",
 };
 
 export default function RootLayout({
