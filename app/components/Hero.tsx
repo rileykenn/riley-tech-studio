@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import LogoTrain from "./LogoTrain";
 
 type MouseState = {
   x: number;
@@ -627,7 +628,7 @@ export default function Hero() {
 
       const clamped = Math.max(0, Math.min(1, centerRatio));
 
-      gridRef.current.style.setProperty(
+      gridRef.current!.style.setProperty(
         "--grid-center-x",
         `${clamped * 100}%`
       );
@@ -714,20 +715,33 @@ export default function Hero() {
           className="flex w-full flex-col items-center gap-6 md:items-start"
         >
           <div className="space-y-4">
-  <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">
-    Engineering{" "}
-    <span className="hero-accent hero-accent--1">beautiful websites</span>,
-  </h1>
+            <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">
+              Engineering{" "}
+              <span
+                className="hero-accent hero-accent--1"
+                data-text="beautiful websites"
+              >
+                beautiful websites
+              </span>
+              ,
+            </h1>
 
-  <h2 className="text-3xl font-semibold tracking-tight md:text-5xl">
-    <span className="hero-accent hero-accent--2">Automations</span>, and{" "}
-    <span className="hero-accent hero-accent--3">MVP apps.</span>
-  </h2>
-</div>
-
-
-
-
+            <h2 className="text-3xl font-semibold tracking-tight md:text-5xl">
+              <span
+                className="hero-accent hero-accent--2"
+                data-text="Automations"
+              >
+                Automations
+              </span>
+              , and{" "}
+              <span
+                className="hero-accent hero-accent--3"
+                data-text="MVP apps."
+              >
+                MVP apps.
+              </span>
+            </h2>
+          </div>
 
           <p className="max-w-2xl text-sm text-white/70 md:text-base">
             I&apos;m a full-stack engineer with a media and design background. I
@@ -761,127 +775,115 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="absolute bottom-7 left-1/2 z-20 -translate-x-1/2">
-        <button
-          onClick={() => scrollToSection("blueprint")}
-          className="group flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white transition hover:border-white"
-        >
-          <span className="arrow-bounce text-lg leading-none">↓</span>
-        </button>
+      {/* Logo billboard train at bottom of hero – wider and closer to edges */}
+      <div className="absolute bottom-12 left-1/2 z-20 w-full max-w-6xl -translate-x-1/2 px-2 md:px-6">
+        <LogoTrain />
       </div>
 
-     <style jsx>{`
-  @keyframes arrow-bounce {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(4px);
-    }
+      <style jsx>{`
+        /* HERO TEXT – base blue gradient + moving shine copy */
+        .hero-accent {
+          position: relative;
+          display: inline-block;
+          font-weight: 700;
+          background: linear-gradient(120deg, #60a5ff, #8bcdff, #38bdf8);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          color: transparent;
+          overflow: visible;
+        }
+
+        .hero-accent::before {
+          content: attr(data-text);
+          position: absolute;
+          inset: 0;
+
+          background-image: linear-gradient(
+            120deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0) 35%,
+            rgba(255, 255, 255, 0.95) 50%,
+            rgba(255, 255, 255, 0) 65%,
+            rgba(255, 255, 255, 0) 100%
+          );
+          background-size: 230% 100%;
+          background-position: -130% 0;
+          background-repeat: no-repeat;
+
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          color: transparent;
+
+          mix-blend-mode: screen;
+          animation: hero-shine 4s linear infinite;
+          pointer-events: none;
+        }
+
+        .hero-accent--1::before {
+          animation-delay: 0s;
+        }
+        .hero-accent--2::before {
+          animation-delay: 0.8s;
+        }
+        .hero-accent--3::before {
+          animation-delay: 1.6s;
+        }
+
+        @keyframes hero-shine {
+  0% {
+    background-position: 130% 0;   /* start off RIGHT */
   }
-
-  .arrow-bounce {
-    animation: arrow-bounce 1.4s ease-in-out infinite;
+  65% {
+    background-position: -130% 0;  /* sweep to LEFT */
   }
-
-  /* GRADIENT + TEXT-CLIPPED SHINE SWEEP */
-  .hero-accent {
-    position: relative;
-    font-weight: 700;
-
-    /* layer 1: static blue gradient
-       layer 2: bright streak that sweeps across */
-    background-image:
-      linear-gradient(120deg, #60a5ff, #8bcdff, #38bdf8),
-      linear-gradient(
-        120deg,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0) 30%,
-        rgba(255, 255, 255, 0.95) 50%,
-        rgba(255, 255, 255, 0) 70%,
-        rgba(255, 255, 255, 0) 100%
-      );
-
-    /* base stays fixed, streak is huge + moves */
-    background-size: 100% 100%, 260% 100%;
-    background-position: 0% 0%, -260% 0%;
-    background-repeat: no-repeat;
-
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-
-    animation: hero-shine 6s ease-in-out infinite;
+  100% {
+    background-position: -130% 0;
   }
-
-  .hero-accent--1 {
-    animation-delay: 0s;
-  }
-  .hero-accent--2 {
-    animation-delay: 0.8s;
-  }
-  .hero-accent--3 {
-    animation-delay: 1.6s;
-  }
-
-  @keyframes hero-shine {
-    0% {
-      background-position: 0% 0%, -260% 0%;
-    }
-    45% {
-      background-position: 0% 0%, 260% 0%;
-    }
-    100% {
-      background-position: 0% 0%, 260% 0%;
-    }
-  }
-
-  /* GRID BEHIND TEXT */
-  .hero-grid {
-    position: relative;
-    width: 2200px;
-    height: 860px;
-    z-index: -1;
-    overflow: hidden;
-    mask-image: radial-gradient(
-      ellipse 40% 35% at var(--grid-center-x, 30%) 50%,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(0, 0, 0, 0) 95%
-    );
-    -webkit-mask-image: radial-gradient(
-      ellipse 40% 35% at var(--grid-center-x, 30%) 50%,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(0, 0, 0, 0) 95%
-    );
-  }
-
-  .hero-grid-pattern {
-    position: absolute;
-    inset: -200px 0;
-    opacity: 2;
-    will-change: transform;
-    background-image: repeating-linear-gradient(
-        0deg,
-        rgba(255, 255, 255, 0.16) 0,
-        rgba(255, 255, 255, 0.16) 1px,
-        transparent 1px,
-        transparent 64px
-      ),
-      repeating-linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0.16) 0,
-        rgba(255, 255, 255, 0.16) 1px,
-        transparent 1px,
-        transparent 64px
-      );
-  }
-`}</style>
+}
 
 
+        /* GRID BEHIND TEXT */
+        .hero-grid {
+          position: relative;
+          width: 2200px;
+          height: 860px;
+          z-index: -1;
+          overflow: hidden;
+          mask-image: radial-gradient(
+            ellipse 40% 35% at var(--grid-center-x, 30%) 50%,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0) 95%
+          );
+          -webkit-mask-image: radial-gradient(
+            ellipse 40% 35% at var(--grid-center-x, 30%) 50%,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0) 95%
+          );
+        }
 
-
+        .hero-grid-pattern {
+          position: absolute;
+          inset: -200px 0;
+          opacity: 2;
+          will-change: transform;
+          background-image: repeating-linear-gradient(
+              0deg,
+              rgba(255, 255, 255, 0.16) 0,
+              rgba(255, 255, 255, 0.16) 1px,
+              transparent 1px,
+              transparent 64px
+            ),
+            repeating-linear-gradient(
+              90deg,
+              rgba(255, 255, 255, 0.16) 0,
+              rgba(255, 255, 255, 0.16) 1px,
+              transparent 1px,
+              transparent 64px
+            );
+        }
+      `}</style>
     </section>
   );
 }
