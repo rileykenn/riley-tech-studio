@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Technology",
+  title: "Shoalhaven Technology",
   description: "Shoalhaven’s premium web and automation studio, delivering fast, modern websites and custom-built workflows for real operators and growing businesses.",
 };
 

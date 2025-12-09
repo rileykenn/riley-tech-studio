@@ -562,59 +562,54 @@ export default function Hero() {
         ctx.restore();
 
         // Extra glow only around the strongest bend
-        let maxGlow = 0;
-        let maxGlowIndex = 0;
-        for (let j = 0; j < points.length; j++) {
-          if (points[j].glow > maxGlow) {
-            maxGlow = points[j].glow;
-            maxGlowIndex = j;
-          }
-        }
+let maxGlow = 0;
+let maxGlowIndex = 0;
+for (let j = 0; j < points.length; j++) {
+  if (points[j].glow > maxGlow) {
+    maxGlow = points[j].glow;
+    maxGlowIndex = j;
+  }
+}
 
-        if (maxGlow > 0.03) {
-          const halfWindow = 50;
-          const startIdx = Math.max(0, maxGlowIndex - halfWindow);
-          const endIdx = Math.min(points.length - 1, maxGlowIndex + halfWindow);
+// ⬇️ change THIS line:
+if (maxGlow > 0.03 && !isSafari) {
+  const halfWindow = 50;
+  const startIdx = Math.max(0, maxGlowIndex - halfWindow);
+  const endIdx = Math.min(points.length - 1, maxGlowIndex + halfWindow);
 
-          const startPt = highlightPoints[startIdx];
-          const endPt = highlightPoints[endIdx];
+  const startPt = highlightPoints[startIdx];
+  const endPt = highlightPoints[endIdx];
 
-          const grad = ctx.createLinearGradient(
-            startPt.x,
-            startPt.y,
-            endPt.x,
-            endPt.y
-          );
+  const grad = ctx.createLinearGradient(
+    startPt.x,
+    startPt.y,
+    endPt.x,
+    endPt.y
+  );
 
-          const midAlpha = 0.1 + maxGlow * 4;
+  const midAlpha = 0.1 + maxGlow * 4;
 
-          grad.addColorStop(0.0, "rgba(255,255,255,0)");
-          grad.addColorStop(
-            0.25,
-            `rgba(255,255,255,${midAlpha * 0.4})`
-          );
-          grad.addColorStop(0.5, `rgba(255,255,255,${midAlpha})`);
-          grad.addColorStop(
-            0.75,
-            `rgba(255,255,255,${midAlpha * 0.4})`
-          );
-          grad.addColorStop(1.0, "rgba(255,255,255,0)");
+  grad.addColorStop(0.0, "rgba(255,255,255,0)");
+  grad.addColorStop(0.25, `rgba(255,255,255,${midAlpha * 0.4})`);
+  grad.addColorStop(0.5, `rgba(255,255,255,${midAlpha})`);
+  grad.addColorStop(0.75, `rgba(255,255,255,${midAlpha * 0.4})`);
+  grad.addColorStop(1.0, "rgba(255,255,255,0)");
 
-          ctx.save();
-          ctx.strokeStyle = grad;
-          ctx.lineWidth = baseWidth * (0.35 + maxGlow * 0.15);
-          ctx.shadowColor = `rgba(255,255,255,${midAlpha})`;
-          // again: softer on Safari to avoid orb artifacts
-          ctx.shadowBlur = isSafari ? baseWidth : baseWidth * 1.6;
-          ctx.beginPath();
-          ctx.moveTo(startPt.x, startPt.y);
-          for (let j = startIdx + 1; j <= endIdx; j++) {
-            const p = highlightPoints[j];
-            ctx.lineTo(p.x, p.y);
-          }
-          ctx.stroke();
-          ctx.restore();
-        }
+  ctx.save();
+  ctx.strokeStyle = grad;
+  ctx.lineWidth = baseWidth * (0.35 + maxGlow * 0.15);
+  ctx.shadowColor = `rgba(255,255,255,${midAlpha})`;
+  ctx.shadowBlur = isSafari ? baseWidth : baseWidth * 1.6;
+  ctx.beginPath();
+  ctx.moveTo(startPt.x, startPt.y);
+  for (let j = startIdx + 1; j <= endIdx; j++) {
+    const p = highlightPoints[j];
+    ctx.lineTo(p.x, p.y);
+  }
+  ctx.stroke();
+  ctx.restore();
+}
+
       }
 
       ctx.globalCompositeOperation = "source-over";
