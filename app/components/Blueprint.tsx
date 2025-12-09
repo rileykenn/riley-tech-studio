@@ -43,11 +43,11 @@ export default function Blueprint() {
           <Pill>Build &amp; integrate</Pill>
 
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
-            I architect your website, automations &amp; CRM like a{" "}
+            I Design your website, automations &amp; CRM like a{" "}
             <span className="underline decoration-cyan-200/90 decoration-[3px]">
-              blueprint
-            </span>
-            — every system planned before it&apos;s built.
+              blueprint 
+            </span> 
+            - every system planned before it&apos;s built.
           </h2>
 
           <p className="max-w-xl text-sm md:text-base text-cyan-50/80">

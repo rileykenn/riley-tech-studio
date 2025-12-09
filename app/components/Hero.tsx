@@ -678,15 +678,17 @@ export default function Hero() {
 
   return (
     <section
-      ref={heroRef}
-      className="relative w-full overflow-hidden bg-black text-white flex items-center min-h-screen min-h-[100svh]"
-    >
+  ref={heroRef}
+  className="relative w-full bg-black text-white flex items-center min-h-screen min-h-[100svh]"
+>
+
       <canvas
         ref={canvasRef}
         className="pointer-events-none absolute inset-0 z-0"
       />
 
-      <div className="pointer-events-none absolute inset-0 z-10 bg-black/20" />
+      
+
 
       <div
         ref={contentRef}
@@ -743,34 +745,44 @@ export default function Hero() {
           </div>
 
           <p className="max-w-2xl text-sm text-white/70 md:text-base">
-            I&apos;m a full-stack engineer with a media and design background. I
-            build high-performance marketing sites and wire them into CRMs,
-            automations and AI flows so your team spends less time clicking and
-            more time selling.
-          </p>
+  I&apos;m a full-stack engineer with a media and design background. I
+  build high-performance marketing sites and wire them into CRMs,
+  automations and AI flows so your team spends less time clicking and
+  more time selling.
+</p>
 
-          <div className="mt-2 flex flex-wrap items-center justify-center gap-4 md:justify-start">
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="rounded-full border border-sky-100/70 bg-gradient-to-br from-sky-50/95 via-white to-sky-200/90 text-slate-900 px-8 py-3 text-sm font-medium shadow-[0_0_26px_rgba(56,189,248,0.55)] transition hover:from-sky-100/95 hover:via-white hover:to-sky-300/95 hover:shadow-[0_0_34px_rgba(56,189,248,0.75)]"
-            >
-              Book a free call
-            </button>
+<div className="mt-2 flex flex-wrap items-center justify-center gap-4 md:justify-start">
 
-            <button
-              onClick={() => scrollToSection("blueprint")}
-              className="rounded-full border border-sky-200/35 bg-white/5 px-8 py-3 text-sm font-medium text-sky-50/90 backdrop-blur-md shadow-[0_0_18px_rgba(56,189,248,0.35)] transition hover:bg-white/10 hover:border-sky-100/80 hover:text-white"
-            >
-              Explore what I build
-            </button>
-          </div>
+  <button
+    onClick={() => scrollToSection("contact")}
+    className="rounded-full border border-sky-100/70 bg-gradient-to-br from-sky-50/95 via-white to-sky-200/90 text-slate-900 px-8 py-3 text-sm font-medium shadow-[0_0_26px_rgba(56,189,248,0.55)] transition hover:from-sky-100/95 hover:via-white hover:to-sky-300/95 hover:shadow-[0_0_34px_rgba(56,189,248,0.75)]"
+  >
+    Book a free call
+  </button>
 
-          <div className="mt-6 flex items-center gap-3 text-xs text-white/40">
-            <span className="h-px w-10 bg-white/30" />
-            <span>Built for founders, agencies &amp; real operators.</span>
-          </div>
-        </div>
-      </div>
+  <button
+  onClick={() => scrollToSection("blueprint")}
+  className="rounded-full border border-sky-200/35 px-8 py-3 text-sm font-medium text-sky-50/90 shadow-[0_0_18px_rgba(56,189,248,0.35)] transition hover:border-sky-100/80 hover:text-white"
+  style={{
+    backgroundColor: "rgba(255,255,255,0.06)",
+    backdropFilter: "blur(18px)",
+    WebkitBackdropFilter: "blur(18px)",
+  }}
+>
+  Explore what I build
+</button>
+
+
+</div>
+
+<div className="mt-6 flex items-center gap-3 text-xs text-white/40">
+  <span className="h-px w-10 bg-white/30" />
+  <span>Built for founders, agencies &amp; real operators.</span>
+</div>
+</div>
+</div>
+
+
 
       {/* Logo billboard train – give more space below CTA on mobile */}
       <div className="absolute bottom-3 sm:bottom-5 md:bottom-10 lg:bottom-12 left-1/2 z-20 w-full max-w-6xl -translate-x-1/2 px-2 md:px-6">
