@@ -55,7 +55,7 @@ const PARTICLE_CONFIG = {
   glowBoostNearCursor: 0.35,
 };
 
-// Simple Safari detection (to hide visible orbs there)
+// Safari detection – used ONLY for visual tweaks
 const isSafari =
   typeof window !== "undefined" &&
   typeof navigator !== "undefined" &&
@@ -206,10 +206,9 @@ export default function Hero() {
       const my = mouse.y * h;
       const mouseSpeed = mouse.speed;
 
-      // ===== BLUE BACKGROUND + VOLUMETRICS + POINT LIGHTS (from old hero) =====
+      // ===== BLUE BACKGROUND + VOLUMETRICS =====
       ctx.globalCompositeOperation = "source-over";
 
-      // vertical gradient: deep navy → blueprint
       const bgGrad = ctx.createLinearGradient(0, 0, 0, h);
       bgGrad.addColorStop(0, "#020617");
       bgGrad.addColorStop(0.45, "#020617");
@@ -234,23 +233,21 @@ export default function Hero() {
       ctx.fillStyle = seamGlow;
       ctx.save();
       ctx.globalCompositeOperation = "screen";
-
-      // Draw the seam glow normally (no clipping)
       ctx.fillStyle = seamGlow;
       ctx.fillRect(0, 0, w, h);
 
-      // Create a vertical fade mask ABOVE the glow so it naturally softens
+      // fade the seam upward so it doesn't hard-cut
       const fade = ctx.createLinearGradient(0, h * 0.45, 0, h * 0.75);
-      fade.addColorStop(0, "rgba(0,0,0,1)"); // fully block glow above
-      fade.addColorStop(1, "rgba(0,0,0,0)"); // fully allow glow below
+      fade.addColorStop(0, "rgba(0,0,0,1)");
+      fade.addColorStop(1, "rgba(0,0,0,0)");
 
-      ctx.globalCompositeOperation = "destination-out"; // subtract alpha
+      ctx.globalCompositeOperation = "destination-out";
       ctx.fillStyle = fade;
       ctx.fillRect(0, 0, w, h);
 
       ctx.restore();
 
-      // volumetric fog left
+      // volumetric fog (keep these – they’re the nice soft glows)
       const fogLeft = ctx.createRadialGradient(
         w * 0.2,
         h * 0.18,
@@ -264,7 +261,6 @@ export default function Hero() {
       ctx.fillStyle = fogLeft;
       ctx.fillRect(0, 0, w, h);
 
-      // volumetric fog right
       const fogRight = ctx.createRadialGradient(
         w * 0.85,
         h * 0.05,
@@ -300,6 +296,7 @@ export default function Hero() {
       );
       impactsRef.current = globalImpacts;
 
+      // === INTERACTIVE BACKGROUND ORBS (KEEP) ===
       const particles = particlesRef.current;
       const influenceRadius =
         Math.min(w, h) * PARTICLE_CONFIG.cursorInfluenceRadiusMultiplier;
@@ -369,16 +366,14 @@ export default function Hero() {
         if (alpha > 1) alpha = 1;
         if (alpha < 0) alpha = 0;
 
-        // Safari is drawing the orbs as solid circles – keep the physics
-        // but skip the actual visible draw there.
-        if (!isSafari) {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size * twinkle, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${PARTICLE_CONFIG.color},${alpha})`;
-          ctx.fill();
-        }
+        // ALWAYS draw these – these are your nice interactive orbs
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * twinkle, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${PARTICLE_CONFIG.color},${alpha})`;
+        ctx.fill();
       }
 
+      // === RIBBONS ===
       for (let i = 0; i < ribbonCount; i++) {
         const progress = i / (ribbonCount - 1 || 1);
         const baseY = h * (0.2 + progress * 0.6);
@@ -508,6 +503,7 @@ export default function Hero() {
 
         const baseWidth = 20 + progress * 10;
 
+        // Base soft ribbon
         ctx.beginPath();
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
@@ -550,6 +546,7 @@ export default function Hero() {
           highlightPoints.push({ x: hx, y: hy, glow: p.glow });
         }
 
+        // Main white highlight line
         ctx.save();
         ctx.beginPath();
         highlightPoints.forEach((p, idx) => {
@@ -558,11 +555,13 @@ export default function Hero() {
         });
         ctx.strokeStyle = "rgba(240,240,240,1)";
         ctx.lineWidth = baseWidth * 0.4;
-        ctx.shadowColor = "rgba(0,232,255,88)";
-        ctx.shadowBlur = baseWidth * 4;
+        ctx.shadowColor = "rgba(0,232,255,0.88)";
+        // LESS blur on Safari to avoid chunky blobs inside the ribbon
+        ctx.shadowBlur = isSafari ? baseWidth * 1.5 : baseWidth * 4;
         ctx.stroke();
         ctx.restore();
 
+        // Extra glow only around the strongest bend
         let maxGlow = 0;
         let maxGlowIndex = 0;
         for (let j = 0; j < points.length; j++) {
@@ -605,7 +604,8 @@ export default function Hero() {
           ctx.strokeStyle = grad;
           ctx.lineWidth = baseWidth * (0.35 + maxGlow * 0.15);
           ctx.shadowColor = `rgba(255,255,255,${midAlpha})`;
-          ctx.shadowBlur = baseWidth * 1.6;
+          // again: softer on Safari to avoid orb artifacts
+          ctx.shadowBlur = isSafari ? baseWidth : baseWidth * 1.6;
           ctx.beginPath();
           ctx.moveTo(startPt.x, startPt.y);
           for (let j = startIdx + 1; j <= endIdx; j++) {
@@ -675,7 +675,6 @@ export default function Hero() {
 
       const delta = sectionCenter - viewportCenter;
 
-      // tweak 0.5 for more / less intensity
       const offset = delta * 0.5;
 
       pattern.style.transform = `translate3d(0, ${offset}px, 0)`;
@@ -720,7 +719,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* TOP PILL – bluish glass */}
+        {/* TOP PILL */}
         <div className="mt-16 inline-flex items-center gap-2 rounded-full border border-sky-300/45 bg-gradient-to-r from-sky-500/40 via-sky-500/15 to-sky-400/40 px-4 py-1 text-xs text-sky-50/90 backdrop-blur-xl shadow-[0_0_26px_rgba(56,189,248,0.55)]">
           <span className="rounded-full bg-sky-900/50 px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wide text-sky-50">
             Web • Systems • Automation
@@ -771,7 +770,6 @@ export default function Hero() {
           </p>
 
           <div className="mt-2 flex flex-wrap items-center justify-center gap-4 md:justify-start">
-            {/* BOOK A CALL – stronger blue-tinted glassy gradient */}
             <button
               onClick={() => scrollToSection("contact")}
               className="rounded-full border border-sky-100/70 bg-gradient-to-br from-sky-50/95 via-white to-sky-200/90 text-slate-900 px-8 py-3 text-sm font-medium shadow-[0_0_26px_rgba(56,189,248,0.55)] transition hover:from-sky-100/95 hover:via-white hover:to-sky-300/95 hover:shadow-[0_0_34px_rgba(56,189,248,0.75)]"
@@ -779,7 +777,6 @@ export default function Hero() {
               Book a free call
             </button>
 
-            {/* EXPLORE BUTTON – keep as-is (glass / blue tint) */}
             <button
               onClick={() => scrollToSection("blueprint")}
               className="rounded-full border border-sky-200/35 bg-white/5 px-8 py-3 text-sm font-medium text-sky-50/90 backdrop-blur-md shadow-[0_0_18px_rgba(56,189,248,0.35)] transition hover:bg-white/10 hover:border-sky-100/80 hover:text-white"
@@ -795,13 +792,12 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Logo billboard train at bottom of hero – wider and closer to edges */}
-      <div className="absolute bottom-12 left-1/2 z-20 w-full max-w-6xl -translate-x-1/2 px-2 md:px-6">
+      {/* Logo billboard train – give more space below CTA on mobile */}
+      <div className="absolute bottom-3 sm:bottom-5 md:bottom-10 lg:bottom-12 left-1/2 z-20 w-full max-w-6xl -translate-x-1/2 px-2 md:px-6">
         <LogoTrain />
       </div>
 
       <style jsx>{`
-        /* HERO TEXT – base blue gradient + moving shine copy */
         .hero-accent {
           position: relative;
           display: inline-block;
@@ -818,7 +814,6 @@ export default function Hero() {
           content: attr(data-text);
           position: absolute;
           inset: 0;
-
           background-image: linear-gradient(
             120deg,
             rgba(255, 255, 255, 0) 0%,
@@ -830,12 +825,10 @@ export default function Hero() {
           background-size: 230% 100%;
           background-position: -130% 0;
           background-repeat: no-repeat;
-
           -webkit-background-clip: text;
           background-clip: text;
           -webkit-text-fill-color: transparent;
           color: transparent;
-
           mix-blend-mode: screen;
           animation: hero-shine 4s linear infinite;
           pointer-events: none;
@@ -853,17 +846,16 @@ export default function Hero() {
 
         @keyframes hero-shine {
           0% {
-            background-position: 130% 0; /* start off RIGHT */
+            background-position: 130% 0;
           }
           65% {
-            background-position: -130% 0; /* sweep to LEFT */
+            background-position: -130% 0;
           }
           100% {
             background-position: -130% 0;
           }
         }
 
-        /* GRID BEHIND TEXT */
         .hero-grid {
           position: relative;
           width: 2200px;
