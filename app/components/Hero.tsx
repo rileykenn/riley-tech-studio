@@ -96,6 +96,12 @@ export default function Hero() {
 
     const dpr = window.devicePixelRatio || 1;
 
+    // Only enable cursor-based interaction on devices
+    // that actually have a fine pointer (mouse/trackpad)
+    const hasFinePointer =
+      window.matchMedia &&
+      window.matchMedia("(pointer: fine)").matches;
+
     const initParticles = (width: number, height: number) => {
       const particles: Particle[] = [];
 
@@ -162,33 +168,10 @@ export default function Hero() {
       };
     };
 
-    const handleTouchMove = (e: TouchEvent) => {
-      if (!e.touches[0]) return;
-      const { innerWidth, innerHeight } = window;
-      const now = performance.now();
-
-      const prev = mouseRef.current;
-      const nx = e.touches[0].clientX / innerWidth;
-      const ny = e.touches[0].clientY / innerHeight;
-
-      const dxPx = (nx - prev.x) * innerWidth;
-      const dyPx = (ny - prev.y) * innerHeight;
-      const dt = Math.max(now - prev.lastTime, 16);
-
-      const speed = Math.hypot(dxPx, dyPx) / dt;
-
-      mouseRef.current = {
-        x: nx,
-        y: ny,
-        vx: dxPx / dt,
-        vy: dyPx / dt,
-        speed,
-        lastTime: now,
-      };
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("touchmove", handleTouchMove);
+    // Only attach mouse listener on devices with a fine pointer
+    if (hasFinePointer) {
+      window.addEventListener("mousemove", handleMouseMove);
+    }
 
     let startTime = performance.now();
 
@@ -298,8 +281,9 @@ export default function Hero() {
 
       // === INTERACTIVE BACKGROUND ORBS (KEEP) ===
       const particles = particlesRef.current;
-      const influenceRadius =
-        Math.min(w, h) * PARTICLE_CONFIG.cursorInfluenceRadiusMultiplier;
+      const influenceRadius = hasFinePointer
+        ? Math.min(w, h) * PARTICLE_CONFIG.cursorInfluenceRadiusMultiplier
+        : 0;
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
@@ -315,7 +299,7 @@ export default function Hero() {
 
         let glowBoost = 0;
 
-        if (dist < influenceRadius) {
+        if (hasFinePointer && dist < influenceRadius) {
           const strength =
             (1 - dist / influenceRadius) *
             PARTICLE_CONFIG.cursorRepelStrength;
@@ -431,7 +415,7 @@ export default function Hero() {
           }
         }
 
-        if (minDist < hitRadius) {
+        if (hasFinePointer && minDist < hitRadius) {
           if (t - lastHitTimeRef.current > minHitGap) {
             const strength = Math.min(
               Math.max(mouseSpeed * 40, minStrength),
@@ -447,7 +431,9 @@ export default function Hero() {
           }
         }
 
-        const influenceRadiusRibbon = Math.min(w, h) * 0.35;
+        const influenceRadiusRibbon = hasFinePointer
+          ? Math.min(w, h) * 0.35
+          : 0;
         const innerRadius = influenceRadiusRibbon * 0.25;
         const maxPush = 35;
         const span = Math.max(influenceRadiusRibbon - innerRadius, 5);
@@ -561,55 +547,53 @@ export default function Hero() {
         ctx.stroke();
         ctx.restore();
 
-        // Extra glow only around the strongest bend
-let maxGlow = 0;
-let maxGlowIndex = 0;
-for (let j = 0; j < points.length; j++) {
-  if (points[j].glow > maxGlow) {
-    maxGlow = points[j].glow;
-    maxGlowIndex = j;
-  }
-}
+        // Extra glow only around the strongest bend (disabled on Safari)
+        let maxGlow = 0;
+        let maxGlowIndex = 0;
+        for (let j = 0; j < points.length; j++) {
+          if (points[j].glow > maxGlow) {
+            maxGlow = points[j].glow;
+            maxGlowIndex = j;
+          }
+        }
 
-// ⬇️ change THIS line:
-if (maxGlow > 0.03 && !isSafari) {
-  const halfWindow = 50;
-  const startIdx = Math.max(0, maxGlowIndex - halfWindow);
-  const endIdx = Math.min(points.length - 1, maxGlowIndex + halfWindow);
+        if (maxGlow > 0.03 && !isSafari) {
+          const halfWindow = 50;
+          const startIdx = Math.max(0, maxGlowIndex - halfWindow);
+          const endIdx = Math.min(points.length - 1, maxGlowIndex + halfWindow);
 
-  const startPt = highlightPoints[startIdx];
-  const endPt = highlightPoints[endIdx];
+          const startPt = highlightPoints[startIdx];
+          const endPt = highlightPoints[endIdx];
 
-  const grad = ctx.createLinearGradient(
-    startPt.x,
-    startPt.y,
-    endPt.x,
-    endPt.y
-  );
+          const grad = ctx.createLinearGradient(
+            startPt.x,
+            startPt.y,
+            endPt.x,
+            endPt.y
+          );
 
-  const midAlpha = 0.1 + maxGlow * 4;
+          const midAlpha = 0.1 + maxGlow * 4;
 
-  grad.addColorStop(0.0, "rgba(255,255,255,0)");
-  grad.addColorStop(0.25, `rgba(255,255,255,${midAlpha * 0.4})`);
-  grad.addColorStop(0.5, `rgba(255,255,255,${midAlpha})`);
-  grad.addColorStop(0.75, `rgba(255,255,255,${midAlpha * 0.4})`);
-  grad.addColorStop(1.0, "rgba(255,255,255,0)");
+          grad.addColorStop(0.0, "rgba(255,255,255,0)");
+          grad.addColorStop(0.25, `rgba(255,255,255,${midAlpha * 0.4})`);
+          grad.addColorStop(0.5, `rgba(255,255,255,${midAlpha})`);
+          grad.addColorStop(0.75, `rgba(255,255,255,${midAlpha * 0.4})`);
+          grad.addColorStop(1.0, "rgba(255,255,255,0)");
 
-  ctx.save();
-  ctx.strokeStyle = grad;
-  ctx.lineWidth = baseWidth * (0.35 + maxGlow * 0.15);
-  ctx.shadowColor = `rgba(255,255,255,${midAlpha})`;
-  ctx.shadowBlur = isSafari ? baseWidth : baseWidth * 1.6;
-  ctx.beginPath();
-  ctx.moveTo(startPt.x, startPt.y);
-  for (let j = startIdx + 1; j <= endIdx; j++) {
-    const p = highlightPoints[j];
-    ctx.lineTo(p.x, p.y);
-  }
-  ctx.stroke();
-  ctx.restore();
-}
-
+          ctx.save();
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = baseWidth * (0.35 + maxGlow * 0.15);
+          ctx.shadowColor = `rgba(255,255,255,${midAlpha})`;
+          ctx.shadowBlur = baseWidth * 1.6;
+          ctx.beginPath();
+          ctx.moveTo(startPt.x, startPt.y);
+          for (let j = startIdx + 1; j <= endIdx; j++) {
+            const p = highlightPoints[j];
+            ctx.lineTo(p.x, p.y);
+          }
+          ctx.stroke();
+          ctx.restore();
+        }
       }
 
       ctx.globalCompositeOperation = "source-over";
@@ -620,8 +604,9 @@ if (maxGlow > 0.03 && !isSafari) {
 
     return () => {
       window.removeEventListener("resize", resize);
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("touchmove", handleTouchMove);
+      if (hasFinePointer) {
+        window.removeEventListener("mousemove", handleMouseMove);
+      }
       if (animationFrameRef.current !== null) {
         cancelAnimationFrame(animationFrameRef.current);
       }
