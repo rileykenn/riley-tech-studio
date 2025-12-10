@@ -17,18 +17,18 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // later you can hook this into Supabase / email / CRM
+    // later this will post to Airtable / CRM
     setSubmitted(true);
   };
 
   return (
-    <section className="relative w-full bg-[#020617] py-20 md:py-24">
-      {/* soft cyan glow */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.25),transparent_60%)]" />
+    <section className="relative w-full bg-[#02101f] py-20 md:py-24">
+      {/* brighter blue bloom */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.28),transparent_65%)]" />
 
-      {/* faint grid */}
-      <div className="pointer-events-none absolute inset-0 opacity-15">
-        <div className="h-full w-full bg-[linear-gradient(to_right,rgba(51,65,85,0.5)_1px,transparent_1px),linear-gradient(to_bottom,rgba(51,65,85,0.5)_1px,transparent_1px)] bg-[size:90px_90px]" />
+      {/* electric blueprint grid */}
+      <div className="pointer-events-none absolute inset-0 opacity-20">
+        <div className="h-full w-full bg-[linear-gradient(to_right,rgba(75,130,255,0.35)_1px,transparent_1px),linear-gradient(to_bottom,rgba(75,130,255,0.35)_1px,transparent_1px)] bg-[size:88px_88px]" />
       </div>
 
       <motion.div
@@ -38,9 +38,9 @@ export default function Contact() {
         variants={sectionVariants}
         className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 md:px-10 lg:flex-row lg:items-start"
       >
-        {/* LEFT: pitch */}
+        {/* LEFT CONTENT */}
         <div className="flex-1 space-y-6 text-slate-50">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-cyan-300/80">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-cyan-300/90">
             Let&apos;s build your system
           </p>
 
@@ -49,16 +49,15 @@ export default function Contact() {
             <span className="text-cyan-300">I&apos;ll handle the tech.</span>
           </h2>
 
-          <p className="max-w-xl text-sm text-slate-300/85 md:text-[15px]">
+          <p className="max-w-xl text-sm text-slate-200/85 md:text-[15px]">
             Whether it&apos;s a slow, outdated website or a mess of tools that
             don&apos;t talk to each other – this is where we start. I&apos;ll
-            review what you&apos;ve got now and send back a clear plan for how
-            we can upgrade it.
+            review what you&apos;ve got now and send back a clear plan.
           </p>
 
           <div className="grid gap-4 text-xs text-slate-200/85 md:grid-cols-2 md:text-sm">
-            <div className="rounded-2xl border border-slate-700/70 bg-slate-900/70 p-4 backdrop-blur">
-              <h3 className="mb-1 text-[13px] font-semibold text-slate-50">
+            <div className="rounded-2xl border border-cyan-400/20 bg-slate-900/40 p-4 backdrop-blur">
+              <h3 className="mb-1 text-[13px] font-semibold text-cyan-200">
                 What you can use this for
               </h3>
               <p>
@@ -66,52 +65,45 @@ export default function Contact() {
                 automation flows, bookings, payments or internal tools.
               </p>
             </div>
-            <div className="rounded-2xl border border-slate-700/70 bg-slate-900/70 p-4 backdrop-blur">
-              <h3 className="mb-1 text-[13px] font-semibold text-slate-50">
+            <div className="rounded-2xl border border-cyan-400/20 bg-slate-900/40 p-4 backdrop-blur">
+              <h3 className="mb-1 text-[13px] font-semibold text-cyan-200">
                 How I usually respond
               </h3>
               <p>
-                A quick loom or message walking through your current setup and a
-                few concrete options at different levels of budget and scope.
+                A quick loom or message walking through your setup with concrete
+                options at different scopes.
               </p>
             </div>
           </div>
 
           <div className="pt-2 text-xs text-slate-400 md:text-[13px]">
-            Prefer a direct call? Once this is hooked up I&apos;d drop a booking
-            link here so people can grab a time in your calendar.
+            Prefer a direct call? Soon I&apos;ll add a booking link here.
           </div>
         </div>
 
-        {/* RIGHT: form */}
+        {/* RIGHT FORM */}
         <div className="flex-1">
-          <div className="relative mx-auto max-w-md overflow-hidden rounded-3xl border border-slate-700/80 bg-slate-950/90 p-6 shadow-[0_22px_60px_rgba(15,23,42,0.95)] backdrop-blur">
-            {/* corner glow */}
-            <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[radial-gradient(circle,_rgba(34,211,238,0.55),transparent_60%)] opacity-70" />
-
+          <div className="relative mx-auto max-w-md overflow-hidden rounded-3xl border border-cyan-400/25 bg-slate-950/70 p-6 shadow-[0_22px_60px_rgba(0,90,160,0.85)] backdrop-blur-xl">
             <div className="relative z-10">
-              <h3 className="text-[15px] font-semibold text-slate-50">
+              <h3 className="text-[15px] font-semibold text-cyan-100">
                 Start a project / ask a question
               </h3>
               <p className="mt-1 text-[13px] text-slate-400">
-                No obligation – just tell me what&apos;s broken or what you
-                want to build.
+                No obligation – just tell me what&apos;s broken or what you want
+                to build.
               </p>
 
               {submitted ? (
                 <div className="mt-6 rounded-2xl border border-emerald-400/40 bg-emerald-500/10 px-4 py-3 text-[13px] text-emerald-100">
-                  Thanks for sending that through. In a real build this would
-                  trigger an email / CRM entry and I&apos;d get back to you
+                  Thanks for sending that through — I&apos;ll get back to you
                   personally.
                 </div>
               ) : (
-                <form
-                  onSubmit={handleSubmit}
-                  className="mt-5 space-y-4 text-[13px]"
-                >
+                <form onSubmit={handleSubmit} className="mt-5 space-y-4 text-[13px]">
+                  {/* NAME + EMAIL */}
                   <div className="grid gap-4 md:grid-cols-2">
                     <div>
-                      <label className="mb-1 block text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
+                      <label className="mb-1 block text-xs font-medium uppercase tracking-[0.18em] text-cyan-300/80">
                         Name
                       </label>
                       <input
@@ -119,11 +111,12 @@ export default function Contact() {
                         type="text"
                         name="name"
                         placeholder="Riley from DNA Coaching"
-                        className="w-full rounded-xl border border-slate-700/80 bg-slate-950/80 px-3 py-2.5 text-[13px] text-slate-50 outline-none transition focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/60"
+                        className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-[13px] text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
                       />
                     </div>
+
                     <div>
-                      <label className="mb-1 block text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
+                      <label className="mb-1 block text-xs font-medium uppercase tracking-[0.18em] text-cyan-300/80">
                         Email
                       </label>
                       <input
@@ -131,67 +124,75 @@ export default function Contact() {
                         type="email"
                         name="email"
                         placeholder="you@business.com"
-                        className="w-full rounded-xl border border-slate-700/80 bg-slate-950/80 px-3 py-2.5 text-[13px] text-slate-50 outline-none transition focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/60"
+                        className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-[13px] text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
                       />
                     </div>
                   </div>
 
+                  {/* PHONE FIELD */}
                   <div>
-                    <label className="mb-1 block text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
+                    <label className="mb-1 block text-xs font-medium uppercase tracking-[0.18em] text-cyan-300/80">
+                      Phone
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="0499 545 069"
+                      className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-[13px] text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="mb-1 block text-xs font-medium uppercase tracking-[0.18em] text-cyan-300/80">
                       Business name / website
                     </label>
                     <input
                       type="text"
                       name="business"
-                      placeholder="e.g. Sussex Inlet Carpentry / sussexcarpentry.com.au"
-                      className="w-full rounded-xl border border-slate-700/80 bg-slate-950/80 px-3 py-2.5 text-[13px] text-slate-50 outline-none transition focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/60"
+                      placeholder="e.g. Sussex Inlet Carpentry"
+                      className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-[13px] text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
                     />
                   </div>
 
                   <div>
-                    <label className="mb-1 block text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
+                    <label className="mb-1 block text-xs font-medium uppercase tracking-[0.18em] text-cyan-300/80">
                       What do you want to build or fix?
                     </label>
                     <textarea
                       required
                       name="message"
                       rows={4}
-                      placeholder="Tell me in plain language – slow site, broken forms, want more enquiries, need automation, etc."
-                      className="w-full rounded-xl border border-slate-700/80 bg-slate-950/80 px-3 py-2.5 text-[13px] text-slate-50 outline-none transition focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/60"
+                      placeholder="Tell me in plain language – slow site, broken forms, need automation, etc."
+                      className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-[13px] text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
                     />
                   </div>
 
                   <div className="grid gap-4 md:grid-cols-[1.4fr_minmax(0,1fr)]">
                     <div>
-                      <label className="mb-1 block text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
+                      <label className="mb-1 block text-xs font-medium uppercase tracking-[0.18em] text-cyan-300/80">
                         Rough budget / scope
                       </label>
                       <select
                         name="budget"
-                        className="w-full rounded-xl border border-slate-700/80 bg-slate-950/80 px-3 py-2.5 text-[13px] text-slate-50 outline-none transition focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/60"
+                        className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-[13px] text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
                         defaultValue=""
                       >
                         <option value="" disabled>
                           Choose one (can change later)
                         </option>
-                        <option value="small">
-                          Smaller tweaks / fixes
-                        </option>
-                        <option value="site">
-                          New site or full rebuild
-                        </option>
-                        <option value="systems">
-                          Website + automations / systems
-                        </option>
+                        <option value="small">Smaller tweaks / fixes</option>
+                        <option value="site">New site or full rebuild</option>
+                        <option value="systems">Website + automations / systems</option>
                       </select>
                     </div>
+
                     <div>
-                      <label className="mb-1 block text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
+                      <label className="mb-1 block text-xs font-medium uppercase tracking-[0.18em] text-cyan-300/80">
                         How soon do you want this live?
                       </label>
                       <select
                         name="timeline"
-                        className="w-full rounded-xl border border-slate-700/80 bg-slate-950/80 px-3 py-2.5 text-[13px] text-slate-50 outline-none transition focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/60"
+                        className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-[13px] text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
                         defaultValue=""
                       >
                         <option value="" disabled>
@@ -206,7 +207,11 @@ export default function Contact() {
 
                   <button
                     type="submit"
-                    className="mt-2 inline-flex w-full items-center justify-center rounded-full bg-cyan-400 px-6 py-2.5 text-sm font-medium text-black shadow-[0_0_40px_rgba(34,211,238,0.6)] transition hover:bg-cyan-300"
+                    className="mt-2 inline-flex w-full items-center justify-center rounded-full 
+                               bg-gradient-to-br from-white via-white to-cyan-100 
+                               px-6 py-2.5 text-sm font-semibold text-slate-900 
+                               shadow-[0_0_25px_rgba(180,220,255,0.45)] 
+                               transition hover:from-white hover:via-cyan-50 hover:to-cyan-200"
                   >
                     Send this to Riley
                   </button>
@@ -217,13 +222,30 @@ export default function Contact() {
         </div>
       </motion.div>
 
-      {/* footer-ish line */}
+      {/* footer */}
       <div className="relative z-10 mt-10 flex justify-center px-6 md:px-10">
-        <div className="flex w-full max-w-6xl items-center justify-between border-t border-slate-800/80 pt-4 text-[11px] text-slate-500">
+        <div className="flex w-full max-w-6xl flex-col gap-2 border-t border-cyan-400/20 pt-4 text-[11px] text-slate-400 md:flex-row md:items-center md:justify-between">
           <span>© {new Date().getFullYear()} Riley Tech Studio</span>
-          <span className="hidden md:inline">
+
+          <span className="md:text-right">
             Built, designed & engineered by Riley in the Shoalhaven.
           </span>
+
+          <div className="flex flex-wrap gap-x-4 gap-y-1">
+            <span>ABN 82 944 887 387</span>
+            <a
+              href="mailto:contactrileykennedy@gmail.com"
+              className="hover:text-cyan-300"
+            >
+              contactrileykennedy@gmail.com
+            </a>
+            <a
+              href="tel:+61499545069"
+              className="hover:text-cyan-300"
+            >
+              0499 545 069
+            </a>
+          </div>
         </div>
       </div>
     </section>
