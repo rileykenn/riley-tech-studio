@@ -53,7 +53,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="relative w-full bg-[#02101f] py-20 md:py-24">
+    <section className="relative z-20 w-full bg-[#02101f] py-20 md:py-24">
       {/* bright blue bloom */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.28),transparent_65%)]" />
 
@@ -262,9 +262,10 @@ export default function Contact() {
 
       {/* FOOTER */}
       <div className="relative z-10 mt-10 flex justify-center px-6 md:px-10">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 border-t border-cyan-400/20 pt-4 
-          text-[11px] text-slate-400 md:flex-row md:items-center md:justify-between">
-          
+        <div
+          className="mx-auto flex w-full max-w-6xl flex-col gap-2 border-t border-cyan-400/20 pt-4 
+          text-[11px] text-slate-400 md:flex-row md:items-center md:justify-between"
+        >
           <span>© {new Date().getFullYear()} Riley Tech Studio</span>
 
           <span className="md:text-right">
