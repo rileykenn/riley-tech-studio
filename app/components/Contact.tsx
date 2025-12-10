@@ -15,9 +15,41 @@ const sectionVariants: Variants = {
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    const payload = {
+      name: (data.get("name") || "") as string,
+      email: (data.get("email") || "") as string,
+      phone: (data.get("phone") || "") as string,
+      business: (data.get("business") || "") as string,
+      message: (data.get("message") || "") as string,
+      budget: (data.get("budget") || "") as string,
+      timeline: (data.get("timeline") || "") as string,
+    };
+
+    try {
+      const res = await fetch("/api/airtable", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        console.error("Failed to send to Airtable", await res.text());
+        alert("Something went wrong sending your message. Please try again.");
+        return;
+      }
+
+      setSubmitted(true);
+      form.reset();
+    } catch (err) {
+      console.error("Submit error", err);
+      alert("Network error sending your message. Please try again.");
+    }
   };
 
   return (
@@ -54,7 +86,7 @@ export default function Contact() {
             review what you&apos;ve got now and send back a clear plan.
           </p>
 
-          {/* DIRECT CALL OPTION (now on left) */}
+          {/* DIRECT CALL OPTION */}
           <div className="mt-4 rounded-2xl border border-cyan-400/20 bg-slate-900/40 p-5 backdrop-blur text-center shadow-[0_0_40px_rgba(0,140,255,0.15)] max-w-md">
             <p className="text-[13px] text-slate-300 mb-1">Prefer to talk first?</p>
             <p className="text-[15px] font-medium text-slate-200">
@@ -74,7 +106,7 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* RIGHT SIDE – FORM ONLY */}
+        {/* RIGHT SIDE – FORM */}
         <div className="flex-1">
           <div className="relative mx-auto max-w-md overflow-hidden rounded-3xl border border-cyan-400/25 bg-slate-950/70 p-6 shadow-[0_22px_60px_rgba(0,90,160,0.85)] backdrop-blur-xl">
             <div className="relative z-10">
@@ -83,12 +115,14 @@ export default function Contact() {
               </h3>
 
               <p className="mt-1 text-[13px] text-slate-400">
-                No obligation – just tell me what&apos;s broken or what you want to build.
+                No obligation – just tell me what&apos;s broken or what you want
+                to build.
               </p>
 
               {submitted ? (
                 <div className="mt-6 rounded-2xl border border-emerald-400/40 bg-emerald-500/10 px-4 py-3 text-[13px] text-emerald-100">
-                  Thanks for sending that through — I&apos;ll get back to you personally.
+                  Thanks for sending that through, I&apos;ll get back to you
+                  personally.
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="mt-5 space-y-4 text-[13px]">
@@ -121,7 +155,7 @@ export default function Contact() {
                     </div>
                   </div>
 
-                  {/* PHONE FIELD */}
+                  {/* PHONE */}
                   <div>
                     <label className="mb-1 block text-xs font-medium uppercase tracking-[0.18em] text-cyan-300/80">
                       Phone
@@ -134,6 +168,7 @@ export default function Contact() {
                     />
                   </div>
 
+                  {/* BUSINESS */}
                   <div>
                     <label className="mb-1 block text-xs font-medium uppercase tracking-[0.18em] text-cyan-300/80">
                       Business name / website
@@ -146,6 +181,7 @@ export default function Contact() {
                     />
                   </div>
 
+                  {/* MESSAGE */}
                   <div>
                     <label className="mb-1 block text-xs font-medium uppercase tracking-[0.18em] text-cyan-300/80">
                       What do you want to build or fix?
@@ -159,6 +195,7 @@ export default function Contact() {
                     />
                   </div>
 
+                  {/* BUDGET + TIMELINE */}
                   <div className="grid gap-4 md:grid-cols-[1.4fr_minmax(0,1fr)]">
                     <div>
                       <label className="mb-1 block text-xs font-medium uppercase tracking-[0.18em] text-cyan-300/80">
@@ -166,15 +203,21 @@ export default function Contact() {
                       </label>
                       <select
                         name="budget"
-                        className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
                         defaultValue=""
+                        className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
                       >
                         <option value="" disabled>
                           Choose one (can change later)
                         </option>
-                        <option value="small">Smaller tweaks / fixes</option>
-                        <option value="site">New site or full rebuild</option>
-                        <option value="systems">Website + automations / systems</option>
+                        <option value="Smaller tweaks / fixes">
+                          Smaller tweaks / fixes
+                        </option>
+                        <option value="New site or full rebuild">
+                          New site or full rebuild
+                        </option>
+                        <option value="Website + automations / systems">
+                          Website + automations / systems
+                        </option>
                       </select>
                     </div>
 
@@ -184,27 +227,29 @@ export default function Contact() {
                       </label>
                       <select
                         name="timeline"
-                        className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
                         defaultValue=""
+                        className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
                       >
                         <option value="" disabled>
                           Select a rough timeframe
                         </option>
-                        <option value="soon">ASAP / this month</option>
-                        <option value="quarter">Next 1–3 months</option>
-                        <option value="thinking">Just exploring options</option>
+                        <option value="ASAP / this month">ASAP / this month</option>
+                        <option value="Next 1–3 months">Next 1–3 months</option>
+                        <option value="Just exploring options">
+                          Just exploring options
+                        </option>
                       </select>
                     </div>
                   </div>
 
-                  {/* SUBMIT BUTTON */}
+                  {/* SUBMIT */}
                   <button
                     type="submit"
                     className="mt-2 inline-flex w-full items-center justify-center rounded-full 
-                               bg-gradient-to-br from-white via-white to-cyan-100 
-                               px-6 py-2.5 text-sm font-semibold text-slate-900 
-                               shadow-[0_0_25px_rgba(180,220,255,0.45)] 
-                               transition hover:from-white hover:via-cyan-50 hover:to-cyan-200"
+                      bg-gradient-to-br from-white via-white to-cyan-100 
+                      px-6 py-2.5 text-sm font-semibold text-slate-900 
+                      shadow-[0_0_25px_rgba(180,220,255,0.45)] 
+                      transition hover:from-white hover:via-cyan-50 hover:to-cyan-200"
                   >
                     Send this to Riley
                   </button>
@@ -217,7 +262,9 @@ export default function Contact() {
 
       {/* FOOTER */}
       <div className="relative z-10 mt-10 flex justify-center px-6 md:px-10">
-        <div className="flex w-full max-w-6xl flex-col gap-2 border-t border-cyan-400/20 pt-4 text-[11px] text-slate-400 md:flex-row md:items-center md:justify-between">
+        <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 border-t border-cyan-400/20 pt-4 
+          text-[11px] text-slate-400 md:flex-row md:items-center md:justify-between">
+          
           <span>© {new Date().getFullYear()} Riley Tech Studio</span>
 
           <span className="md:text-right">
@@ -226,10 +273,7 @@ export default function Contact() {
 
           <div className="flex flex-wrap gap-x-4 gap-y-1">
             <span>ABN 82 944 887 387</span>
-            <a
-              href="mailto:contactrileykennedy@gmail.com"
-              className="hover:text-cyan-300"
-            >
+            <a href="mailto:contactrileykennedy@gmail.com" className="hover:text-cyan-300">
               contactrileykennedy@gmail.com
             </a>
             <a href="tel:+61499545069" className="hover:text-cyan-300">

@@ -2,6 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import { ReactNode } from "react";
+import Image from "next/image";
 
 const sectionVariants: Variants = {
   hidden: { opacity: 0, y: 60 },
@@ -46,8 +47,8 @@ export default function Blueprint() {
             I Design your website, automations &amp; CRM like a{" "}
             <span className="underline decoration-cyan-200/90 decoration-[3px]">
               blueprint 
-            </span> 
-            - every system planned before it&apos;s built.
+            </span>
+            {" "}- every system planned before it&apos;s built.
           </h2>
 
           <p className="max-w-xl text-sm md:text-base text-cyan-50/80">
@@ -78,143 +79,24 @@ export default function Blueprint() {
           </div>
         </div>
 
-        {/* RIGHT: fake blueprint card */}
+        {/* RIGHT: replaced diagram with your image */}
         <div className="flex-1">
-          <div className="relative mx-auto max-w-md rounded-3xl border border-cyan-100/40 bg-cyan-900/10 p-5 shadow-[0_0_60px_rgba(7,25,79,0.9)] backdrop-blur-md">
+          <div className="relative mx-auto max-w-md rounded-3xl border border-cyan-100/40 bg-cyan-900/10 p-5 shadow-[0_0_60px_rgba(7,25,79,0.9)] backdrop-blur-md overflow-hidden">
+            
             {/* subtle highlight */}
             <div className="pointer-events-none absolute inset-x-10 top-0 h-20 rounded-b-full bg-[radial-gradient(circle,_rgba(255,255,255,0.18),transparent_60%)] opacity-70" />
 
-            {/* fake floorplan */}
-            <svg
-              viewBox="0 0 440 300"
-              className="relative z-10 h=[260px] w-full text-cyan-50/90"
-            >
-              <g
-                stroke="currentColor"
-                strokeWidth="1.3"
-                fill="none"
-                strokeLinejoin="round"
-              >
-                {/* outer walls */}
-                <rect
-                  x="24"
-                  y="24"
-                  width="392"
-                  height="252"
-                  className="animate-[blueprint-draw_1.6s_ease-out_forwards]"
-                  strokeDasharray="820"
-                  strokeDashoffset="820"
-                />
-
-                {/* vertical dividers */}
-                <path
-                  d="M180 24v252 M300 24v252"
-                  className="animate-[blueprint-draw_1.4s_ease-out_0.2s_forwards]"
-                  strokeDasharray="620"
-                  strokeDashoffset="620"
-                />
-
-                {/* horizontal dividers */}
-                <path
-                  d="M24 130h392 M24 210h392"
-                  className="animate-[blueprint-draw_1.4s_ease-out_0.35s_forwards]"
-                  strokeDasharray="520"
-                  strokeDashoffset="520"
-                />
-
-                {/* door / connectors */}
-                <path
-                  d="M180 80h-30 M180 176h-30 M300 260h-30"
-                  className="animate-[blueprint-draw_1.2s_ease-out_0.55s_forwards]"
-                  strokeDasharray="160"
-                  strokeDashoffset="160"
-                />
-
-                {/* labels */}
-                <text
-                  x="60"
-                  y="80"
-                  fontSize="11"
-                  fill="currentColor"
-                  className="uppercase tracking-[0.16em] opacity-0 [animation:fade-in_0.6s_ease-out_0.8s_forwards]"
-                >
-                  LEAD CAPTURE
-                </text>
-                <text
-                  x="215"
-                  y="80"
-                  fontSize="11"
-                  fill="currentColor"
-                  className="uppercase tracking-[0.16em] opacity-0 [animation:fade-in_0.6s_ease-out_0.9s_forwards]"
-                >
-                  WEBSITE
-                </text>
-                <text
-                  x="335"
-                  y="80"
-                  fontSize="11"
-                  fill="currentColor"
-                  className="uppercase tracking-[0.16em] opacity-0 [animation:fade-in_0.6s_ease-out_1s_forwards]"
-                >
-                  CRM
-                </text>
-
-                <text
-                  x="70"
-                  y="190"
-                  fontSize="11"
-                  fill="currentColor"
-                  className="uppercase tracking-[0.16em] opacity-0 [animation:fade-in_0.6s_ease-out_1.1s_forwards]"
-                >
-                  FOLLOW UP
-                </text>
-                <text
-                  x="225"
-                  y="190"
-                  fontSize="11"
-                  fill="currentColor"
-                  className="uppercase tracking-[0.16em] opacity-0 [animation:fade-in_0.6s_ease-out_1.2s_forwards]"
-                >
-                  BOOKINGS
-                </text>
-                <text
-                  x="328"
-                  y="190"
-                  fontSize="11"
-                  fill="currentColor"
-                  className="uppercase tracking-[0.16em] opacity-0 [animation:fade-in_0.6s_ease-out_1.3s_forwards]"
-                >
-                  REPORTING
-                </text>
-              </g>
-            </svg>
-
-            <div className="mt-4 flex items-center justify-between text-[11px] text-cyan-50/75">
-              <span className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-cyan-300" />
-                Flow v1 • Website → CRM → Automations
-              </span>
-              <span className="uppercase tracking-[0.18em] text-cyan-100/70">
-                Blueprint
-              </span>
-            </div>
+            {/* YOUR IMAGE */}
+            <Image
+              src="/blueprintwithgrid.png"
+              alt="Blueprint System Diagram"
+              width={900}
+              height={700}
+              className="relative z-10 w-full h-auto object-contain"
+            />
           </div>
         </div>
       </motion.div>
-
-      {/* keyframes */}
-      <style jsx>{`
-        @keyframes blueprint-draw {
-          to {
-            stroke-dashoffset: 0;
-          }
-        }
-        @keyframes fade-in {
-          to {
-            opacity: 1;
-          }
-        }
-      `}</style>
     </section>
   );
 }
