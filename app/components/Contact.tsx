@@ -17,13 +17,12 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // later this will post to Airtable / CRM
     setSubmitted(true);
   };
 
   return (
     <section className="relative w-full bg-[#02101f] py-20 md:py-24">
-      {/* brighter blue bloom */}
+      {/* bright blue bloom */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.28),transparent_65%)]" />
 
       {/* electric blueprint grid */}
@@ -38,7 +37,7 @@ export default function Contact() {
         variants={sectionVariants}
         className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 md:px-10 lg:flex-row lg:items-start"
       >
-        {/* LEFT CONTENT */}
+        {/* LEFT SIDE TEXT + CALL CARD */}
         <div className="flex-1 space-y-6 text-slate-50">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-cyan-300/90">
             Let&apos;s build your system
@@ -55,48 +54,41 @@ export default function Contact() {
             review what you&apos;ve got now and send back a clear plan.
           </p>
 
-          <div className="grid gap-4 text-xs text-slate-200/85 md:grid-cols-2 md:text-sm">
-            <div className="rounded-2xl border border-cyan-400/20 bg-slate-900/40 p-4 backdrop-blur">
-              <h3 className="mb-1 text-[13px] font-semibold text-cyan-200">
-                What you can use this for
-              </h3>
-              <p>
-                New builds, rebuilds, fixing broken sites, wiring in CRMs,
-                automation flows, bookings, payments or internal tools.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-cyan-400/20 bg-slate-900/40 p-4 backdrop-blur">
-              <h3 className="mb-1 text-[13px] font-semibold text-cyan-200">
-                How I usually respond
-              </h3>
-              <p>
-                A quick loom or message walking through your setup with concrete
-                options at different scopes.
-              </p>
-            </div>
-          </div>
+          {/* DIRECT CALL OPTION (now on left) */}
+          <div className="mt-4 rounded-2xl border border-cyan-400/20 bg-slate-900/40 p-5 backdrop-blur text-center shadow-[0_0_40px_rgba(0,140,255,0.15)] max-w-md">
+            <p className="text-[13px] text-slate-300 mb-1">Prefer to talk first?</p>
+            <p className="text-[15px] font-medium text-slate-200">
+              Call me directly:
+            </p>
 
-          <div className="pt-2 text-xs text-slate-400 md:text-[13px]">
-            Prefer a direct call? Soon I&apos;ll add a booking link here.
+            <a
+              href="tel:+61499545069"
+              className="mt-1 block text-2xl font-semibold text-cyan-300 tracking-wide hover:text-cyan-200 transition"
+            >
+              0499 545 069
+            </a>
+
+            <p className="text-[12px] text-slate-500 mt-2">
+              Available most days from 9am–6pm AEST
+            </p>
           </div>
         </div>
 
-        {/* RIGHT FORM */}
+        {/* RIGHT SIDE – FORM ONLY */}
         <div className="flex-1">
           <div className="relative mx-auto max-w-md overflow-hidden rounded-3xl border border-cyan-400/25 bg-slate-950/70 p-6 shadow-[0_22px_60px_rgba(0,90,160,0.85)] backdrop-blur-xl">
             <div className="relative z-10">
               <h3 className="text-[15px] font-semibold text-cyan-100">
                 Start a project / ask a question
               </h3>
+
               <p className="mt-1 text-[13px] text-slate-400">
-                No obligation – just tell me what&apos;s broken or what you want
-                to build.
+                No obligation – just tell me what&apos;s broken or what you want to build.
               </p>
 
               {submitted ? (
                 <div className="mt-6 rounded-2xl border border-emerald-400/40 bg-emerald-500/10 px-4 py-3 text-[13px] text-emerald-100">
-                  Thanks for sending that through — I&apos;ll get back to you
-                  personally.
+                  Thanks for sending that through — I&apos;ll get back to you personally.
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="mt-5 space-y-4 text-[13px]">
@@ -111,7 +103,7 @@ export default function Contact() {
                         type="text"
                         name="name"
                         placeholder="Riley from DNA Coaching"
-                        className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-[13px] text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
+                        className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
                       />
                     </div>
 
@@ -124,7 +116,7 @@ export default function Contact() {
                         type="email"
                         name="email"
                         placeholder="you@business.com"
-                        className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-[13px] text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
+                        className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
                       />
                     </div>
                   </div>
@@ -138,7 +130,7 @@ export default function Contact() {
                       type="tel"
                       name="phone"
                       placeholder="0499 545 069"
-                      className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-[13px] text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
+                      className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
                     />
                   </div>
 
@@ -150,7 +142,7 @@ export default function Contact() {
                       type="text"
                       name="business"
                       placeholder="e.g. Sussex Inlet Carpentry"
-                      className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-[13px] text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
+                      className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
                     />
                   </div>
 
@@ -163,7 +155,7 @@ export default function Contact() {
                       name="message"
                       rows={4}
                       placeholder="Tell me in plain language – slow site, broken forms, need automation, etc."
-                      className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-[13px] text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
+                      className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
                     />
                   </div>
 
@@ -174,7 +166,7 @@ export default function Contact() {
                       </label>
                       <select
                         name="budget"
-                        className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-[13px] text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
+                        className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
                         defaultValue=""
                       >
                         <option value="" disabled>
@@ -192,7 +184,7 @@ export default function Contact() {
                       </label>
                       <select
                         name="timeline"
-                        className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-[13px] text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
+                        className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
                         defaultValue=""
                       >
                         <option value="" disabled>
@@ -205,6 +197,7 @@ export default function Contact() {
                     </div>
                   </div>
 
+                  {/* SUBMIT BUTTON */}
                   <button
                     type="submit"
                     className="mt-2 inline-flex w-full items-center justify-center rounded-full 
@@ -222,7 +215,7 @@ export default function Contact() {
         </div>
       </motion.div>
 
-      {/* footer */}
+      {/* FOOTER */}
       <div className="relative z-10 mt-10 flex justify-center px-6 md:px-10">
         <div className="flex w-full max-w-6xl flex-col gap-2 border-t border-cyan-400/20 pt-4 text-[11px] text-slate-400 md:flex-row md:items-center md:justify-between">
           <span>© {new Date().getFullYear()} Riley Tech Studio</span>
@@ -239,10 +232,7 @@ export default function Contact() {
             >
               contactrileykennedy@gmail.com
             </a>
-            <a
-              href="tel:+61499545069"
-              className="hover:text-cyan-300"
-            >
+            <a href="tel:+61499545069" className="hover:text-cyan-300">
               0499 545 069
             </a>
           </div>
