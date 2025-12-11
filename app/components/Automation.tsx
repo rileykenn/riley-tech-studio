@@ -16,19 +16,19 @@ const steps = [
     id: 1,
     label: "Capture",
     title: "Lead enters through your website",
-    body: "High-intent forms, quiz funnels or booking requests come in through a modern, fast site instead of a clunky contact page.",
+    body: "High intent forms, quiz funnels or booking requests come in through a modern, fast site instead of a clunky contact page.",
   },
   {
     id: 2,
     label: "Qualify",
     title: "Lead data flows into your CRM",
-    body: "Fields are cleaned, tagged and segmented automatically — no more copy/paste or guessing who is worth your time.",
+    body: "Fields are cleaned, tagged and segmented automatically no more copy/paste or guessing who is worth your time.",
   },
   {
     id: 3,
     label: "Automate",
     title: "AI & automations do the busy work",
-    body: "Sequences send follow-up emails, SMS, reminders and pre-frame content tailored to that lead, without you touching it.",
+    body: "Sequences send follow-up emails, SMS, reminders and pre frame content tailored to that lead, without you touching it.",
   },
   {
     id: 4,
@@ -139,7 +139,7 @@ export default function Automation() {
         {/* small caption */}
         <p className="mt-10 max-w-2xl text-xs text-slate-400 md:text-[13px]">
           Under the hood I&apos;m using tools like Make, custom APIs and
-          full-stack code to glue everything together – but your team just
+          full stack code to glue everything together but your team just
           experiences clean, predictable flows that &quot;just work&quot;.
         </p>
       </div>

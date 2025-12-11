@@ -7,10 +7,10 @@ const services = [
     label: "Web",
     title: "High-performance business websites",
     description:
-      "Fast, modern, mobile-first sites that feel premium and actually convert visitors into enquiries and bookings.",
+      "Fast, modern, mobile first sites that feel premium and actually convert visitors into enquiries and bookings.",
     bullets: [
       "Custom design (no bloated themes)",
-      "Mobile-first layouts",
+      "Mobile first layouts",
       "Speed, SEO & analytics baked in",
     ],
   },
@@ -21,15 +21,15 @@ const services = [
       "Flows that capture leads, qualify them, follow up automatically and plug into your existing tools.",
     bullets: [
       "Lead capture & qualification",
-      "Automated follow-up & reminders",
-      "Onboarding sequences & task hand-off",
+      "Automated follow up & reminders",
+      "Onboarding sequences & task hand off",
     ],
   },
   {
     label: "Integration",
     title: "Connecting the tools you already use",
     description:
-      "Websites, CRMs, booking systems, Xero, email platforms – wired together so data moves without you.",
+      "Websites, CRMs, booking systems, Xero, email platforms wired together so data moves without you.",
     bullets: [
       "CRM & pipeline integrations",
       "Booking / calendar syncing",
@@ -73,7 +73,7 @@ export default function Services() {
           </div>
           <p className="max-w-md text-sm text-slate-300/80 md:text-[15px]">
             I&apos;m not just making pretty homepages. I build the structure
-            underneath – automations, CRMs and flows – so your site is wired
+            underneath automations, CRMs and flows so your site is wired
             into how your business actually runs.
           </p>
         </div>

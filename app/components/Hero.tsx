@@ -745,8 +745,8 @@ export default function Hero() {
           </div>
 
           <p className="max-w-2xl text-sm text-white/70 md:text-base">
-  I&apos;m a full-stack engineer with a media and design background. I
-  build high-performance marketing sites and wire them into CRMs,
+  I&apos;m a full stack engineer with a media and design background. I
+  build high performance marketing sites and wire them into CRMs,
   automations and AI flows so your team spends less time clicking and
   more time selling.
 </p>
@@ -784,10 +784,11 @@ export default function Hero() {
 
 
 
-      {/* Logo billboard train – give more space below CTA on mobile */}
-      <div className="absolute bottom-3 sm:bottom-5 md:bottom-10 lg:bottom-12 left-1/2 z-20 w-full max-w-6xl -translate-x-1/2 px-2 md:px-6">
+            {/* Logo billboard train – decorative only, no pointer events */}
+      <div className="pointer-events-none absolute bottom-3 sm:bottom-5 md:bottom-10 lg:bottom-12 left-1/2 z-20 w-full max-w-6xl -translate-x-1/2 px-2 md:px-6">
         <LogoTrain />
       </div>
+
 
       <style jsx>{`
         .hero-accent {

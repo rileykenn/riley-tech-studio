@@ -44,7 +44,7 @@ export default function Blueprint() {
           <Pill>Build &amp; integrate</Pill>
 
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
-            I Design your website, automations &amp; CRM like a{" "}
+            I design your website, automations &amp; CRM like a{" "}
             <span className="underline decoration-cyan-200/90 decoration-[3px]">
               blueprint 
             </span>
@@ -53,7 +53,7 @@ export default function Blueprint() {
 
           <p className="max-w-xl text-sm md:text-base text-cyan-50/80">
             Most businesses bolt tools on randomly. I map your website, CRM,
-            forms, automations and internal processes as one connected layout —
+            forms, automations and internal processes as one connected layout
             then build clean flows behind the scenes so nothing leaks.
           </p>
 
@@ -72,7 +72,7 @@ export default function Blueprint() {
                 Built to plug into what you already use
               </h3>
               <p className="text-cyan-50/75">
-                Xero, CRMs, booking tools, email platforms — your website
+                Xero, CRMs, booking tools, email platforms your website
                 becomes the front door to the systems you already rely on.
               </p>
             </div>

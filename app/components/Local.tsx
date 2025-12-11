@@ -102,7 +102,7 @@ export default function Local() {
           <p className="max-w-xl text-sm md:text-[15px] text-[#A7B9D6] leading-relaxed">
             I'm not some overseas agency you'll never speak to.
             I grew up around the Shoalhaven and build for the kinds of
-            businesses I see every day – builders, cafes, gyms, salons,
+            businesses I see every day builders, cafes, gyms, salons,
             holiday stays and local pros who need their online setup to
             finally catch up.
           </p>
@@ -114,7 +114,7 @@ export default function Local() {
                 Built to get enquiries, not just look pretty
               </h3>
               <p className="text-[#9DB3D1]">
-                Clean sites, fast load times and clear calls-to-action that turn locals
+                Clean sites, fast load times and clear calls to action that turn locals
                 searching on their phone into leads you can call, text or book in.
               </p>
             </div>

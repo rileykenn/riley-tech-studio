@@ -15,22 +15,22 @@ const timeline = [
   {
     year: "Early",
     title: "Media, art & design first",
-    body: "I started on the creative side – graphics, motion, 3D and visual design – learning how to make things look sharp and feel good to use.",
+    body: "I started on the creative side graphics, motion, 3D and visual design learning how to make things look sharp and feel good to use.",
   },
   {
     year: "Next",
     title: "Full-stack engineering",
-    body: "I moved into full-stack web dev so I could own the entire build – from the front-end experience to the backend logic, databases and APIs.",
+    body: "I moved into full stack web dev so I could own the entire build from the front end experience to the backend logic, databases and APIs.",
   },
   {
     year: "Now",
     title: "Automation & systems",
-    body: "I specialise in wiring websites into CRMs, automations and AI, so businesses aren’t just getting a homepage – they’re getting a system.",
+    body: "I specialise in wiring websites into CRMs, automations and AI, so businesses aren’t just getting a homepage they’re getting a system.",
   },
   {
     year: "Shoalhaven",
     title: "Local projects & long-term partners",
-    body: "Now I’m focused on working with businesses around the Shoalhaven who want a high-end technical partner they can actually talk to.",
+    body: "Now I’m focused on working with businesses around the Shoalhaven who want a high end technical partner they can actually talk to.",
   },
 ];
 
@@ -62,7 +62,7 @@ export default function About() {
           <p className="max-w-xl text-sm text-slate-300/85 md:text-[15px]">
             I&apos;m Riley, the one actually designing, coding and wiring up
             everything at Riley Tech Studio. My background in media and visual
-            design means your site looks good – my full-stack and automation
+            design means your site looks good my full stack and automation
             work means it actually does something for your business.
           </p>
 
@@ -72,14 +72,14 @@ export default function About() {
                 One person who understands the whole stack
               </h3>
               <p>
-                No hand-offs between &quot;designer&quot;, &quot;dev&quot; and
-                &quot;automation guy&quot;. I design the experience and build
+                No hand offs between &quot;the designer&quot; & &quot;the dev&quot;
+              I design the experience and build
                 the underlying systems myself.
               </p>
             </div>
             <div className="rounded-2xl border border-slate-700/70 bg-slate-900/70 p-4 backdrop-blur">
               <h3 className="mb-1 text-[13px] font-semibold text-slate-50">
-                Long-term thinking, not quick hacks
+                Long term thinking, not quick hacks
               </h3>
               <p>
                 I care about performance, clean architecture and making sure

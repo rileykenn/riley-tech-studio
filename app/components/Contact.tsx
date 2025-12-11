@@ -82,7 +82,7 @@ export default function Contact() {
 
           <p className="max-w-xl text-sm text-slate-200/85 md:text-[15px]">
             Whether it&apos;s a slow, outdated website or a mess of tools that
-            don&apos;t talk to each other – this is where we start. I&apos;ll
+            don&apos;t talk to each other this is where we start. I&apos;ll
             review what you&apos;ve got now and send back a clear plan.
           </p>
 
@@ -115,7 +115,7 @@ export default function Contact() {
               </h3>
 
               <p className="mt-1 text-[13px] text-slate-400">
-                No obligation – just tell me what&apos;s broken or what you want
+                No obligation just tell me what&apos;s broken or what you want
                 to build.
               </p>
 
@@ -136,7 +136,7 @@ export default function Contact() {
                         required
                         type="text"
                         name="name"
-                        placeholder="Riley from DNA Coaching"
+                        placeholder="Scarlett"
                         className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
                       />
                     </div>
@@ -190,7 +190,7 @@ export default function Contact() {
                       required
                       name="message"
                       rows={4}
-                      placeholder="Tell me in plain language – slow site, broken forms, need automation, etc."
+                      placeholder="Tell me in plain language slow site, broken forms, need automation, etc."
                       className="w-full rounded-xl border border-cyan-400/30 bg-slate-900/50 px-3 py-2.5 text-cyan-50 outline-none transition focus:border-cyan-300 focus:ring-1 focus:ring-cyan-300/60"
                     />
                   </div>

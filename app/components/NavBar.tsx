@@ -54,7 +54,6 @@ export default function NavBar() {
   return (
     <nav className="fixed inset-x-0 top-0 z-40 flex justify-center">
       <div className="mt-4 w-full max-w-6xl px-3 md:px-4">
-
         {/* =============== NAV PILL =============== */}
         <div
           className={`flex items-center justify-between gap-3 rounded-full border px-4 py-2 backdrop-blur-xl transition-all duration-300
@@ -64,7 +63,6 @@ export default function NavBar() {
                 : "bg-white/5 border-white/10 shadow-[0_0_10px_rgba(255,255,255,0.05)]"
             }`}
         >
-
           {/* =============== LEFT LOGO =============== */}
           <button
             onClick={() => handleClick("hero")}
@@ -132,37 +130,52 @@ export default function NavBar() {
           </button>
         </div>
 
-        {/* =============== MOBILE DROPDOWN =============== */}
-        <div
-          className={`md:hidden transition-all duration-300 ${
-            mobileOpen
-              ? "opacity-100 translate-y-2 pointer-events-auto"
-              : "opacity-0 -translate-y-1 pointer-events-none"
-          }`}
-        >
-          <div className="mt-2 rounded-3xl border border-white/10 bg-white/10 px-3 py-3 backdrop-blur-xl shadow-[0_0_15px_rgba(255,255,255,0.1)]">
-            <div className="space-y-1">
-              {SECTIONS.map((s) => {
-                const active = s.id === activeId;
-                return (
-                  <button
-                    key={s.id}
-                    onClick={() => handleClick(s.id)}
-                    className={`flex w-full items-center justify-between rounded-2xl px-3 py-2 text-[12px] transition
-                    ${
-                      active
-                        ? "text-white bg-white/20 shadow-[0_0_10px_rgba(255,255,255,0.2)]"
-                        : "text-white/70 hover:text-white hover:bg-white/10"
-                    }`}
-                  >
-                    {s.label}
-                    {active && <span className="h-[6px] w-[6px] rounded-full bg-white" />}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
+            {/* =============== MOBILE DROPDOWN (FINAL SMOOTH VERSION) =============== */}
+<div
+  className={`
+    md:hidden overflow-hidden
+    transition-[max-height,transform] duration-300
+    ${mobileOpen
+      ? "translate-y-2 pointer-events-auto max-h-[600px]"
+      : "-translate-y-1 pointer-events-none max-h-0"
+    }
+  `}
+>
+  {/* Inner card fades smoothly, blur always ON */}
+  <div
+    className={`
+      mt-2 rounded-3xl border border-white/10 px-3 py-3
+      bg-white/10 backdrop-blur-xl
+      shadow-[0_0_15px_rgba(255,255,255,0.1)]
+      transition-opacity duration-300
+      ${mobileOpen ? "opacity-100" : "opacity-0"}
+    `}
+  >
+    <div className="space-y-1">
+      {SECTIONS.map((s) => {
+        const active = s.id === activeId;
+        return (
+          <button
+            key={s.id}
+            onClick={() => handleClick(s.id)}
+            className={`flex w-full items-center justify-between rounded-2xl px-3 py-2 text-[12px] transition
+            ${
+              active
+                ? "text-white bg-white/20 shadow-[0_0_10px_rgba(255,255,255,0.2)]"
+                : "text-white/70 hover:text-white hover:bg-white/10"
+            }`}
+          >
+            {s.label}
+            {active && <span className="h-[6px] w-[6px] rounded-full bg-white" />}
+          </button>
+        );
+      })}
+    </div>
+  </div>
+</div>
+
+
+
       </div>
     </nav>
   );
