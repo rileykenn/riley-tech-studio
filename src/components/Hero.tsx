@@ -1,0 +1,314 @@
+'use client';
+
+import { motion } from 'framer-motion';
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.4 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30, filter: 'blur(8px)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 0.8, ease: [0.32, 0.72, 0, 1] as const },
+  },
+};
+
+const stats = [
+  { value: '12+', label: 'Apps Shipped' },
+  { value: '99.9%', label: 'Uptime SLA' },
+  { value: 'AU', label: 'Based & Built' },
+];
+
+export default function Hero() {
+  return (
+    <section
+      id="hero"
+      style={{
+        position: 'relative',
+        minHeight: '100dvh',
+        display: 'flex',
+        alignItems: 'center',
+        overflow: 'hidden',
+      }}
+    >
+      {/* ── Full-screen background image ── */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 0,
+        }}
+      >
+        <motion.img
+          src="/herobackground.jpeg"
+          alt=""
+          initial={{ scale: 1.08 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.8, ease: [0.32, 0.72, 0, 1] }}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center',
+            display: 'block',
+          }}
+        />
+      </div>
+
+      {/* ── Gradient overlays for text legibility ── */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 1,
+          background:
+            'linear-gradient(to right, rgba(248, 250, 251, 0.92) 0%, rgba(248, 250, 251, 0.75) 45%, rgba(248, 250, 251, 0.15) 70%, transparent 100%)',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 1,
+          background:
+            'linear-gradient(to top, rgba(248, 250, 251, 0.6) 0%, transparent 40%)',
+        }}
+      />
+
+      {/* ── Content ── */}
+      <div
+        className="section-container"
+        style={{
+          position: 'relative',
+          zIndex: 2,
+          width: '100%',
+          paddingTop: '8rem',
+          paddingBottom: '4rem',
+        }}
+      >
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          style={{ maxWidth: '620px' }}
+        >
+          <motion.div variants={itemVariants}>
+            <span className="eyebrow">
+              <span
+                style={{
+                  width: '6px',
+                  height: '6px',
+                  borderRadius: '50%',
+                  background: 'var(--color-success)',
+                  display: 'inline-block',
+                }}
+              />
+              Available for projects
+            </span>
+          </motion.div>
+
+          <motion.h1
+            variants={itemVariants}
+            style={{
+              marginTop: '1.5rem',
+              fontSize: 'clamp(2.75rem, 5.5vw, 4.5rem)',
+              fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+              fontWeight: 700,
+              lineHeight: 1.05,
+              letterSpacing: '-0.035em',
+              color: 'var(--color-foreground)',
+            }}
+          >
+            Creative Websites
+            <br />
+            <span
+              style={{
+                background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              & Software.
+            </span>
+          </motion.h1>
+
+          <motion.p
+            variants={itemVariants}
+            style={{
+              marginTop: '1.5rem',
+              fontSize: '1.125rem',
+              lineHeight: 1.7,
+              color: 'var(--color-foreground-muted)',
+              maxWidth: '48ch',
+            }}
+          >
+            We build production-grade apps, SaaS platforms, and custom software
+            for businesses across the Shoalhaven, Illawarra, and beyond.
+          </motion.p>
+
+          <motion.div
+            variants={itemVariants}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '1rem',
+              marginTop: '2.5rem',
+              flexWrap: 'wrap',
+            }}
+          >
+            <motion.a
+              href="/#contact"
+              initial={{ skewX: -6 }}
+              animate={{ skewX: -6, scaleX: 1 }}
+              whileHover={{ skewX: -6, scaleX: 0.95 }}
+              whileTap={{ skewX: -6, scale: 0.97 }}
+              transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: '2rem',
+                padding: '0.75rem 1.25rem',
+                background: 'var(--color-primary)',
+                color: '#fff',
+                fontSize: '1rem',
+                fontWeight: 600,
+                fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+                letterSpacing: '-0.01em',
+                textDecoration: 'none',
+                borderRadius: '6px',
+                cursor: 'pointer',
+              }}
+            >
+              <span style={{ transform: 'skewX(6deg)' }}>Start a Project</span>
+              <span style={{ transform: 'skewX(6deg)', display: 'flex', alignItems: 'center' }}>
+                <svg width="18" height="18" viewBox="0 0 256 256" fill="none">
+                  <path d="M200,128v64a8,8,0,0,1-16,0V147.31L69.66,261.66a8,8,0,0,1-11.32-11.32L172.69,136H128a8,8,0,0,1,0-16h64A8,8,0,0,1,200,128Z" fill="currentColor" transform="translate(0,-80) scale(0.95)"/>
+                </svg>
+              </span>
+            </motion.a>
+
+            <motion.a
+              href="/#work"
+              initial={{ skewX: -6 }}
+              animate={{ skewX: -6, scaleX: 1 }}
+              whileHover={{ skewX: -6, scaleX: 0.95 }}
+              whileTap={{ skewX: -6, scale: 0.97 }}
+              transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: '2rem',
+                padding: '0.75rem 1.25rem',
+                background: '#1a1a1a',
+                color: '#fff',
+                fontSize: '1rem',
+                fontWeight: 600,
+                fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+                letterSpacing: '-0.01em',
+                textDecoration: 'none',
+                borderRadius: '6px',
+                cursor: 'pointer',
+              }}
+            >
+              <span style={{ transform: 'skewX(6deg)' }}>View Our Work</span>
+              <span style={{ transform: 'skewX(6deg)', display: 'flex', alignItems: 'center' }}>
+                <svg width="18" height="18" viewBox="0 0 256 256" fill="none">
+                  <path d="M200,128v64a8,8,0,0,1-16,0V147.31L69.66,261.66a8,8,0,0,1-11.32-11.32L172.69,136H128a8,8,0,0,1,0-16h64A8,8,0,0,1,200,128Z" fill="currentColor" transform="translate(0,-80) scale(0.95)"/>
+                </svg>
+              </span>
+            </motion.a>
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div
+            variants={itemVariants}
+            style={{
+              display: 'flex',
+              gap: '2.5rem',
+              marginTop: '3.5rem',
+              paddingTop: '2rem',
+              borderTop: '1px solid rgba(226, 232, 240, 0.6)',
+            }}
+          >
+            {stats.map((stat) => (
+              <div key={stat.label}>
+                <div
+                  style={{
+                    fontSize: '1.5rem',
+                    fontWeight: 700,
+                    fontFamily: 'var(--font-heading)',
+                    color: 'var(--color-foreground)',
+                    letterSpacing: '-0.02em',
+                  }}
+                >
+                  {stat.value}
+                </div>
+                <div
+                  style={{
+                    fontSize: '0.8125rem',
+                    color: 'var(--color-foreground-subtle)',
+                    marginTop: '0.25rem',
+                  }}
+                >
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* ── Floating badge — bottom right ── */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8, y: 10 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ delay: 1.4, duration: 0.6, type: 'spring', stiffness: 120, damping: 20 }}
+        className="glass-panel"
+        style={{
+          position: 'absolute',
+          bottom: '2.5rem',
+          right: '2.5rem',
+          zIndex: 3,
+          padding: '0.875rem 1.25rem',
+          borderRadius: 'var(--radius-lg)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.75rem',
+          fontSize: '0.8125rem',
+          fontWeight: 600,
+        }}
+      >
+        <span
+          style={{
+            width: '8px',
+            height: '8px',
+            borderRadius: '50%',
+            background: 'var(--color-success)',
+            boxShadow: '0 0 8px rgba(16, 185, 129, 0.5)',
+          }}
+        />
+        Currently taking clients
+      </motion.div>
+
+      <style jsx global>{`
+        .btn-primary:hover .btn-icon {
+          transform: translateX(2px) translateY(-1px) scale(1.05);
+        }
+        @media (max-width: 768px) {
+          #hero {
+            min-height: 100dvh;
+          }
+        }
+      `}</style>
+    </section>
+  );
+}
