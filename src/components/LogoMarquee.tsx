@@ -93,7 +93,6 @@ export default function LogoMarquee() {
                   fontWeight: 600,
                   color: 'var(--color-foreground-subtle)',
                   whiteSpace: 'nowrap',
-                  opacity: 0.65,
                   transition: 'opacity 300ms',
                   letterSpacing: '-0.01em',
                 }}

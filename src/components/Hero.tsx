@@ -78,6 +78,7 @@ export default function Hero() {
           <div className="hero-fade-in" style={{ animationDelay: '0.1s' }}>
             <span className="eyebrow">
               <span
+                aria-hidden="true"
                 style={{
                   width: '6px',
                   height: '6px',
@@ -169,7 +170,7 @@ export default function Hero() {
             >
               <span style={{ transform: 'skewX(6deg)' }}>Start a Project</span>
               <span style={{ transform: 'skewX(6deg)', display: 'flex', alignItems: 'center' }}>
-                <svg width="18" height="18" viewBox="0 0 256 256" fill="none">
+                <svg width="18" height="18" viewBox="0 0 256 256" fill="none" aria-hidden="true">
                   <path d="M200,128v64a8,8,0,0,1-16,0V147.31L69.66,261.66a8,8,0,0,1-11.32-11.32L172.69,136H128a8,8,0,0,1,0-16h64A8,8,0,0,1,200,128Z" fill="currentColor" transform="translate(0,-80) scale(0.95)"/>
                 </svg>
               </span>
@@ -201,7 +202,7 @@ export default function Hero() {
             >
               <span style={{ transform: 'skewX(6deg)' }}>View Our Work</span>
               <span style={{ transform: 'skewX(6deg)', display: 'flex', alignItems: 'center' }}>
-                <svg width="18" height="18" viewBox="0 0 256 256" fill="none">
+                <svg width="18" height="18" viewBox="0 0 256 256" fill="none" aria-hidden="true">
                   <path d="M200,128v64a8,8,0,0,1-16,0V147.31L69.66,261.66a8,8,0,0,1-11.32-11.32L172.69,136H128a8,8,0,0,1,0-16h64A8,8,0,0,1,200,128Z" fill="currentColor" transform="translate(0,-80) scale(0.95)"/>
                 </svg>
               </span>
@@ -269,6 +270,7 @@ export default function Hero() {
         }}
       >
         <span
+          aria-hidden="true"
           style={{
             width: '8px',
             height: '8px',
