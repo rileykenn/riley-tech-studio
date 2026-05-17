@@ -4,13 +4,13 @@ import "./globals.css";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
-  display: "swap",
+  display: "optional",
   variable: "--font-body",
 });
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  display: "swap",
+  display: "optional",
   variable: "--font-heading",
 });
 

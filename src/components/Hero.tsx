@@ -1,5 +1,3 @@
-'use client';
-
 import Image from 'next/image';
 
 const stats = [
@@ -20,9 +18,8 @@ export default function Hero() {
         overflow: 'hidden',
       }}
     >
-      {/* ── Full-screen background image (hidden on mobile for LCP) ── */}
+      {/* ── Full-screen background image ── */}
       <div
-        className="hero-bg"
         style={{
           position: 'absolute',
           inset: 0,
@@ -34,7 +31,7 @@ export default function Hero() {
           alt="Riley Tech Studio office background"
           fill
           priority
-          sizes="(max-width: 768px) 0px, 100vw"
+          sizes="100vw"
           quality={75}
           style={{
             objectFit: 'cover',
@@ -43,9 +40,8 @@ export default function Hero() {
         />
       </div>
 
-      {/* ── Gradient overlays for text legibility (hidden on mobile) ── */}
+      {/* ── Gradient overlays for text legibility ── */}
       <div
-        className="hero-bg"
         style={{
           position: 'absolute',
           inset: 0,
@@ -55,7 +51,6 @@ export default function Hero() {
         }}
       />
       <div
-        className="hero-bg"
         style={{
           position: 'absolute',
           inset: 0,
@@ -275,71 +270,6 @@ export default function Hero() {
         Currently taking clients
       </div>
 
-      <style jsx global>{`
-        /* ── Hero entrance — CSS-only, no JS dependency for LCP ── */
-        @keyframes heroFadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .hero-fade-in {
-          opacity: 0;
-          animation: heroFadeIn 0.6s cubic-bezier(0.32, 0.72, 0, 1) forwards;
-        }
-        /* Badge entrance */
-        @keyframes badgePop {
-          from {
-            opacity: 0;
-            transform: translateY(8px) scale(0.9);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-        }
-        .hero-badge {
-          opacity: 0;
-          animation: badgePop 0.5s cubic-bezier(0.32, 0.72, 0, 1) 1s forwards;
-        }
-        .hero-cta {
-          transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
-        }
-        .hero-cta:hover {
-          transform: skewX(-6deg) scaleX(0.95);
-        }
-        .hero-cta:active {
-          transform: skewX(-6deg) scale(0.97);
-        }
-        @media (max-width: 768px) {
-          #hero {
-            min-height: 100dvh;
-            background: #fff;
-          }
-          /* Hide hero image on mobile — white bg only for fastest LCP */
-          .hero-bg {
-            display: none !important;
-          }
-          /* Disable entrance animations on mobile for instant LCP + Speed Index */
-          .hero-fade-in {
-            opacity: 1 !important;
-            animation: none !important;
-          }
-          .hero-badge {
-            opacity: 1 !important;
-            animation: none !important;
-            bottom: 1.25rem !important;
-            right: 1.25rem !important;
-            font-size: 0.75rem !important;
-            padding: 0.625rem 1rem !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }
-
