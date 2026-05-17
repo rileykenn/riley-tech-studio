@@ -47,7 +47,7 @@ export default function Footer() {
           <div style={{ maxWidth: '280px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', marginBottom: '1rem' }}>
               <Image
-                src="/RTS logo black.png"
+                src="/rts-logo-black.webp"
                 alt="Riley Tech Studio"
                 width={28}
                 height={28}

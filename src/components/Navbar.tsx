@@ -84,7 +84,7 @@ export default function Navbar() {
               }}
             >
               <Image
-                src="/RTS logo black.png"
+                src="/rts-logo-black.webp"
                 alt="Riley Tech Studio"
                 width={28}
                 height={28}
