@@ -1,5 +1,18 @@
 import type { Metadata } from "next";
+import { DM_Sans, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-body",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-heading",
+});
 
 export const metadata: Metadata = {
   title: "Riley Tech Studio | Custom Software, Apps & SaaS — Shoalhaven & Illawarra",
@@ -30,10 +43,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${dmSans.variable} ${spaceGrotesk.variable}`}>
       <body className="grain-overlay">
         {children}
       </body>
     </html>
   );
 }
+

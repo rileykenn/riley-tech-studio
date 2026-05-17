@@ -3,22 +3,6 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.4 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.32, 0.72, 0, 1] as const },
-  },
-};
-
 const stats = [
   { value: '12+', label: 'Apps Shipped' },
   { value: '99.9%', label: 'Uptime SLA' },
@@ -79,7 +63,7 @@ export default function Hero() {
         }}
       />
 
-      {/* ── Content ── */}
+      {/* ── Content — CSS animations for instant LCP, no JS dependency ── */}
       <div
         className="section-container"
         style={{
@@ -90,13 +74,8 @@ export default function Hero() {
           paddingBottom: '4rem',
         }}
       >
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          style={{ maxWidth: '620px' }}
-        >
-          <motion.div variants={itemVariants}>
+        <div style={{ maxWidth: '620px' }}>
+          <div className="hero-fade-in" style={{ animationDelay: '0.1s' }}>
             <span className="eyebrow">
               <span
                 style={{
@@ -109,11 +88,12 @@ export default function Hero() {
               />
               Available for projects
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={itemVariants}
+          <h1
+            className="hero-fade-in"
             style={{
+              animationDelay: '0.2s',
               marginTop: '1.5rem',
               fontSize: 'clamp(2.75rem, 5.5vw, 4.5rem)',
               fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -135,11 +115,12 @@ export default function Hero() {
             >
               & Software.
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={itemVariants}
+          <p
+            className="hero-fade-in"
             style={{
+              animationDelay: '0.35s',
               marginTop: '1.5rem',
               fontSize: '1.125rem',
               lineHeight: 1.7,
@@ -149,11 +130,12 @@ export default function Hero() {
           >
             We build production-grade apps, SaaS platforms, and custom software
             for businesses across the Shoalhaven, Illawarra, and beyond.
-          </motion.p>
+          </p>
 
-          <motion.div
-            variants={itemVariants}
+          <div
+            className="hero-fade-in"
             style={{
+              animationDelay: '0.5s',
               display: 'flex',
               alignItems: 'center',
               gap: '1rem',
@@ -224,12 +206,13 @@ export default function Hero() {
                 </svg>
               </span>
             </motion.a>
-          </motion.div>
+          </div>
 
           {/* Stats */}
-          <motion.div
-            variants={itemVariants}
+          <div
+            className="hero-fade-in"
             style={{
+              animationDelay: '0.65s',
               display: 'flex',
               gap: '2.5rem',
               marginTop: '3.5rem',
@@ -261,8 +244,8 @@ export default function Hero() {
                 </div>
               </div>
             ))}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
 
       {/* ── Floating badge — bottom right ── */}
@@ -298,8 +281,20 @@ export default function Hero() {
       </motion.div>
 
       <style jsx global>{`
-        .btn-primary:hover .btn-icon {
-          transform: translateX(2px) translateY(-1px) scale(1.05);
+        /* ── Hero entrance — CSS-only, no JS dependency for LCP ── */
+        @keyframes heroFadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .hero-fade-in {
+          opacity: 0;
+          animation: heroFadeIn 0.7s cubic-bezier(0.32, 0.72, 0, 1) forwards;
         }
         @media (max-width: 768px) {
           #hero {
