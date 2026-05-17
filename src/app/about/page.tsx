@@ -1,7 +1,9 @@
+import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
-import Process from '@/components/Process';
-import About from '@/components/About';
-import Footer from '@/components/Footer';
+
+const About = dynamic(() => import('@/components/About'));
+const Process = dynamic(() => import('@/components/Process'));
+const Footer = dynamic(() => import('@/components/Footer'));
 
 export default function AboutPage() {
   return (

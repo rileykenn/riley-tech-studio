@@ -1,7 +1,3 @@
-'use client';
-
-import { motion } from 'framer-motion';
-
 const logos = [
   'Restore Coaching',
   'CleanRoute Pro',
@@ -28,12 +24,7 @@ export default function LogoMarquee() {
         overflow: 'hidden',
       }}
     >
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
+      <div>
         <p
           style={{
             textAlign: 'center',
@@ -102,7 +93,7 @@ export default function LogoMarquee() {
             ))}
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
