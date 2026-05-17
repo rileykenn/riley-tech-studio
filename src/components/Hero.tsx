@@ -20,8 +20,9 @@ export default function Hero() {
         overflow: 'hidden',
       }}
     >
-      {/* ── Full-screen background image ── */}
+      {/* ── Full-screen background image (hidden on mobile for LCP) ── */}
       <div
+        className="hero-bg"
         style={{
           position: 'absolute',
           inset: 0,
@@ -33,7 +34,7 @@ export default function Hero() {
           alt="Riley Tech Studio office background"
           fill
           priority
-          sizes="100vw"
+          sizes="(max-width: 768px) 0px, 100vw"
           quality={75}
           style={{
             objectFit: 'cover',
@@ -42,8 +43,9 @@ export default function Hero() {
         />
       </div>
 
-      {/* ── Gradient overlays for text legibility ── */}
+      {/* ── Gradient overlays for text legibility (hidden on mobile) ── */}
       <div
+        className="hero-bg"
         style={{
           position: 'absolute',
           inset: 0,
@@ -53,6 +55,7 @@ export default function Hero() {
         }}
       />
       <div
+        className="hero-bg"
         style={{
           position: 'absolute',
           inset: 0,
@@ -315,6 +318,11 @@ export default function Hero() {
         @media (max-width: 768px) {
           #hero {
             min-height: 100dvh;
+            background: #fff;
+          }
+          /* Hide hero image on mobile — white bg only for fastest LCP */
+          .hero-bg {
+            display: none !important;
           }
           /* Disable entrance animations on mobile for instant LCP + Speed Index */
           .hero-fade-in {
