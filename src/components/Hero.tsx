@@ -34,7 +34,7 @@ export default function Hero() {
           fill
           priority
           sizes="100vw"
-          quality={85}
+          quality={75}
           style={{
             objectFit: 'cover',
             objectPosition: 'center',
@@ -316,7 +316,14 @@ export default function Hero() {
           #hero {
             min-height: 100dvh;
           }
+          /* Disable entrance animations on mobile for instant LCP + Speed Index */
+          .hero-fade-in {
+            opacity: 1 !important;
+            animation: none !important;
+          }
           .hero-badge {
+            opacity: 1 !important;
+            animation: none !important;
             bottom: 1.25rem !important;
             right: 1.25rem !important;
             font-size: 0.75rem !important;
