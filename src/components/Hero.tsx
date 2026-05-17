@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const containerVariants = {
   hidden: {},
@@ -10,11 +11,10 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30, filter: 'blur(8px)' },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    filter: 'blur(0px)',
     transition: { duration: 0.8, ease: [0.32, 0.72, 0, 1] as const },
   },
 };
@@ -45,18 +45,16 @@ export default function Hero() {
           zIndex: 0,
         }}
       >
-        <motion.img
-          src="/herobackground.jpeg"
-          alt=""
-          initial={{ scale: 1.08 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.8, ease: [0.32, 0.72, 0, 1] }}
+        <Image
+          src="/herobackground.webp"
+          alt="Riley Tech Studio office background"
+          fill
+          priority
+          sizes="100vw"
+          quality={85}
           style={{
-            width: '100%',
-            height: '100%',
             objectFit: 'cover',
             objectPosition: 'center',
-            display: 'block',
           }}
         />
       </div>

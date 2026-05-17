@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 interface ServiceData {
   title: string;
@@ -40,7 +41,7 @@ const allServices: ServiceData[] = [
     description:
       'High-performance web apps using Next.js, React, and modern tooling. Server-rendered, accessible, blazing fast.',
     details: ['Next.js & React', 'Server-side rendering', 'Responsive & accessible', 'Real-time features'],
-    image: '/whatwebuild/webapps.jpeg',
+    image: '/whatwebuild/webapps.webp',
     gradient: 'linear-gradient(135deg, #E0F2FE 0%, #7DD3FC 100%)',
     codeLines: [
       '$ next build --turbo',
@@ -59,7 +60,7 @@ const allServices: ServiceData[] = [
     description:
       'End-to-end SaaS builds with auth, payments, dashboards, and multi-tenancy. Production-ready from day one.',
     details: ['Multi-tenant architecture', 'Stripe integration', 'Admin dashboards', 'Role-based access'],
-    image: '/whatwebuild/saas.jpg',
+    image: '/whatwebuild/saas.webp',
     gradient: 'linear-gradient(135deg, #DBEAFE 0%, #A5B4FC 100%)',
     codeLines: [
       '$ supabase db push --linked',
@@ -78,7 +79,7 @@ const allServices: ServiceData[] = [
     description:
       'Premium interfaces that convert. We design with purpose — not templates. Every pixel earns its place.',
     details: ['High-fidelity prototypes', 'Design systems', 'Interaction design', 'User testing'],
-    image: '/whatwebuild/uiux.png',
+    image: '/whatwebuild/uiux.webp',
     gradient: 'linear-gradient(135deg, #F0F9FF 0%, #BAE6FD 100%)',
     codeLines: [
       '$ figma-export tokens --config design.config.ts',
@@ -116,7 +117,7 @@ const allServices: ServiceData[] = [
     description:
       'Conversion-focused landing pages and marketing sites. SEO-optimised, mobile-first, designed to generate leads.',
     details: ['SEO-optimised', 'Lead generation', 'Analytics integration', 'Performance tuned'],
-    image: '/whatwebuild/business werbsites.jpg',
+    image: '/whatwebuild/business werbsites.webp',
     gradient: 'linear-gradient(135deg, #EFF6FF 0%, #BFDBFE 100%)',
     codeLines: [
       '$ lighthouse https://client.com.au --view',
@@ -282,13 +283,13 @@ export default function Services() {
               })()}
             </AnimatePresence>
 
-            <motion.img
-              src="/laptopclosedfixed.png"
+            <Image
+              src="/laptopclosedfixed.webp"
               alt="Closed laptop"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
+              width={920}
+              height={691}
+              sizes="(max-width: 768px) 100vw, 460px"
+              quality={85}
               style={{
                 width: '100%',
                 maxWidth: '460px',
@@ -503,12 +504,13 @@ function ExpandableService({
                   overflow: 'hidden',
                 }}
               >
-                <motion.img
-                  initial={{ scale: 1.1 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.6 }}
+                <Image
                   src={service.image}
                   alt={service.title}
+                  width={680}
+                  height={380}
+                  sizes="340px"
+                  quality={80}
                   style={{
                     width: '100%',
                     height: '100%',

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star } from '@phosphor-icons/react';
+import Image from 'next/image';
 
 interface ProjectData {
   title: string;
@@ -24,7 +25,7 @@ const projects: ProjectData[] = [
     description:
       'Premium landing page for a boat storage facility on the South Coast. Conversion-focused design with lead generation forms, coastal branding, and mobile-first architecture. Built with Next.js and Tailwind CSS.',
     details: ['Next.js & Tailwind', 'Lead generation', 'SEO optimised', 'Mobile-first'],
-    mockup: '/mockups/jervisbayboatstorage.jpeg',
+    mockup: '/mockups/jervisbayboatstorage.webp',
     review: {
       name: 'Matt O\'Connor',
       text: '"Creative design, friendly, informative, professional service and very reasonable pricing. Won\'t hesitate to use Riley in the future."',
@@ -37,7 +38,7 @@ const projects: ProjectData[] = [
     description:
       'High-performance marketing site for a poly pipe and civil supplies company in the Shoalhaven. Custom branding, interactive product gallery, and local SEO optimisation for the Nowra region.',
     details: ['Next.js 16', 'Product gallery', 'Local SEO', 'Custom branding'],
-    mockup: '/mockups/eastcoast.jpeg',
+    mockup: '/mockups/eastcoast.webp',
     review: {
       name: 'Peter Sloan',
       text: '"We could not be happier with the outcome. Very professional to deal with and made the whole process easy and stress free."',
@@ -50,7 +51,7 @@ const projects: ProjectData[] = [
     description:
       'Clean, professional website for a commercial cleaning business. Service breakdowns, team showcase, and integrated quote request forms. Mobile-first with fast page loads.',
     details: ['Next.js & Tailwind', 'Quote forms', 'Service pages', 'Performance tuned'],
-    mockup: '/mockups/landtoseaclaning.jpeg',
+    mockup: '/mockups/landtoseaclaning.webp',
     review: {
       name: 'Haley Short',
       text: '"Absolutely incredible to work with! Professional, creative, responsive and made the whole process so easy. The final website exceeded my expectations."',
@@ -63,7 +64,7 @@ const projects: ProjectData[] = [
     description:
       'Accessible, conversion-focused website for a disability transport provider. Clear service information, booking pathways, and NDIS integration details. Built for trust and accessibility.',
     details: ['Accessible design', 'NDIS integration', 'Booking flow', 'Trust signals'],
-    mockup: '/mockups/inclusivetransport.jpeg',
+    mockup: '/mockups/inclusivetransport.webp',
     review: {
       name: 'Beni Brown',
       text: '"Riley was outstanding to work with. He has a great eye for creativity and really brought my vision to life. Highly recommend."',
@@ -76,7 +77,7 @@ const projects: ProjectData[] = [
     description:
       'Professional trades and services website with a bold visual identity. Service showcases, project galleries, and lead generation. Designed to stand out in a competitive market.',
     details: ['Bold branding', 'Project gallery', 'Lead gen forms', 'Mobile-first'],
-    mockup: '/mockups/zampaservices.jpeg',
+    mockup: '/mockups/zampaservices.webp',
     review: {
       name: 'Leanne Zampa',
       text: '"He took my ideas and turned them into a professional, polished website that truly represents my business. Highly recommend!"',
@@ -267,9 +268,13 @@ export default function Work() {
                   maskImage: 'radial-gradient(ellipse 85% 80% at center, black 50%, transparent 100%)',
                 }}
               >
-                <img
+                <Image
                   src={activeProject.mockup}
                   alt={activeProject.title}
+                  width={1200}
+                  height={669}
+                  sizes="(max-width: 768px) 100vw, 60vw"
+                  quality={82}
                   style={{
                     width: '100%',
                     height: 'auto',
