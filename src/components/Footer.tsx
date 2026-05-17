@@ -8,19 +8,19 @@ const footerLinks = [
   {
     title: 'Services',
     links: [
-      { label: 'Mobile Apps', href: '#services' },
-      { label: 'Web Applications', href: '#services' },
-      { label: 'SaaS Platforms', href: '#services' },
-      { label: 'UI/UX Design', href: '#services' },
+      { label: 'Mobile Apps', href: '/#services' },
+      { label: 'Web Applications', href: '/#services' },
+      { label: 'SaaS Platforms', href: '/#services' },
+      { label: 'UI/UX Design', href: '/#services' },
     ],
   },
   {
     title: 'Company',
     links: [
-      { label: 'About', href: '#about' },
-      { label: 'Work', href: '#work' },
-      { label: 'Process', href: '#process' },
-      { label: 'Contact', href: '#contact' },
+      { label: 'About', href: '/about' },
+      { label: 'Work', href: '/#work' },
+      { label: 'Process', href: '/#process' },
+      { label: 'Contact', href: '/#contact' },
     ],
   },
 ];
@@ -72,7 +72,7 @@ export default function Footer() {
                 color: 'var(--color-foreground-subtle)',
               }}
             >
-              Australian software studio building production-grade apps, SaaS, and custom software from the South Coast.
+              Australian software studio building production-grade apps, SaaS, and custom software from the Shoalhaven &amp; Illawarra, NSW.
             </p>
           </div>
 
@@ -149,7 +149,7 @@ export default function Footer() {
               gap: '0.375rem',
             }}
           >
-            Built by Riley Tech Studio on the South Coast
+            Built by <a href="https://www.rileytechstudio.com" style={{ textDecoration: 'underline', color: 'inherit' }}>Riley Tech Studio</a> on the South Coast
           </span>
         </div>
       </div>

@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.rileytechstudio.com
+
+# Sitemaps
+Sitemap: https://www.rileytechstudio.com/sitemap.xml

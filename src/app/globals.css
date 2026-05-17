@@ -305,3 +305,121 @@ p {
     animation: none;
   }
 }
+
+/* ──────────────────────────────────────────────────────────────
+   BLOG PROSE — Article typography for rendered markdown
+   ────────────────────────────────────────────────────────────── */
+.blog-prose h1 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  letter-spacing: -0.025em;
+  color: var(--color-foreground);
+}
+.blog-prose h2 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+  color: var(--color-foreground);
+}
+.blog-prose h3 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.015em;
+  color: var(--color-foreground);
+}
+.blog-prose p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+  color: var(--color-foreground-muted);
+  max-width: 100%;
+}
+.blog-prose ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.blog-prose ol {
+  list-style: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.blog-prose li {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 0.5rem;
+  color: var(--color-foreground-muted);
+}
+.blog-prose blockquote {
+  border-left: 3px solid var(--color-primary);
+  padding-left: 1.25rem;
+  margin: 1.75rem 0;
+  opacity: 0.85;
+  font-style: italic;
+  color: var(--color-foreground-subtle);
+}
+.blog-prose blockquote p {
+  margin-bottom: 0;
+}
+.blog-prose a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 200ms ease;
+}
+.blog-prose a:hover {
+  color: var(--color-primary-hover);
+}
+.blog-prose strong {
+  font-weight: 600;
+  color: var(--color-foreground);
+}
+.blog-prose em {
+  font-style: italic;
+}
+.blog-prose code {
+  background: var(--color-muted-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0.125rem 0.375rem;
+  font-size: 0.875em;
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  color: var(--color-foreground);
+}
+.blog-prose pre {
+  background: var(--color-foreground);
+  color: var(--color-background);
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.blog-prose pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 0.875rem;
+  color: inherit;
+}
+.blog-prose hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 2rem 0;
+}
+.blog-prose img {
+  max-width: 100%;
+  border-radius: var(--radius-lg);
+  margin: 1.5rem 0;
+  display: block;
+}
+

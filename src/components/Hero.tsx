@@ -99,6 +99,7 @@ export default function Hero() {
               lineHeight: 1.05,
               letterSpacing: '-0.035em',
               color: 'var(--color-foreground)',
+              position: 'relative',
             }}
           >
             Creative Websites
@@ -112,6 +113,19 @@ export default function Hero() {
               }}
             >
               & Software.
+            </span>
+            <span style={{
+              position: 'absolute',
+              width: '1px',
+              height: '1px',
+              padding: '0',
+              margin: '-1px',
+              overflow: 'hidden',
+              clip: 'rect(0,0,0,0)',
+              whiteSpace: 'nowrap',
+              border: '0',
+            }}>
+              — Web Design & Development, Shoalhaven & Illawarra NSW
             </span>
           </h1>
 

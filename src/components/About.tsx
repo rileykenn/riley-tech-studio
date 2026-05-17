@@ -71,6 +71,15 @@ export default function About() {
                   color: 'var(--color-foreground-muted)',
                 }}
               >
+                I&apos;m Riley Kennedy — a developer and designer based on the South Coast of NSW.
+              </p>
+              <p
+                style={{
+                  fontSize: '1.0625rem',
+                  lineHeight: 1.7,
+                  color: 'var(--color-foreground-muted)',
+                }}
+              >
                 Riley Tech Studio is a one-person software studio based on the
                 South Coast of Australia. I build apps, SaaS platforms, custom
                 software, and high-converting websites for businesses that need

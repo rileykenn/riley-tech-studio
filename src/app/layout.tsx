@@ -17,7 +17,7 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "Riley Tech Studio | Web Design & Development — Shoalhaven & Illawarra",
   description:
-    "Web design and development for local businesses in the Shoalhaven and Illawarra. Fast, modern websites built in React and Next.js that actually get results.",
+    "Web design and development for local businesses in the Shoalhaven and Illawarra. Fast, modern websites built in React and Next.js that get results.",
   keywords: [
     "web design Shoalhaven",
     "web design Illawarra",
@@ -60,6 +60,47 @@ export const metadata: Metadata = {
   },
 };
 
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Riley Tech Studio",
+  "url": "https://www.rileytechstudio.com",
+  "logo": "https://www.rileytechstudio.com/logo.png",
+  "image": "https://www.rileytechstudio.com/og-image.jpg",
+  "description": "Web design and development for local businesses in the Shoalhaven and Illawarra. Fast, modern websites and custom software built in React and Next.js.",
+  "telephone": "+61499545069",
+  "email": "contactrileykennedy@gmail.com",
+  "priceRange": "$$",
+  "areaServed": [
+    { "@type": "AdministrativeArea", "name": "Shoalhaven" },
+    { "@type": "AdministrativeArea", "name": "Illawarra" },
+  ],
+  "serviceArea": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": -34.9093,
+      "longitude": 150.5933,
+    },
+    "geoRadius": "100000",
+  },
+  "sameAs": [
+    "https://www.facebook.com/rileytechstudio",
+    "https://www.instagram.com/rileytechstudio",
+    "https://www.tiktok.com/@rileytechstudio",
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Services",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Design & Development" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Software Development" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SaaS Development" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "App Development" } },
+    ],
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -67,6 +108,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${dmSans.variable} ${spaceGrotesk.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+      </head>
       <body className="grain-overlay">
         {children}
       </body>
