@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://www.rileytechstudio.com
+Host: https://www.rileytechstudio.com.au
 
 # Sitemaps
-Sitemap: https://www.rileytechstudio.com/sitemap.xml
+Sitemap: https://www.rileytechstudio.com.au/sitemap.xml
