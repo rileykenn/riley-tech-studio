@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const stats = [
@@ -75,7 +74,7 @@ export default function Hero() {
         }}
       >
         <div style={{ maxWidth: '620px' }}>
-          <div className="hero-fade-in" style={{ animationDelay: '0.1s' }}>
+          <div className="hero-fade-in">
             <span className="eyebrow">
               <span
                 aria-hidden="true"
@@ -94,7 +93,7 @@ export default function Hero() {
           <h1
             className="hero-fade-in"
             style={{
-              animationDelay: '0.2s',
+              animationDelay: '0.08s',
               marginTop: '1.5rem',
               fontSize: 'clamp(2.75rem, 5.5vw, 4.5rem)',
               fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -121,7 +120,7 @@ export default function Hero() {
           <p
             className="hero-fade-in"
             style={{
-              animationDelay: '0.35s',
+              animationDelay: '0.16s',
               marginTop: '1.5rem',
               fontSize: '1.125rem',
               lineHeight: 1.7,
@@ -136,7 +135,7 @@ export default function Hero() {
           <div
             className="hero-fade-in"
             style={{
-              animationDelay: '0.5s',
+              animationDelay: '0.24s',
               display: 'flex',
               alignItems: 'center',
               gap: '1rem',
@@ -144,13 +143,9 @@ export default function Hero() {
               flexWrap: 'wrap',
             }}
           >
-            <motion.a
+            <a
               href="/#contact"
-              initial={{ skewX: -6 }}
-              animate={{ skewX: -6, scaleX: 1 }}
-              whileHover={{ skewX: -6, scaleX: 0.95 }}
-              whileTap={{ skewX: -6, scale: 0.97 }}
-              transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
+              className="hero-cta"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -166,6 +161,7 @@ export default function Hero() {
                 textDecoration: 'none',
                 borderRadius: '6px',
                 cursor: 'pointer',
+                transform: 'skewX(-6deg)',
               }}
             >
               <span style={{ transform: 'skewX(6deg)' }}>Start a Project</span>
@@ -174,15 +170,11 @@ export default function Hero() {
                   <path d="M200,128v64a8,8,0,0,1-16,0V147.31L69.66,261.66a8,8,0,0,1-11.32-11.32L172.69,136H128a8,8,0,0,1,0-16h64A8,8,0,0,1,200,128Z" fill="currentColor" transform="translate(0,-80) scale(0.95)"/>
                 </svg>
               </span>
-            </motion.a>
+            </a>
 
-            <motion.a
+            <a
               href="/#work"
-              initial={{ skewX: -6 }}
-              animate={{ skewX: -6, scaleX: 1 }}
-              whileHover={{ skewX: -6, scaleX: 0.95 }}
-              whileTap={{ skewX: -6, scale: 0.97 }}
-              transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
+              className="hero-cta"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -198,6 +190,7 @@ export default function Hero() {
                 textDecoration: 'none',
                 borderRadius: '6px',
                 cursor: 'pointer',
+                transform: 'skewX(-6deg)',
               }}
             >
               <span style={{ transform: 'skewX(6deg)' }}>View Our Work</span>
@@ -206,14 +199,14 @@ export default function Hero() {
                   <path d="M200,128v64a8,8,0,0,1-16,0V147.31L69.66,261.66a8,8,0,0,1-11.32-11.32L172.69,136H128a8,8,0,0,1,0-16h64A8,8,0,0,1,200,128Z" fill="currentColor" transform="translate(0,-80) scale(0.95)"/>
                 </svg>
               </span>
-            </motion.a>
+            </a>
           </div>
 
           {/* Stats */}
           <div
             className="hero-fade-in"
             style={{
-              animationDelay: '0.65s',
+              animationDelay: '0.32s',
               display: 'flex',
               gap: '2.5rem',
               marginTop: '3.5rem',
@@ -249,12 +242,9 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── Floating badge — bottom right ── */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8, y: 10 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ delay: 1.4, duration: 0.6, type: 'spring', stiffness: 120, damping: 20 }}
-        className="glass-panel"
+      {/* ── Floating badge — bottom right (CSS animation, no JS delay) ── */}
+      <div
+        className="glass-panel hero-badge"
         style={{
           position: 'absolute',
           bottom: '2.5rem',
@@ -280,7 +270,7 @@ export default function Hero() {
           }}
         />
         Currently taking clients
-      </motion.div>
+      </div>
 
       <style jsx global>{`
         /* ── Hero entrance — CSS-only, no JS dependency for LCP ── */
@@ -296,14 +286,45 @@ export default function Hero() {
         }
         .hero-fade-in {
           opacity: 0;
-          animation: heroFadeIn 0.7s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+          animation: heroFadeIn 0.6s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+        }
+        /* Badge entrance */
+        @keyframes badgePop {
+          from {
+            opacity: 0;
+            transform: translateY(8px) scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+        .hero-badge {
+          opacity: 0;
+          animation: badgePop 0.5s cubic-bezier(0.32, 0.72, 0, 1) 1s forwards;
+        }
+        .hero-cta {
+          transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+        .hero-cta:hover {
+          transform: skewX(-6deg) scaleX(0.95);
+        }
+        .hero-cta:active {
+          transform: skewX(-6deg) scale(0.97);
         }
         @media (max-width: 768px) {
           #hero {
             min-height: 100dvh;
+          }
+          .hero-badge {
+            bottom: 1.25rem !important;
+            right: 1.25rem !important;
+            font-size: 0.75rem !important;
+            padding: 0.625rem 1rem !important;
           }
         }
       `}</style>
     </section>
   );
 }
+
