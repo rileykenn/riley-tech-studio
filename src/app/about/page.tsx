@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'About Riley Tech Studio | Web Designer & Developer — South Coast NSW',
   description: 'Riley Tech Studio is a one-person software studio based on the South Coast of Australia. Apps, SaaS platforms, and high-converting websites built properly from day one.',
   alternates: {
-    canonical: 'https://www.rileytechstudio.com/about',
+    canonical: 'https://www.rileytechstudio.com.au/about',
   },
   robots: {
     index: true,
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: 'About Riley Tech Studio | Web Designer & Developer — South Coast NSW',
     description: 'Riley Tech Studio is a one-person software studio based on the South Coast of Australia. Apps, SaaS platforms, and high-converting websites built properly from day one.',
     type: 'website',
-    url: 'https://www.rileytechstudio.com/about',
+    url: 'https://www.rileytechstudio.com.au/about',
     siteName: 'Riley Tech Studio',
     images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
   },

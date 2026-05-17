@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://www.rileytechstudio.com',
+  siteUrl: 'https://www.rileytechstudio.com.au',
   generateRobotsTxt: true,
   changefreq: 'weekly',
   priority: 0.7,

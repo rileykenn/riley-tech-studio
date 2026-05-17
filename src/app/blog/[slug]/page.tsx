@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPostBySlug(slug);
   if (!post) return {};
 
-  const canonical = `https://www.rileytechstudio.com/blog/${slug}`;
+  const canonical = `https://www.rileytechstudio.com.au/blog/${slug}`;
 
   return {
     title: `${post.title} | Riley Tech Studio`,
@@ -61,7 +61,7 @@ export default async function BlogPostPage({ params }: Props) {
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
-  const canonical = `https://www.rileytechstudio.com/blog/${slug}`;
+  const canonical = `https://www.rileytechstudio.com.au/blog/${slug}`;
 
   // Parse markdown → HTML (H1 suppressed by custom renderer)
   const htmlContent = await marked.parse(post.content);
@@ -79,7 +79,7 @@ export default async function BlogPostPage({ params }: Props) {
     publisher: {
       '@type': 'Organization',
       name: 'Riley Tech Studio',
-      url: 'https://www.rileytechstudio.com',
+      url: 'https://www.rileytechstudio.com.au',
     },
     url: canonical,
   };

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     "small business website NSW",
     "Riley Tech Studio",
   ],
-  metadataBase: new URL("https://www.rileytechstudio.com"),
+  metadataBase: new URL("https://www.rileytechstudio.com.au"),
   alternates: {
     canonical: "/",
   },
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     description:
       "Fast, modern websites for local businesses in the Shoalhaven and Illawarra. Built in Next.js, designed to convert.",
     type: "website",
-    url: "https://www.rileytechstudio.com",
+    url: "https://www.rileytechstudio.com.au",
     siteName: "Riley Tech Studio",
     images: [
       {
@@ -64,9 +64,9 @@ const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Riley Tech Studio",
-  "url": "https://www.rileytechstudio.com",
-  "logo": "https://www.rileytechstudio.com/logo.png",
-  "image": "https://www.rileytechstudio.com/og-image.jpg",
+  "url": "https://www.rileytechstudio.com.au",
+  "logo": "https://www.rileytechstudio.com.au/logo.png",
+  "image": "https://www.rileytechstudio.com.au/og-image.jpg",
   "description": "Web design and development for local businesses in the Shoalhaven and Illawarra. Fast, modern websites and custom software built in React and Next.js.",
   "telephone": "+61499545069",
   "email": "contactrileykennedy@gmail.com",

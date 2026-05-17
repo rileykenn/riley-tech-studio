@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     'Practical guides on web design, software development, and growing your business online — from Riley Tech Studio in the Shoalhaven and Illawarra.',
   alternates: {
-    canonical: 'https://www.rileytechstudio.com/blog',
+    canonical: 'https://www.rileytechstudio.com.au/blog',
   },
   robots: {
     index: true,
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description:
       'Practical guides on web design, software development, and growing your business online — from Riley Tech Studio in the Shoalhaven and Illawarra.',
     type: 'website',
-    url: 'https://www.rileytechstudio.com/blog',
+    url: 'https://www.rileytechstudio.com.au/blog',
     siteName: 'Riley Tech Studio',
     images: [
       {

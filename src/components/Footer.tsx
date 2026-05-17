@@ -149,7 +149,7 @@ export default function Footer() {
               gap: '0.375rem',
             }}
           >
-            Built by <a href="https://www.rileytechstudio.com" style={{ textDecoration: 'underline', color: 'inherit' }}>Riley Tech Studio</a> on the South Coast
+            Built by <a href="https://www.rileytechstudio.com.au" style={{ textDecoration: 'underline', color: 'inherit' }}>Riley Tech Studio</a> on the South Coast
           </span>
         </div>
       </div>
