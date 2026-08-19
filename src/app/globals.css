@@ -7,58 +7,65 @@
    ────────────────────────────────────────────────────────────── */
 
 :root {
-  /* ── Core Palette ── */
-  --color-background: #F8FAFB;
-  --color-background-alt: #F0F4F7;
-  --color-foreground: #0F1A2A;
-  --color-foreground-muted: #64748B;
-  --color-foreground-subtle: #5E7185;
+  /* ── Core Palette: paper + ink, one hard cobalt accent ── */
+  --color-background: #F7F6F2;
+  --color-background-alt: #EFEDE7;
+  --color-foreground: #101214;
+  --color-foreground-muted: #3E464F;
+  --color-foreground-subtle: #5A626B;
 
   /* ── Brand Blues ── */
-  --color-primary: #2563EB;
-  --color-primary-hover: #1D4FD7;
-  --color-primary-light: #DBEAFE;
-  --color-primary-ultra-light: #EFF6FF;
+  --color-primary: #1D4ED8;
+  --color-primary-hover: #1E40AF;
+  --color-primary-light: #C7D7FB;
+  --color-primary-ultra-light: #EDF2FE;
 
   /* ── Neutral Greys ── */
   --color-surface: #FFFFFF;
   --color-surface-elevated: #FFFFFF;
-  --color-border: #E2E8F0;
-  --color-border-subtle: #F1F5F9;
-  --color-muted-bg: #F1F5F9;
+  --color-border: #DDDAD2;
+  --color-border-subtle: #EAE7E0;
+  --color-muted-bg: #EFEDE7;
 
   /* ── Semantic ── */
-  --color-accent: #0EA5E9;
+  --color-accent: #1D4ED8;
   --color-success: #10B981;
-  --color-destructive: #EF4444;
+  --color-destructive: #DC2626;
 
-  /* ── Shadows (Tinted to palette) ── */
-  --shadow-sm: 0 1px 2px rgba(15, 26, 42, 0.04);
-  --shadow-md: 0 4px 12px rgba(15, 26, 42, 0.06);
-  --shadow-lg: 0 12px 40px rgba(15, 26, 42, 0.08);
-  --shadow-xl: 0 20px 60px -15px rgba(15, 26, 42, 0.1);
-  --shadow-glow: 0 0 40px rgba(37, 99, 235, 0.12);
+  /* ── Shadows (neutral ink, tight) ── */
+  --shadow-sm: 0 1px 2px rgba(17, 18, 20, 0.06);
+  --shadow-md: 0 2px 8px rgba(17, 18, 20, 0.07);
+  --shadow-lg: 0 8px 24px rgba(17, 18, 20, 0.09);
+  --shadow-xl: 0 16px 40px -12px rgba(17, 18, 20, 0.12);
 
-  /* ── Typography (set by next/font CSS variables) ── */
-  --font-heading: var(--font-heading), 'Space Grotesk', system-ui, sans-serif;
-  --font-body: var(--font-body), 'DM Sans', system-ui, sans-serif;
+  /* ── Typography (next/font loads into the -gf variables; referencing
+     them directly avoids the self-referential cycle that silently
+     invalidates the token) ── */
+  --font-heading: var(--font-heading-gf, 'Space Grotesk'), system-ui, sans-serif;
+  --font-body: var(--font-body-gf, 'DM Sans'), system-ui, sans-serif;
 
   /* ── Spacing ── */
   --section-gap: clamp(6rem, 10vw, 10rem);
 
-  /* ── Radius ── */
-  --radius-sm: 0.5rem;
-  --radius-md: 0.875rem;
-  --radius-lg: 1.25rem;
-  --radius-xl: 1.75rem;
-  --radius-2xl: 2.25rem;
+  /* ── Radius: rectangles, not pills ── */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.625rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 0.875rem;
 }
 
 /* ── Global Reset ── */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Layered so Tailwind utilities (which live in @layer utilities) can still
+   set margin/padding; an unlayered reset would beat every layered utility. */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 }
 
 html {
@@ -118,23 +125,17 @@ p {
 }
 
 .eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.375rem 1rem;
-  border-radius: 9999px;
+  display: inline-block;
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  background: var(--color-primary-ultra-light);
   color: var(--color-primary);
-  border: 1px solid var(--color-primary-light);
 }
 
 /* ── Double-Bezel Card Architecture ── */
 .card-shell {
-  background: rgba(241, 245, 249, 0.5);
+  background: var(--color-muted-bg);
   border: 1px solid var(--color-border);
   padding: 0.375rem;
   border-radius: var(--radius-2xl);
@@ -143,17 +144,15 @@ p {
 .card-core {
   background: var(--color-surface);
   border-radius: calc(var(--radius-2xl) - 0.375rem);
-  box-shadow: var(--shadow-sm), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
 }
 
-/* ── Glass Panel ── */
+/* ── Solid panel (formerly glass; the blur era is over) ── */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: var(--shadow-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
 }
 
 /* ── CTA Button ── */
@@ -161,44 +160,42 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.875rem 1.75rem;
+  padding: 0.875rem 1.625rem;
   background: var(--color-primary);
   color: white;
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 0.9375rem;
-  border-radius: 9999px;
+  border-radius: var(--radius-md);
   border: none;
   cursor: pointer;
-  transition: all 500ms cubic-bezier(0.32, 0.72, 0, 1);
+  transition: background 200ms ease, transform 150ms ease;
   position: relative;
   overflow: hidden;
 }
 
 .btn-primary:hover {
   background: var(--color-primary-hover);
-  box-shadow: var(--shadow-glow);
-  transform: translateY(-1px);
 }
 
 .btn-primary:active {
-  transform: scale(0.98) translateY(0);
+  transform: scale(0.98);
 }
 
 .btn-secondary {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.875rem 1.75rem;
+  padding: 0.875rem 1.625rem;
   background: transparent;
   color: var(--color-foreground);
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 0.9375rem;
-  border-radius: 9999px;
+  border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
   cursor: pointer;
-  transition: all 500ms cubic-bezier(0.32, 0.72, 0, 1);
+  transition: background 200ms ease, border-color 200ms ease;
 }
 
 .btn-secondary:hover {
@@ -211,28 +208,349 @@ p {
   transform: scale(0.98) translateY(0);
 }
 
-/* ── Marquee ── */
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+/* ── Hero: proof-led layout ── */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.18fr 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: center;
 }
 
-.animate-marquee {
-  animation: marquee 30s linear infinite;
+.hero-work-link {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-foreground);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--color-border);
+  transition: text-decoration-color 200ms ease, color 200ms ease;
+}
+.hero-work-link:hover {
+  color: var(--color-primary);
+  text-decoration-color: var(--color-primary);
 }
 
-/* ── Grain Overlay (Fixed, pointer-events-none) ── */
-.grain-overlay::after {
-  content: '';
+.hero-visual {
+  position: relative;
+}
+.hero-card-caption {
+  margin-top: 0.875rem;
+  font-size: 0.8125rem;
+  color: var(--color-foreground-subtle);
+}
+
+/* Hero copy of the SIGC 3D course map: same double-bezel card treatment as
+   the case-study viewer, hero-sized. The title bar wears the club's own
+   brand (navy, gold, Cormorant) so the viewer reads as their product. */
+.hero-map-shell {
+  max-width: 640px;
+  /* the hero keeps the exact framing Riley signed off on before the
+     site-wide sweep: fairway-tinted border on the softer shell wash */
+  background: rgba(241, 245, 249, 0.5);
+  border-color: rgba(93, 127, 88, 0.28) !important;
+}
+.hero-map-credit {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.375rem 0.625rem;
+  margin-top: 0.75rem;
+  padding-left: 0.25rem;
+  max-width: 640px;
+}
+.hero-map-credit b {
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-foreground);
+}
+.hero-map-credit-desc {
+  font-size: 0.8125rem;
+  color: var(--color-foreground-subtle);
+}
+.hero-map-credit-link {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-foreground);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--color-border);
+  transition: color 200ms ease, text-decoration-color 200ms ease;
+}
+.hero-map-credit-link:hover {
+  color: var(--color-primary);
+  text-decoration-color: var(--color-primary);
+}
+@media (max-width: 900px) {
+  .hero-map-shell {
+    max-width: 100%;
+  }
+}
+
+/* Live CleanRoute Pro slice: fixed-size app window, product-branded indigo */
+.hero-demo-window {
+  max-width: 560px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-lg);
+}
+.hero-demo-chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+.hero-demo-map {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #f6f7fd;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+.hero-demo-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.hero-demo-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.625rem 1rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-border-subtle);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+.hero-demo-row:hover {
+  background: var(--color-muted-bg);
+}
+.hero-demo-chip {
+  flex-shrink: 0;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px dashed var(--color-border);
+  color: var(--color-foreground-subtle);
+  transition: all 200ms ease;
+}
+.hero-demo-chip-on {
+  border: 1px solid transparent;
+  background: #eef2ff;
+  color: #4f46e5;
+}
+.hero-demo-summary {
+  padding: 0.75rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-foreground);
+  font-variant-numeric: tabular-nums;
+  min-height: 2.6rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Logo receipts band under the hero message */
+.hero-logo-band {
+  display: block;
+  margin-top: clamp(3rem, 6vh, 4.5rem);
+  padding: 1.75rem 0 2.5rem;
+  border-top: 1px solid var(--color-border-subtle);
+  text-decoration: none;
+}
+.hero-logo-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.25rem 1.5rem;
+}
+.hero-logo-item {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  opacity: 0.75;
+  transition: opacity 200ms ease;
+  min-width: 0;
+}
+.hero-logo-band:hover .hero-logo-item {
+  opacity: 0.95;
+}
+.hero-logo-mark {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-muted-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-foreground-subtle);
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.hero-logo-name {
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-foreground-subtle);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+@media (max-width: 1100px) {
+  .hero-logo-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .hero-logo-item:nth-child(n + 9) {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-demo-window {
+    max-width: 100%;
+  }
+  /* manual headline breaks are tuned for the desktop column; let narrow
+     screens wrap naturally */
+  .hero-h1-br {
+    display: none;
+  }
+  /* the background plug reads as clutter behind stacked mobile content */
+  .hero-plug {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-logo-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.875rem 1rem;
+  }
+  .hero-logo-item:nth-child(n + 7) {
+    display: none;
+  }
+}
+
+/* ── Services: buyer-category grid ── */
+.services-grid {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── How-it-works steps ── */
+.steps-grid {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+@media (max-width: 1000px) {
+  .steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+}
+
+/* ── FAQ accordion ── */
+.faq-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 3rem;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .faq-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+.faq-item {
+  border-bottom: 1px solid var(--color-border);
+}
+.faq-item:first-of-type {
+  border-top: 1px solid var(--color-border);
+}
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.125rem 0;
+  font-family: var(--font-heading);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-foreground);
+  cursor: pointer;
+  list-style: none;
+}
+.faq-question::-webkit-details-marker {
+  display: none;
+}
+.faq-caret {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--color-foreground-subtle);
+  border-bottom: 2px solid var(--color-foreground-subtle);
+  transform: rotate(45deg);
+  transition: transform 200ms ease;
+  margin-bottom: 4px;
+}
+.faq-item[open] .faq-caret {
+  transform: rotate(225deg);
+  margin-bottom: -4px;
+}
+.faq-answer {
+  padding: 0 0 1.25rem;
+  max-width: 60ch;
+}
+
+/* ── Mobile sticky CTA bar ── */
+.sticky-quote-bar {
   position: fixed;
-  inset: 0;
-  z-index: 50;
-  pointer-events: none;
-  opacity: 0.015;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 128px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  display: none;
+  padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
+  background: var(--color-background);
+  border-top: 1px solid var(--color-border);
+  transition: transform 300ms cubic-bezier(0.32, 0.72, 0, 1);
 }
+@media (max-width: 768px) {
+  .sticky-quote-bar {
+    display: block;
+  }
+}
+
 
 /* ── Hero Animations (CSS-only, no JS dependency for LCP) ── */
 @keyframes heroFadeIn {
@@ -250,48 +568,45 @@ p {
   animation: heroFadeIn 0.6s cubic-bezier(0.32, 0.72, 0, 1) forwards;
 }
 
-@keyframes badgePop {
-  from {
-    opacity: 0;
-    transform: translateY(8px) scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-.hero-badge {
-  opacity: 0;
-  animation: badgePop 0.5s cubic-bezier(0.32, 0.72, 0, 1) 1s forwards;
-}
-
-.hero-cta {
-  transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
-}
-.hero-cta:hover {
-  transform: skewX(-6deg) scaleX(0.95);
-}
-.hero-cta:active {
-  transform: skewX(-6deg) scale(0.97);
-}
-
 @media (max-width: 768px) {
-  #hero {
-    min-height: 100dvh;
-  }
   /* Disable entrance animations on mobile for instant LCP + Speed Index */
   .hero-fade-in {
     opacity: 1 !important;
     animation: none !important;
   }
-  .hero-badge {
-    opacity: 1 !important;
-    animation: none !important;
-    bottom: 1.25rem !important;
-    right: 1.25rem !important;
-    font-size: 0.75rem !important;
-    padding: 0.625rem 1rem !important;
-  }
+}
+
+/* ── SIGC course map "click here" nudge ── */
+@keyframes sigcHintBob {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -7px); }
+}
+.sigc-hole-hint {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: 50%;
+  transform: translate(-50%, 0);
+  white-space: nowrap;
+  background: #0a1628;
+  color: #ffffff;
+  border: 1px solid #ddc078;
+  border-radius: 9999px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 6px 18px rgba(10, 22, 40, 0.35);
+  pointer-events: none;
+  animation: sigcHintBob 1.6s ease-in-out infinite;
+}
+.sigc-hole-hint::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #0a1628;
 }
 
 /* ── Reduced Motion ── */
@@ -300,9 +615,6 @@ p {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-  .animate-marquee {
-    animation: none;
   }
 }
 
@@ -423,3 +735,196 @@ p {
   display: block;
 }
 
+
+/* Featured work: SIGC case-study rules (SSR-safe, so not styled-jsx) */
+.sigc-head {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  max-width: 880px;
+}
+.sigc-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .sigc-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .sigc-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/* CleanRoute Pro demo board (SSR-safe global rules, not styled-jsx) */
+.crp-windows {
+  display: grid;
+  grid-template-columns: 250px 1fr 1.25fr;
+  grid-template-areas:
+    'roster run map'
+    'summary summary summary'
+    'bottom bottom bottom';
+  gap: 1.5rem 1.625rem;
+  align-items: stretch;
+}
+/* tilts use the independent CSS `rotate` property so framer-motion's inline
+   `transform` (the windows' scaleY pop-open) composes with them instead of
+   overwriting them */
+.crp-win-bottom { grid-area: bottom; display: flex; align-items: center; gap: 2.5rem; padding-top: 0.75rem; }
+.crp-win-roster { grid-area: roster; rotate: 1.2deg; align-self: start; }
+/* fixed at the height the board has with two clients scheduled (the map's
+   460px) — extra clients scroll inside the run list instead of growing it */
+.crp-win-run { grid-area: run; rotate: -0.6deg; height: 460px; }
+.crp-win-map { grid-area: map; rotate: 0.7deg; min-height: 460px; }
+.crp-win-summary { grid-area: summary; rotate: 0.4deg; width: 99%; justify-self: center; align-self: start; }
+@media (max-width: 900px) {
+  .crp-windows {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+  .crp-windows > * {
+    width: 100% !important;
+  }
+  .crp-win-roster { rotate: 0.8deg; }
+  .crp-win-run { rotate: -0.5deg; }
+  .crp-win-map { rotate: 0.5deg; min-height: 400px; }
+  .crp-win-summary { rotate: none; }
+  .crp-win-bottom { flex-direction: column; align-items: stretch; }
+  .crp-roster-list {
+    flex-direction: row !important;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+  }
+}
+
+/* CleanRoute Pro animated route backdrop: dashes drift along the paths,
+   waypoint dots breathe, and the two ringed stops ping like live pins.
+   -132 is a multiple of the 12px dash period so every loop is seamless. */
+@keyframes crpRouteDrift {
+  to { stroke-dashoffset: -132; }
+}
+.crp-bg-route {
+  animation: crpRouteDrift 12s linear infinite;
+}
+@keyframes crpPing {
+  0% { transform: scale(0.5); opacity: 0.8; }
+  70%, 100% { transform: scale(1.7); opacity: 0; }
+}
+.crp-bg-ping {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: crpPing 3.4s ease-out infinite;
+}
+@keyframes crpDotBreathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+.crp-bg-dot {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: crpDotBreathe 3.4s ease-in-out infinite;
+}
+
+/* Stone Grill showcase grid (SSR-safe, not styled-jsx) */
+.sg-grid {
+  display: grid;
+  grid-template-columns: 1.02fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .sg-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/* Today's Stash showcase (SSR-safe global rules) */
+@font-face {
+  font-family: 'Bebas Neue Pro Expanded';
+  src: url('/fonts/BebasNeueProExpandedExtraBoldIt.woff2') format('woff2');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+/* one compact row: narrative rail | phone | testimonial + ask */
+.stash-layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) auto minmax(300px, 420px);
+  gap: 3rem;
+  align-items: center;
+  justify-content: center;
+}
+.stash-stage {
+  display: flex;
+  justify-content: center;
+}
+/* hand-drawn marker underline for the story lede */
+.stash-marker {
+  background-image: url('/casestudy/stash-underline.svg');
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 0.5em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding-bottom: 0.3em;
+}
+/* interactive states for the rail, visit button and closer link */
+.stash-step:not(.is-active):hover {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+.stash-step:focus-visible {
+  outline: 2px solid rgba(154, 252, 93, 0.7);
+  outline-offset: 2px;
+}
+.stash-visit {
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+.stash-visit:hover {
+  background-color: #8fef6c !important;
+  transform: translateY(-1px);
+}
+.stash-visit:active {
+  transform: scale(0.98);
+}
+.stash-visit:focus-visible,
+.stash-cta:focus-visible {
+  outline: 2px solid rgba(154, 252, 93, 0.7);
+  outline-offset: 2px;
+}
+.stash-cta:hover {
+  text-decoration: underline !important;
+}
+@media (max-width: 1100px) {
+  .stash-layout {
+    grid-template-columns: minmax(240px, 400px) auto;
+    gap: 2.5rem;
+  }
+  .stash-aside {
+    grid-column: 1 / -1;
+    max-width: 560px;
+    justify-self: center;
+  }
+}
+@media (max-width: 720px) {
+  .stash-layout {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+  /* demo first on phones; the narrative rail explains it just below */
+  .stash-stage {
+    order: -1;
+  }
+  .stash-aside {
+    grid-column: auto;
+  }
+}

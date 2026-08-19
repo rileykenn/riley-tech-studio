@@ -1,0 +1,22 @@
+# Riley Tech Studio
+
+> Riley Tech Studio is a software studio on the South Coast of NSW, Australia, building custom software, web apps, SaaS products, websites and booking systems for businesses across the Shoalhaven and Illawarra. The studio designs and ships production software end to end — from idea validation through to launch and ongoing iteration.
+
+## Key links
+
+- [Home](https://www.rileytechstudio.com.au/)
+- [About](https://www.rileytechstudio.com.au/about)
+- [Blog](https://www.rileytechstudio.com.au/blog)
+- [Contact](https://www.rileytechstudio.com.au/#contact)
+
+## Blog
+
+- [How Good Is a Website for Marketing Your Business in the Shoalhaven & Illawarra?](https://www.rileytechstudio.com.au/blog/how-good-is-a-website-for-marketing) — raw markdown: https://www.rileytechstudio.com.au/raw-blog-md-files/how-good-is-a-website-for-marketing.md
+- [How Much Does a Website Cost in Australia in 2026?](https://www.rileytechstudio.com.au/blog/how-much-does-a-website-cost-in-australia) — raw markdown: https://www.rileytechstudio.com.au/raw-blog-md-files/how-much-does-a-website-cost-in-australia.md
+- [How to Get Your Business to Show Up on Google Maps](https://www.rileytechstudio.com.au/blog/how-to-get-business-on-google-maps) — raw markdown: https://www.rileytechstudio.com.au/raw-blog-md-files/how-to-get-business-on-google-maps.md
+- [How Do I Know If My Website Is Outdated? (And What to Do About It)](https://www.rileytechstudio.com.au/blog/how-to-know-if-website-is-outdated) — raw markdown: https://www.rileytechstudio.com.au/raw-blog-md-files/how-to-know-if-website-is-outdated.md
+- [How to Protect Your App Idea Before You Hire a Developer](https://www.rileytechstudio.com.au/blog/how-to-protect-app-idea-before-hiring-developer) — raw markdown: https://www.rileytechstudio.com.au/raw-blog-md-files/how-to-protect-app-idea-before-hiring-developer.md
+- [From Idea to App: How to Turn Your Business Idea Into a Real Product](https://www.rileytechstudio.com.au/blog/how-to-turn-idea-into-app) — raw markdown: https://www.rileytechstudio.com.au/raw-blog-md-files/how-to-turn-idea-into-app.md
+- [What Is the Difference Between a Website and a Landing Page?](https://www.rileytechstudio.com.au/blog/website-vs-landing-page) — raw markdown: https://www.rileytechstudio.com.au/raw-blog-md-files/website-vs-landing-page.md
+- [What Is SaaS? A Plain English Guide for Business Owners](https://www.rileytechstudio.com.au/blog/what-is-saas) — raw markdown: https://www.rileytechstudio.com.au/raw-blog-md-files/what-is-saas.md
+- [Where to Hire a Software Developer in Australia — And What to Watch Out For](https://www.rileytechstudio.com.au/blog/where-to-hire-a-software-developer-australia) — raw markdown: https://www.rileytechstudio.com.au/raw-blog-md-files/where-to-hire-a-software-developer-australia.md

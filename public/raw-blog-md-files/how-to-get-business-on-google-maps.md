@@ -1,8 +1,13 @@
+---
+datePublished: 2026-05-17
+dateModified: 2026-08-19
+---
+
 # How to Get Your Business to Show Up on Google Maps
 
-If you run a local business in Australia and you're not showing up on Google Maps, you're invisible to a huge chunk of your potential customers. When someone searches "plumber near me" or "cafe Nowra" or "boat storage Jervis Bay", the map results are often the first thing they see — before any websites, before any ads.
+To get your business on Google Maps, create a free Google Business Profile at business.google.com, verify the business, fill out every section of the profile completely, and start collecting Google reviews. Listing is free, a proper setup takes about 30 minutes, and it's one of the highest-return things a business can do for its online presence.
 
-Getting listed there is free. Setting it up properly takes about 30 minutes. And it's one of the highest-return things a local business can do for its online presence.
+If you're not showing up on Google Maps, you're invisible to a huge chunk of your potential customers. When someone searches "plumber near me" or "cafe Nowra" or "boat storage Jervis Bay", the map results are often the first thing they see — before any websites, before any ads.
 
 Here's exactly how to do it.
 
@@ -57,7 +62,7 @@ A few things that help:
 - Make it easy — send the direct link, don't just say "leave us a Google review"
 - Respond to every review, positive or negative — Google rewards engagement and it shows potential customers you're attentive
 
-Even 10 genuine five-star reviews puts most local businesses ahead of competitors who have none.
+Even 10 genuine five-star reviews puts most businesses ahead of competitors who have none.
 
 ## Step 5 — Keep Your Profile Active
 
@@ -81,14 +86,16 @@ Make sure your business name, address, and phone number are identical everywhere
 
 Once verified, your listing typically goes live within a few days. Ranking well for competitive local searches — "plumber Nowra" rather than your own business name — takes longer and depends on the completeness of your profile, the number of reviews you have, and how well optimised your website is.
 
-For most local businesses in regional areas like the Shoalhaven and Illawarra, a well-set-up Google Business Profile with 10+ reviews and a professional website can start appearing in the local map pack within weeks to a few months.
+For most businesses in regional areas like the Shoalhaven and Illawarra, a well-set-up Google Business Profile with 10+ reviews and a professional website can start appearing in the local map pack within weeks to a few months.
 
 ## The Connection Between Google Maps and Your Website
 
-Your Google Maps listing and your website work together. A strong listing drives more people to your website. A well-optimised website reinforces your Google Maps ranking. Businesses that invest in both consistently outperform those that only focus on one.
+Your Google Maps listing and your website work together. A strong listing drives more people to your website. A [well-optimised website](/blog/how-good-is-a-website-for-marketing) reinforces your Google Maps ranking. Businesses that invest in both consistently outperform those that only focus on one.
 
-If you don't have a website yet — or your current one is outdated — your Google Maps listing is working at half capacity. Potential customers who click through from Maps and land on a slow, unprofessional website will bounce straight back to the search results and call your competitor instead.
+If you don't have a website yet — or your current one is [outdated](/blog/how-to-know-if-website-is-outdated) — your Google Maps listing is working at half capacity. Potential customers who click through from Maps and land on a slow, unprofessional website will bounce straight back to the search results and call your competitor instead.
+
+*Related reading: [How much does a website cost in Australia?](/blog/how-much-does-a-website-cost-in-australia)*
 
 ---
 
-*Riley Tech Studio builds fast, modern websites for local businesses across the Shoalhaven and Illawarra that work hand in hand with your Google presence. [Get in touch](/contact) to talk about what's possible for your business.*
+*Riley Tech Studio builds fast, modern websites for businesses across the Shoalhaven and Illawarra that work hand in hand with your Google presence. [Get in touch](/#contact) to talk about what's possible for your business.*

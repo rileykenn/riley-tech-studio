@@ -1,8 +1,13 @@
+---
+datePublished: 2026-05-17
+dateModified: 2026-08-19
+---
+
 # What Is the Difference Between a Website and a Landing Page?
 
-If you've been looking into getting an online presence for your business, chances are you've heard both terms thrown around. Website. Landing page. They sound similar, and in some ways they are — but they serve very different purposes, and choosing the wrong one for your situation can mean wasted money and missed opportunities.
+A website is a full, multi-page online presence — homepage, services, about, contact — designed to build trust and rank on Google across many search terms. A landing page is a single focused page with no navigation and one goal: getting the visitor to take a specific action, like making an enquiry. Landing pages are quicker and more affordable to build; full websites deliver more long-term value.
 
-Here's a plain English breakdown of the difference, and how to know which one your business actually needs.
+Choosing the wrong one for your situation can mean wasted money and missed opportunities. Here's a plain English breakdown of the difference, and how to know which one your business actually needs.
 
 ## What Is a Website?
 
@@ -52,7 +57,7 @@ A website has multiple pages and navigation. A landing page is a single page wit
 A website gives you far more opportunity to rank on Google across multiple search terms and topics. A landing page can rank for one or two specific searches but has limited SEO reach.
 
 **Cost and timeline**
-A landing page is quicker and more affordable to build. A full website takes more time and investment but delivers more long-term value.
+A landing page is quicker and more affordable to build. A full website takes [more time and investment](/blog/how-much-does-a-website-cost-in-australia) but delivers more long-term value.
 
 **Best for**
 Landing pages suit sole traders, campaign-specific promotions, and businesses just getting started online. Full websites suit businesses with multiple services, growth ambitions, and a long-term digital strategy.
@@ -61,9 +66,9 @@ Landing pages suit sole traders, campaign-specific promotions, and businesses ju
 
 The honest answer depends on your situation.
 
-If you're a tradie or sole trader with one core service, you're just getting online for the first time, or you're testing a new offer — a landing page is a smart, cost-effective starting point. You can always expand into a full website later as your business grows.
+If you're a tradie or sole trader with one core service, you're just getting online for the first time, or you're testing a new offer — a landing page is a smart, cost-effective starting point — pair it with a [Google Business Profile](/blog/how-to-get-business-on-google-maps) so customers can find you on Maps as well. You can always expand into a full website later as your business grows.
 
-If you have multiple services, you're serious about ranking on Google, or you want a digital presence that grows with your business over the next few years — a full website is the right investment.
+If you have multiple services, you're serious about [ranking on Google](/blog/how-good-is-a-website-for-marketing), or you want a digital presence that grows with your business over the next few years — a full website is the right investment.
 
 And sometimes the answer is both — a full website as your main presence, with dedicated landing pages built for specific campaigns or services.
 
@@ -71,4 +76,4 @@ Not sure which one is right for you? That's exactly the kind of conversation we 
 
 ---
 
-*Riley Tech Studio builds both landing pages and full websites for businesses across the Shoalhaven and Illawarra. [Get in touch](/contact) to talk about what makes sense for your business.*
+*Riley Tech Studio builds both landing pages and full websites for businesses across the Shoalhaven and Illawarra. [Get in touch](/#contact) to talk about what makes sense for your business.*

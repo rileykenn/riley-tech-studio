@@ -1,0 +1,390 @@
+{
+  "camera": {
+    "position": [
+      -4.132,
+      9.594,
+      9.568
+    ],
+    "target": [
+      0.409,
+      0,
+      2.062
+    ]
+  },
+  "lens": {
+    "fov": 31,
+    "bokehScale": 3.5,
+    "focusRange": 10.9,
+    "focusDistance": null
+  },
+  "markers": [
+    {
+      "hole": 1,
+      "u": 0.4321,
+      "v": 0.1171
+    },
+    {
+      "hole": 2,
+      "u": 0.5672,
+      "v": 0.5342
+    },
+    {
+      "hole": 3,
+      "u": 0.698,
+      "v": 0.6008
+    },
+    {
+      "hole": 4,
+      "u": 0.6108,
+      "v": 0.7818
+    },
+    {
+      "hole": 5,
+      "u": 0.6401,
+      "v": 0.6495
+    },
+    {
+      "hole": 6,
+      "u": 0.4801,
+      "v": 0.8338
+    },
+    {
+      "hole": 7,
+      "u": 0.3477,
+      "v": 0.859
+    },
+    {
+      "hole": 8,
+      "u": 0.3446,
+      "v": 0.6386
+    },
+    {
+      "hole": 9,
+      "u": 0.2761,
+      "v": 0.4113
+    }
+  ],
+  "tees": [
+    {
+      "hole": 1,
+      "u": 0.2852,
+      "v": 0.2806
+    },
+    {
+      "hole": 2,
+      "u": 0.5008,
+      "v": 0.2037
+    },
+    {
+      "hole": 3,
+      "u": 0.584,
+      "v": 0.4209
+    },
+    {
+      "hole": 4,
+      "u": 0.7754,
+      "v": 0.6098
+    },
+    {
+      "hole": 5,
+      "u": 0.5799,
+      "v": 0.748
+    },
+    {
+      "hole": 6,
+      "u": 0.6302,
+      "v": 0.5722
+    },
+    {
+      "hole": 7,
+      "u": 0.4811,
+      "v": 0.9395
+    },
+    {
+      "hole": 8,
+      "u": 0.375,
+      "v": 0.827
+    },
+    {
+      "hole": 9,
+      "u": 0.3498,
+      "v": 0.4388
+    }
+  ],
+  "holeViews": {
+    "1": {
+      "position": [
+        -3.174,
+        1.995,
+        -0.065
+      ],
+      "target": [
+        -2.7,
+        0,
+        -3.489
+      ],
+      "position2": [
+        -1.929,
+        2.428,
+        -0.416
+      ],
+      "target2": [
+        -2.7,
+        0,
+        -3.489
+      ],
+      "animSeconds": 8,
+      "lens": {
+        "fov": 36,
+        "bokehScale": 1.1,
+        "focusRange": 1.4,
+        "focusDistance": null
+      }
+    },
+    "2": {
+      "position": [
+        -0.922,
+        2.439,
+        2.75
+      ],
+      "target": [
+        0.91,
+        0,
+        -0.773
+      ],
+      "position2": [
+        -0.371,
+        1.883,
+        3.293
+      ],
+      "target2": [
+        0.91,
+        0,
+        -0.773
+      ],
+      "animSeconds": 16.5,
+      "lens": {
+        "fov": 31,
+        "bokehScale": 1.9,
+        "focusRange": 4.5,
+        "focusDistance": null
+      }
+    },
+    "3": {
+      "position": [
+        1.878,
+        4.399,
+        4.276
+      ],
+      "target": [
+        2.767,
+        0,
+        -0.275
+      ],
+      "position2": [
+        2.941,
+        3.673,
+        4.953
+      ],
+      "target2": [
+        2.767,
+        0,
+        -0.275
+      ],
+      "animSeconds": 8,
+      "lens": {
+        "fov": 31,
+        "bokehScale": 0.7,
+        "focusRange": 0.8,
+        "focusDistance": null
+      }
+    },
+    "4": {
+      "position": [
+        1.638,
+        2.545,
+        6.594
+      ],
+      "target": [
+        2.891,
+        0,
+        2.287
+      ],
+      "position2": [
+        2.455,
+        2.435,
+        6.812
+      ],
+      "target2": [
+        2.891,
+        0,
+        2.287
+      ],
+      "animSeconds": 8,
+      "lens": {
+        "fov": 31,
+        "bokehScale": 2,
+        "focusRange": 4,
+        "focusDistance": null
+      }
+    },
+    "5": {
+      "position": [
+        1.584,
+        2.229,
+        4.839
+      ],
+      "target": [
+        2.186,
+        0,
+        1.826
+      ],
+      "position2": [
+        2.68,
+        2.343,
+        4.771
+      ],
+      "target2": [
+        2.186,
+        0,
+        1.826
+      ],
+      "animSeconds": 8,
+      "lens": {
+        "fov": 31,
+        "bokehScale": 2,
+        "focusRange": 4,
+        "focusDistance": null
+      }
+    },
+    "6": {
+      "position": [
+        0.791,
+        2.819,
+        6.798
+      ],
+      "target": [
+        0.818,
+        0,
+        2.471
+      ],
+      "position2": [
+        1.376,
+        3.159,
+        6.517
+      ],
+      "target2": [
+        0.818,
+        0,
+        2.471
+      ],
+      "animSeconds": 8,
+      "lens": {
+        "fov": 31,
+        "bokehScale": 1.5,
+        "focusRange": 5.6,
+        "focusDistance": null
+      }
+    },
+    "7": {
+      "position": [
+        -5.62,
+        2.043,
+        5.719
+      ],
+      "target": [
+        -1.533,
+        0,
+        4.842
+      ],
+      "position2": [
+        -5.422,
+        2.551,
+        5.331
+      ],
+      "target2": [
+        -1.562,
+        0,
+        4.839
+      ],
+      "animSeconds": 8,
+      "lens": {
+        "fov": 31,
+        "bokehScale": 0.8,
+        "focusRange": 4,
+        "focusDistance": null
+      }
+    },
+    "8": {
+      "position": [
+        -5.24,
+        1.703,
+        0.046
+      ],
+      "target": [
+        -2.284,
+        0,
+        2.868
+      ],
+      "position2": [
+        -5.536,
+        1.913,
+        0.552
+      ],
+      "target2": [
+        -2.284,
+        0,
+        2.868
+      ],
+      "animSeconds": 8,
+      "lens": {
+        "fov": 31,
+        "bokehScale": 0.7,
+        "focusRange": 4,
+        "focusDistance": null
+      }
+    },
+    "9": {
+      "position": [
+        -2.029,
+        3.184,
+        1.99
+      ],
+      "target": [
+        -3.253,
+        0,
+        -1.177
+      ],
+      "position2": [
+        -2.66,
+        3.287,
+        2.051
+      ],
+      "target2": [
+        -3.364,
+        0,
+        -1.167
+      ],
+      "animSeconds": 8,
+      "lens": {
+        "fov": 31,
+        "bokehScale": 3.5,
+        "focusRange": 10.9,
+        "focusDistance": null
+      }
+    }
+  },
+  "terrain": {
+    "texScale": 24.2,
+    "blackPoint": 0,
+    "whitePoint": 255,
+    "contrast": 0,
+    "saturation": 1,
+    "elevation": 2.2
+  },
+  "trees": {
+    "hue": 0,
+    "saturation": 1.15,
+    "lightness": 1.06
+  }
+}

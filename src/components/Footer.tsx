@@ -1,26 +1,24 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Heart } from '@phosphor-icons/react';
 import Image from 'next/image';
 
 const footerLinks = [
-  {
-    title: 'Services',
-    links: [
-      { label: 'Mobile Apps', href: '/#services' },
-      { label: 'Web Applications', href: '/#services' },
-      { label: 'SaaS Platforms', href: '/#services' },
-      { label: 'UI/UX Design', href: '/#services' },
-    ],
-  },
   {
     title: 'Company',
     links: [
       { label: 'About', href: '/about' },
       { label: 'Work', href: '/#work' },
-      { label: 'Process', href: '/#process' },
+      { label: 'Blog', href: '/blog' },
+      { label: 'Process', href: '/about#how-it-works' },
       { label: 'Contact', href: '/#contact' },
+    ],
+  },
+  {
+    title: 'Contact',
+    links: [
+      { label: '0499 545 069', href: 'tel:+61499545069' },
+      { label: 'contactrileykennedy@gmail.com', href: 'mailto:contactrileykennedy@gmail.com' },
     ],
   },
 ];
@@ -72,7 +70,19 @@ export default function Footer() {
                 color: 'var(--color-foreground-subtle)',
               }}
             >
-              Australian software studio building production-grade apps, SaaS, and custom software from the Shoalhaven &amp; Illawarra, NSW.
+              Custom software and websites for businesses across the
+              Shoalhaven &amp; Illawarra, NSW.
+            </p>
+            <p
+              style={{
+                marginTop: '0.875rem',
+                fontSize: '0.8125rem',
+                lineHeight: 1.6,
+                color: 'var(--color-foreground-subtle)',
+              }}
+            >
+              Serving Wollongong, Kiama, Berry, Nowra, Huskisson, Sussex Inlet
+              and Jervis Bay.
             </p>
           </div>
 
@@ -137,7 +147,7 @@ export default function Footer() {
               color: 'var(--color-foreground-subtle)',
             }}
           >
-            {new Date().getFullYear()} Riley Tech Studio. All rights reserved.
+            &copy; {new Date().getFullYear()} Riley Tech Studio. All rights reserved.
           </span>
 
           <span

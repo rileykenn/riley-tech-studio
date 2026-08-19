@@ -1,10 +1,12 @@
-import Image from 'next/image';
+import Link from 'next/link';
+import ClientLogoGrid from './ClientLogoGrid';
+import HeroCourseMap from './HeroCourseMap';
+import HeroPlug from './HeroPlug';
 
-const stats = [
-  { value: '12+', label: 'Apps Shipped' },
-  { value: '99.9%', label: 'Uptime SLA' },
-  { value: 'AU', label: 'Based & Built' },
-];
+// Proof-led hero: the 50+ claim is the headline, the static client-logo grid
+// directly below is its receipts, and the visual is a compact copy of the
+// SIGC interactive 3D course map (the full-size one stays in the case-study
+// section). One number claim, one primary CTA.
 
 export default function Hero() {
   return (
@@ -12,278 +14,103 @@ export default function Hero() {
       id="hero"
       style={{
         position: 'relative',
-        minHeight: '100dvh',
-        display: 'flex',
-        alignItems: 'center',
         overflow: 'hidden',
+        background: 'var(--color-background)',
       }}
     >
-      {/* ── Full-screen background image ── */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          zIndex: 0,
-        }}
-      >
-        <Image
-          src="/herobackground.webp"
-          alt="Riley Tech Studio office background"
-          fill
-          priority
-          sizes="100vw"
-          quality={75}
-          style={{
-            objectFit: 'cover',
-            objectPosition: 'center',
-          }}
-        />
-      </div>
+      {/* "Powering the South Coast": one big plug behind the hero, placed
+          via hero-plug.json (dev tuner bottom-left on localhost) */}
+      <HeroPlug />
 
-      {/* ── Gradient overlays for text legibility ── */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          zIndex: 1,
-          background:
-            'linear-gradient(to right, rgba(248, 250, 251, 0.92) 0%, rgba(248, 250, 251, 0.75) 45%, rgba(248, 250, 251, 0.15) 70%, transparent 100%)',
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          zIndex: 1,
-          background:
-            'linear-gradient(to top, rgba(248, 250, 251, 0.6) 0%, transparent 40%)',
-        }}
-      />
-
-      {/* ── Content — CSS animations for instant LCP, no JS dependency ── */}
       <div
         className="section-container"
         style={{
           position: 'relative',
-          zIndex: 2,
-          width: '100%',
-          paddingTop: '8rem',
-          paddingBottom: '4rem',
+          zIndex: 1,
+          paddingTop: 'clamp(7rem, 12vh, 9rem)',
         }}
       >
-        <div style={{ maxWidth: '620px' }}>
-          <div className="hero-fade-in">
-            <span className="eyebrow">
+        <div className="hero-grid">
+          {/* ── Left: message + CTA ── */}
+          <div>
+            <h1
+              className="hero-fade-in"
+              style={{
+                // deliberately the native system grotesque (SF Pro / Segoe),
+                // not Space Grotesk: this is the exact rendering Riley
+                // approved for the hero statement
+                fontFamily:
+                  'ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif',
+                animationDelay: '0.06s',
+                fontSize: 'clamp(2.5rem, 3.75vw, 3.1875rem)',
+                fontWeight: 300,
+                lineHeight: 1.1,
+                letterSpacing: '-0.02em',
+                color: 'var(--color-foreground)',
+              }}
+            >
+              Powering the South Coast
+              <br className="hero-h1-br" /> with{' '}
               <span
-                aria-hidden="true"
                 style={{
-                  width: '6px',
-                  height: '6px',
-                  borderRadius: '50%',
-                  background: 'var(--color-success)',
-                  display: 'inline-block',
+                  fontWeight: 700,
+                  boxShadow: 'inset 0 -0.14em 0 0 rgba(29, 78, 216, 0.32)',
+                  WebkitBoxDecorationBreak: 'clone',
+                  boxDecorationBreak: 'clone',
                 }}
-              />
-              Available for projects
-            </span>
+              >
+                high-performance
+                <br className="hero-h1-br" /> software.
+              </span>
+              <span className="sr-only">
+                Custom software and web design for businesses across the
+                Shoalhaven &amp; Illawarra, NSW
+              </span>
+            </h1>
+
+            <p
+              className="hero-fade-in"
+              style={{
+                animationDelay: '0.14s',
+                marginTop: '1.375rem',
+                fontSize: '1.125rem',
+                lineHeight: 1.65,
+                maxWidth: '46ch',
+              }}
+            >
+              Custom websites, mobile apps and business automation software,
+              saving admin work for 50+ businesses and growing.
+            </p>
+
+            <div
+              className="hero-fade-in"
+              style={{
+                animationDelay: '0.22s',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '1.375rem',
+                marginTop: '2.25rem',
+                flexWrap: 'wrap',
+              }}
+            >
+              <Link href="/#contact" className="btn-primary">
+                Get My Free Quote
+              </Link>
+              <Link href="/#work" className="hero-work-link">
+                See our work
+              </Link>
+            </div>
           </div>
 
-          <h1
-            className="hero-fade-in"
-            style={{
-              animationDelay: '0.08s',
-              marginTop: '1.5rem',
-              fontSize: 'clamp(2.75rem, 5.5vw, 4.5rem)',
-              fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
-              fontWeight: 700,
-              lineHeight: 1.05,
-              letterSpacing: '-0.035em',
-              color: 'var(--color-foreground)',
-              position: 'relative',
-            }}
-          >
-            Creative Websites
-            <br />
-            <span
-              style={{
-                background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}
-            >
-              & Software.
-            </span>
-            <span style={{
-              position: 'absolute',
-              width: '1px',
-              height: '1px',
-              padding: '0',
-              margin: '-1px',
-              overflow: 'hidden',
-              clip: 'rect(0,0,0,0)',
-              whiteSpace: 'nowrap',
-              border: '0',
-            }}>
-              — Web Design & Development, Shoalhaven & Illawarra NSW
-            </span>
-          </h1>
-
-          <p
-            className="hero-fade-in"
-            style={{
-              animationDelay: '0.16s',
-              marginTop: '1.5rem',
-              fontSize: '1.125rem',
-              lineHeight: 1.7,
-              color: 'var(--color-foreground-muted)',
-              maxWidth: '48ch',
-            }}
-          >
-            We build production-grade apps, SaaS platforms, and custom software
-            for businesses across the Shoalhaven, Illawarra, and beyond.
-          </p>
-
-          <div
-            className="hero-fade-in"
-            style={{
-              animationDelay: '0.24s',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '1rem',
-              marginTop: '2.5rem',
-              flexWrap: 'wrap',
-            }}
-          >
-            <a
-              href="/#contact"
-              className="hero-cta"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                gap: '2rem',
-                padding: '0.75rem 1.25rem',
-                background: 'var(--color-primary)',
-                color: '#fff',
-                fontSize: '1rem',
-                fontWeight: 600,
-                fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
-                letterSpacing: '-0.01em',
-                textDecoration: 'none',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                transform: 'skewX(-6deg)',
-              }}
-            >
-              <span style={{ transform: 'skewX(6deg)' }}>Start a Project</span>
-              <span style={{ transform: 'skewX(6deg)', display: 'flex', alignItems: 'center' }}>
-                <svg width="18" height="18" viewBox="0 0 256 256" fill="none" aria-hidden="true">
-                  <path d="M200,128v64a8,8,0,0,1-16,0V147.31L69.66,261.66a8,8,0,0,1-11.32-11.32L172.69,136H128a8,8,0,0,1,0-16h64A8,8,0,0,1,200,128Z" fill="currentColor" transform="translate(0,-80) scale(0.95)"/>
-                </svg>
-              </span>
-            </a>
-
-            <a
-              href="/#work"
-              className="hero-cta"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                gap: '2rem',
-                padding: '0.75rem 1.25rem',
-                background: '#1a1a1a',
-                color: '#fff',
-                fontSize: '1rem',
-                fontWeight: 600,
-                fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
-                letterSpacing: '-0.01em',
-                textDecoration: 'none',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                transform: 'skewX(-6deg)',
-              }}
-            >
-              <span style={{ transform: 'skewX(6deg)' }}>View Our Work</span>
-              <span style={{ transform: 'skewX(6deg)', display: 'flex', alignItems: 'center' }}>
-                <svg width="18" height="18" viewBox="0 0 256 256" fill="none" aria-hidden="true">
-                  <path d="M200,128v64a8,8,0,0,1-16,0V147.31L69.66,261.66a8,8,0,0,1-11.32-11.32L172.69,136H128a8,8,0,0,1,0-16h64A8,8,0,0,1,200,128Z" fill="currentColor" transform="translate(0,-80) scale(0.95)"/>
-                </svg>
-              </span>
-            </a>
-          </div>
-
-          {/* Stats */}
-          <div
-            className="hero-fade-in"
-            style={{
-              animationDelay: '0.32s',
-              display: 'flex',
-              gap: '2.5rem',
-              marginTop: '3.5rem',
-              paddingTop: '2rem',
-              borderTop: '1px solid rgba(226, 232, 240, 0.6)',
-            }}
-          >
-            {stats.map((stat) => (
-              <div key={stat.label}>
-                <div
-                  style={{
-                    fontSize: '1.5rem',
-                    fontWeight: 700,
-                    fontFamily: 'var(--font-heading)',
-                    color: 'var(--color-foreground)',
-                    letterSpacing: '-0.02em',
-                  }}
-                >
-                  {stat.value}
-                </div>
-                <div
-                  style={{
-                    fontSize: '0.8125rem',
-                    color: 'var(--color-foreground-subtle)',
-                    marginTop: '0.25rem',
-                  }}
-                >
-                  {stat.label}
-                </div>
-              </div>
-            ))}
+          {/* ── Right: the SIGC 3D course map, hero-sized ── */}
+          <div className="hero-visual hero-fade-in" style={{ animationDelay: '0.18s' }}>
+            <HeroCourseMap />
           </div>
         </div>
-      </div>
 
-      {/* ── Floating badge — bottom right (CSS animation, no JS delay) ── */}
-      <div
-        className="glass-panel hero-badge"
-        style={{
-          position: 'absolute',
-          bottom: '2.5rem',
-          right: '2.5rem',
-          zIndex: 3,
-          padding: '0.875rem 1.25rem',
-          borderRadius: 'var(--radius-lg)',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.75rem',
-          fontSize: '0.8125rem',
-          fontWeight: 600,
-        }}
-      >
-        <span
-          aria-hidden="true"
-          style={{
-            width: '8px',
-            height: '8px',
-            borderRadius: '50%',
-            background: 'var(--color-success)',
-            boxShadow: '0 0 8px rgba(16, 185, 129, 0.5)',
-          }}
-        />
-        Currently taking clients
+        {/* ── Receipts for the headline: static grid, whole band clicks to work ── */}
+        <ClientLogoGrid />
       </div>
-
     </section>
   );
 }

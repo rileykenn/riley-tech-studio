@@ -1,4 +1,11 @@
+---
+datePublished: 2026-05-17
+dateModified: 2026-08-19
+---
+
 # How Do I Know If My Website Is Outdated? (And What to Do About It)
+
+Your website is outdated if it looks broken on a phone, takes more than three seconds to load on mobile, leans on design trends from a past era, can't be updated without calling a developer, or doesn't show up on Google for the services you offer. If two or more of those apply, your website is probably costing you customers right now.
 
 Most business owners don't think about their website until something forces them to. A customer mentions it looks a bit old. A competitor launches something slick. Or they Google their own business name and wince at what comes up.
 
@@ -36,9 +43,9 @@ Modern websites should give business owners the ability to make basic updates th
 
 ## It Doesn't Show Up on Google
 
-If you search for your business name and it comes up, that's a start. But if you search for the services you offer in your area — "boat storage Jervis Bay", "cleaning services Nowra", "electrician Shoalhaven" — and you're nowhere to be found, your website isn't doing its job.
+If you search for your business name and it comes up, that's a start. But if you search for the services you offer in your area — "boat storage Jervis Bay", "cleaning services Nowra", "electrician Shoalhaven" — and you're nowhere to be found, your website isn't doing its job as a [marketing asset](/blog/how-good-is-a-website-for-marketing).
 
-An outdated website often has no SEO foundations — no proper title tags, no meta descriptions, no structured data, no sitemap submitted to Google. It's essentially invisible to anyone who doesn't already know your business name.
+An outdated website often has no SEO foundations — no proper title tags, no meta descriptions, no structured data, no sitemap submitted to Google. It's essentially invisible to anyone who doesn't already know your business name. The map results matter too — if you're not showing up there either, [getting your business on Google Maps](/blog/how-to-get-business-on-google-maps) is a free fix.
 
 ## A Real Example — Jervis Bay Boat Storage
 
@@ -56,7 +63,7 @@ If you've read through this list and ticked more than one or two boxes, it's wor
 
 A modern website isn't just a cosmetic upgrade. It's a faster, more secure, more findable version of your online presence — one that works on every device, loads in under a second, and converts visitors into enquiries instead of bouncing them back to Google.
 
-The good news is that rebuilding a website doesn't have to be expensive or complicated. Most small business websites can be rebuilt properly — with everything done right from the ground up — for a fraction of what people expect.
+The good news is that rebuilding a website doesn't have to be expensive or complicated. Most small business websites can be rebuilt properly — with everything done right from the ground up — for [a fraction of what people expect](/blog/how-much-does-a-website-cost-in-australia).
 
 **Quick self-assessment checklist:**
 
@@ -71,4 +78,4 @@ If you answered no to two or more of those — your website is probably costing 
 
 ---
 
-*Riley Tech Studio specialises in rebuilding outdated websites for businesses across the Shoalhaven and Illawarra. [Get in touch](/contact) for a no-pressure conversation about what a modern rebuild could do for your business.*
+*Riley Tech Studio specialises in rebuilding outdated websites for businesses across the Shoalhaven and Illawarra. [Get in touch](/#contact) for a no-pressure conversation about what a modern rebuild could do for your business.*

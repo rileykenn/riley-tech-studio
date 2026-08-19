@@ -1,16 +1,21 @@
+---
+datePublished: 2026-05-17
+dateModified: 2026-08-19
+---
+
 # How Good Is a Website for Marketing Your Business in the Shoalhaven & Illawarra?
 
-If you run a business in the Shoalhaven or Illawarra, chances are you've asked yourself whether a proper website is actually worth it. You might already have a Facebook page, you get work through word of mouth, and things are ticking along. So why bother?
+A well-built website is one of the most effective marketing tools a business in the Shoalhaven or Illawarra can have. It's discoverable by anyone searching Google for what you offer at any time of day, it builds trust before a customer ever picks up the phone, and it turns that attention into organised enquiries. If it brings in even one or two additional jobs a month, it pays for itself.
 
-The honest answer is that a well-built website is one of the most effective marketing tools a local business can have — and most businesses in this region are still underestimating it.
+If you already have a Facebook page and get most of your work through word of mouth, you might wonder why you'd bother. The honest answer is that most businesses in this region are still underestimating what a website does for them.
 
 ## Your Customers Are Googling You Before They Call
 
 Think about the last time you needed a tradie or a local service. You probably searched Google, clicked on a couple of results, and made a judgement call within about 30 seconds. Your potential customers are doing exactly the same thing.
 
-If your business doesn't have a website — or has one that looks outdated — you're losing that customer before they've even picked up the phone. They move on to the next result. It's that simple.
+If your business doesn't have a website — or has one that [looks outdated](/blog/how-to-know-if-website-is-outdated) — you're losing that customer before they've even picked up the phone. They move on to the next result. It's that simple.
 
-In a region like the Shoalhaven and Illawarra, where local competition is growing and more businesses are coming online, showing up with a professional, fast-loading website is no longer a nice-to-have. It's the baseline.
+In a region like the Shoalhaven and Illawarra, where local competition is growing and more businesses are coming online, showing up with a professional, fast-loading website is no longer a nice-to-have. It's the baseline. The same goes for [showing up on Google Maps](/blog/how-to-get-business-on-google-maps) — your listing and your website work hand in hand.
 
 ## A Website Works for You 24/7
 
@@ -51,7 +56,7 @@ A website and a Facebook page work best together. Facebook drives awareness and 
 
 ## Is It Worth the Investment?
 
-For most businesses in the Shoalhaven and Illawarra, the answer is yes — and quickly. If a new website brings in even one or two additional jobs a month that you wouldn't have gotten otherwise, it pays for itself.
+For most businesses in the Shoalhaven and Illawarra, the answer is yes — and quickly. If a new website brings in even one or two additional jobs a month that you wouldn't have gotten otherwise, it pays for itself. For real numbers, see our breakdown of [what a website costs in Australia](/blog/how-much-does-a-website-cost-in-australia).
 
 The businesses we work with don't think of their website as an expense. They think of it as their hardest working employee — one that's on the clock around the clock, never takes a sick day, and is always presenting their business professionally to anyone who comes looking.
 
@@ -59,4 +64,4 @@ If your current website isn't doing that for you, it might be time for a convers
 
 ---
 
-*Riley Tech Studio builds fast, modern websites for local businesses across the Shoalhaven and Illawarra. [Get in touch](/contact) to talk about what's possible for your business.*
+*Riley Tech Studio builds fast, modern websites for businesses across the Shoalhaven and Illawarra. [Get in touch](/#contact) to talk about what's possible for your business.*

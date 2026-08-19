@@ -7,11 +7,11 @@ const highlights = [
   {
     icon: MapPin,
     title: 'South Coast Based',
-    description: 'Operating from the Shoalhaven and Illawarra — building for businesses across Australia.',
+    description: 'Operating from the Shoalhaven and Illawarra, building for businesses across NSW.',
   },
   {
     icon: Lightning,
-    title: 'Full-Stack Builder',
+    title: 'Full-Stack, In-House',
     description: 'Frontend to backend to deployment. One studio, zero handoffs, no communication gaps.',
   },
   {
@@ -40,7 +40,7 @@ export default function About() {
             transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
           >
             <span className="eyebrow">About</span>
-            <h2
+            <h1
               style={{
                 marginTop: '1.25rem',
                 fontSize: 'clamp(2rem, 4vw, 3.25rem)',
@@ -49,12 +49,12 @@ export default function About() {
                 lineHeight: 1.1,
               }}
             >
-              Not an agency.
+              A South Coast
               <br />
               <span style={{ color: 'var(--color-foreground-muted)' }}>
-                A builder.
+                software studio.
               </span>
-            </h2>
+            </h1>
 
             <div
               style={{
@@ -71,7 +71,9 @@ export default function About() {
                   color: 'var(--color-foreground-muted)',
                 }}
               >
-                I&apos;m Riley Kennedy — a developer and designer based on the South Coast of NSW.
+                Riley Tech Studio designs and builds custom software, booking
+                systems and websites for businesses across the Shoalhaven and
+                Illawarra, with software clients across NSW.
               </p>
               <p
                 style={{
@@ -80,10 +82,11 @@ export default function About() {
                   color: 'var(--color-foreground-muted)',
                 }}
               >
-                Riley Tech Studio is a one-person software studio based on the
-                South Coast of Australia. I build apps, SaaS platforms, custom
-                software, and high-converting websites for businesses that need
-                real technology — not just a pretty homepage.
+                The studio is founded and led by Riley Kennedy, who personally
+                designs and builds every project from first sketch to
+                deployment. That&apos;s deliberate: the work stays fast, the
+                quality stays consistent, and nothing gets lost between
+                departments.
               </p>
               <p
                 style={{
@@ -92,10 +95,9 @@ export default function About() {
                   color: 'var(--color-foreground-muted)',
                 }}
               >
-                Every project I take on gets my full attention. I write the code,
-                design the interfaces, configure the infrastructure, and stick
-                around after launch. The businesses I work with get a product
-                that works — not a handoff and a goodbye.
+                Every build gets full attention through to launch, and we stick
+                around afterwards. Fixed quotes in writing, the domain in your
+                name, and a product that keeps working long after it goes live.
               </p>
             </div>
           </motion.div>
@@ -129,7 +131,7 @@ export default function About() {
                         width: '44px',
                         height: '44px',
                         borderRadius: 'var(--radius-md)',
-                        background: i === 0 ? 'var(--color-primary-light)' : i === 1 ? '#E0F2FE' : 'var(--color-primary-ultra-light)',
+                        background: 'var(--color-muted-bg)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -139,7 +141,7 @@ export default function About() {
                       <item.icon
                         size={22}
                         weight="duotone"
-                        color={i === 1 ? '#0EA5E9' : 'var(--color-primary)'}
+                        color="var(--color-primary)"
                       />
                     </div>
                     <div>

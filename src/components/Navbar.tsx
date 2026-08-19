@@ -1,37 +1,23 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useMotionValueEvent, useScroll } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { List, X } from '@phosphor-icons/react';
 import Image from 'next/image';
+import Link from 'next/link';
+
+// Flat, full-width fixed bar: paper background, hairline bottom border,
+// always visible. No floating pill, no glass, no hide-on-scroll.
 
 const navLinks = [
   { label: 'Work', href: '/#work' },
-  { label: 'Services', href: '/#services' },
   { label: 'About', href: '/about' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/#contact' },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const { scrollY } = useScroll();
-  const lastY = useRef(0);
-
-  useMotionValueEvent(scrollY, 'change', (latest) => {
-    setScrolled(latest > 50);
-
-    // Only hide/show after scrolling past the hero
-    if (latest < 100) {
-      setHidden(false);
-    } else if (latest > lastY.current && latest - lastY.current > 5) {
-      setHidden(true); // scrolling down
-    } else if (lastY.current > latest && lastY.current - latest > 5) {
-      setHidden(false); // scrolling up
-    }
-    lastY.current = latest;
-  });
 
   useEffect(() => {
     if (isOpen) {
@@ -44,126 +30,114 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: hidden && !isOpen ? -100 : 0, opacity: 1 }}
-        transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
+      <nav
         className="fixed top-0 left-0 right-0 z-40"
-        style={{ padding: scrolled ? '0.75rem 0' : '1.25rem 0' }}
+        style={{
+          background: 'var(--color-background)',
+          borderBottom: '1px solid var(--color-border)',
+        }}
       >
         <div
           className="section-container"
-          style={{ display: 'flex', justifyContent: 'center' }}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '2rem',
+            height: '64px',
+          }}
         >
-          <motion.div
-            layout
-            className="glass-panel"
+          {/* Logo */}
+          <Link
+            href="/"
             style={{
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: '2rem',
-              padding: '0.625rem 1.5rem',
-              borderRadius: '9999px',
-              width: '100%',
-              maxWidth: '860px',
-              transition: 'all 500ms cubic-bezier(0.32, 0.72, 0, 1)',
-              boxShadow: scrolled
-                ? '0 8px 32px rgba(15, 26, 42, 0.08)'
-                : '0 4px 12px rgba(15, 26, 42, 0.04)',
+              gap: '0.625rem',
+              textDecoration: 'none',
             }}
           >
-            {/* Logo */}
-            <a
-              href="/"
+            <Image
+              src="/rts-logo-black.webp"
+              alt="Riley Tech Studio"
+              width={28}
+              height={28}
+              style={{ borderRadius: '6px' }}
+            />
+            <span
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.625rem',
-                textDecoration: 'none',
+                fontFamily: 'var(--font-heading)',
+                fontWeight: 700,
+                fontSize: '0.9375rem',
+                color: 'var(--color-foreground)',
+                letterSpacing: '-0.02em',
               }}
             >
-              <Image
-                src="/rts-logo-black.webp"
-                alt="Riley Tech Studio"
-                width={28}
-                height={28}
-                style={{ borderRadius: '6px' }}
-              />
-              <span
+              Riley Tech Studio
+            </span>
+          </Link>
+
+          {/* Desktop Links */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '1.75rem',
+            }}
+            className="desktop-nav"
+          >
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
                 style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontWeight: 700,
                   fontSize: '0.9375rem',
-                  color: 'var(--color-foreground)',
-                  letterSpacing: '-0.02em',
+                  fontWeight: 500,
+                  color: 'var(--color-foreground-muted)',
+                  textDecoration: 'none',
+                  transition: 'color 150ms ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = 'var(--color-foreground)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'var(--color-foreground-muted)';
                 }}
               >
-                Riley Tech Studio
-              </span>
-            </a>
+                {link.label}
+              </a>
+            ))}
+          </div>
 
-            {/* Desktop Links */}
-            <div
+          {/* Phone + CTA */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+            <a
+              href="tel:+61499545069"
+              className="nav-phone"
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.25rem',
-              }}
-              className="desktop-nav"
-            >
-              {navLinks.map((link) => (
-                <motion.a
-                  key={link.label}
-                  href={link.href}
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.97 }}
-                  style={{
-                    padding: '0.5rem 0.875rem',
-                    borderRadius: '9999px',
-                    fontSize: '0.875rem',
-                    fontWeight: 500,
-                    color: 'var(--color-foreground-muted)',
-                    textDecoration: 'none',
-                    transition: 'color 200ms, background 200ms',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.color = 'var(--color-foreground)';
-                    e.currentTarget.style.background = 'var(--color-muted-bg)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = 'var(--color-foreground-muted)';
-                    e.currentTarget.style.background = 'transparent';
-                  }}
-                >
-                  {link.label}
-                </motion.a>
-              ))}
-            </div>
-
-            {/* CTA */}
-            <motion.a
-              href="/#contact"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              className="nav-cta"
-              style={{
-                padding: '0.5rem 1.25rem',
-                borderRadius: '9999px',
-                fontSize: '0.8125rem',
+                fontSize: '0.875rem',
                 fontWeight: 600,
-                background: 'var(--color-primary)',
-                color: 'white',
+                color: 'var(--color-foreground)',
                 textDecoration: 'none',
-                transition: 'all 300ms cubic-bezier(0.32, 0.72, 0, 1)',
+                whiteSpace: 'nowrap',
               }}
             >
-              Start a Project
-            </motion.a>
+              0499 545 069
+            </a>
+            <Link
+              href="/#contact"
+              className="nav-cta btn-primary"
+              style={{
+                padding: '0.5rem 1.125rem',
+                fontSize: '0.875rem',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              Get My Free Quote
+            </Link>
 
             {/* Mobile Hamburger */}
-            <motion.button
-              whileTap={{ scale: 0.9 }}
+            <button
               onClick={() => setIsOpen(!isOpen)}
               className="mobile-menu-btn"
               aria-label="Toggle menu"
@@ -171,7 +145,7 @@ export default function Navbar() {
                 display: 'none',
                 width: '40px',
                 height: '40px',
-                borderRadius: '10px',
+                borderRadius: 'var(--radius-sm)',
                 border: '1px solid var(--color-border)',
                 background: 'var(--color-surface)',
                 cursor: 'pointer',
@@ -184,10 +158,10 @@ export default function Navbar() {
               ) : (
                 <List size={20} weight="bold" color="var(--color-foreground)" />
               )}
-            </motion.button>
-          </motion.div>
+            </button>
+          </div>
         </div>
-      </motion.nav>
+      </nav>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
@@ -196,14 +170,12 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.25 }}
             style={{
               position: 'fixed',
               inset: 0,
               zIndex: 39,
-              background: 'rgba(255, 255, 255, 0.92)',
-              backdropFilter: 'blur(40px) saturate(180%)',
-              WebkitBackdropFilter: 'blur(40px) saturate(180%)',
+              background: 'var(--color-background)',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
@@ -215,12 +187,12 @@ export default function Navbar() {
               <motion.a
                 key={link.label}
                 href={link.href}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 12 }}
+                exit={{ opacity: 0, y: 8 }}
                 transition={{
-                  delay: i * 0.06,
-                  duration: 0.5,
+                  delay: i * 0.05,
+                  duration: 0.4,
                   ease: [0.32, 0.72, 0, 1],
                 }}
                 onClick={() => setIsOpen(false)}
@@ -237,16 +209,33 @@ export default function Navbar() {
               </motion.a>
             ))}
             <motion.a
-              href="/#contact"
-              initial={{ opacity: 0, y: 24 }}
+              href="tel:+61499545069"
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 12 }}
-              transition={{ delay: navLinks.length * 0.06, duration: 0.5 }}
+              exit={{ opacity: 0, y: 8 }}
+              transition={{ delay: navLinks.length * 0.05, duration: 0.4 }}
+              onClick={() => setIsOpen(false)}
+              style={{
+                fontSize: '1.125rem',
+                fontFamily: 'var(--font-heading)',
+                fontWeight: 600,
+                color: 'var(--color-foreground)',
+                textDecoration: 'none',
+              }}
+            >
+              Call or text 0499 545 069
+            </motion.a>
+            <motion.a
+              href="/#contact"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 8 }}
+              transition={{ delay: (navLinks.length + 1) * 0.05, duration: 0.4 }}
               onClick={() => setIsOpen(false)}
               className="btn-primary"
-              style={{ marginTop: '1rem' }}
+              style={{ marginTop: '0.5rem' }}
             >
-              Start a Project
+              Get My Free Quote
             </motion.a>
           </motion.div>
         )}
@@ -256,7 +245,11 @@ export default function Navbar() {
         @media (max-width: 768px) {
           .desktop-nav { display: none !important; }
           .nav-cta { display: none !important; }
+          .nav-phone { display: none !important; }
           .mobile-menu-btn { display: flex !important; }
+        }
+        @media (min-width: 769px) and (max-width: 1020px) {
+          .nav-phone { display: none !important; }
         }
       `}</style>
     </>

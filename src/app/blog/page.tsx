@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { getAllPosts } from '@/lib/blog';
+import { getAllPosts, formatPostDate } from '@/lib/blog';
 
 export const metadata: Metadata = {
   title: 'Blog | Riley Tech Studio — Web Design & Development Insights',
@@ -36,8 +36,26 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   const posts = getAllPosts();
 
+  // ItemList JSON-LD of all posts
+  const itemListJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: posts.map((post, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      url: `https://www.rileytechstudio.com.au/blog/${post.slug}`,
+      name: post.title,
+    })),
+  };
+
   return (
     <main style={{ overflowX: 'hidden', width: '100%', maxWidth: '100%' }}>
+      {/* JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
+
       <Navbar />
 
       {/* ── Page Header ── */}
@@ -103,6 +121,22 @@ export default function BlogPage() {
                 >
                   <div className="blog-card-inner">
                     <div className="blog-card-body">
+                      {post.datePublished && (
+                        <p className="blog-card-date">
+                          <time dateTime={post.datePublished}>
+                            {formatPostDate(post.datePublished)}
+                          </time>
+                          {post.dateModified &&
+                            post.dateModified !== post.datePublished && (
+                              <>
+                                {' · Updated '}
+                                <time dateTime={post.dateModified}>
+                                  {formatPostDate(post.dateModified)}
+                                </time>
+                              </>
+                            )}
+                        </p>
+                      )}
                       <h2 className="blog-card-title">{post.title}</h2>
                       <p className="blog-card-excerpt">{post.excerpt}</p>
                     </div>
@@ -161,7 +195,7 @@ export default function BlogPage() {
         .blog-card:hover {
           transform: translateY(-3px);
           box-shadow: var(--shadow-lg);
-          border-color: var(--color-primary-light);
+          border-color: var(--color-foreground-subtle);
         }
 
         .blog-card-inner {
@@ -178,10 +212,17 @@ export default function BlogPage() {
           flex: 1;
         }
 
+        .blog-card-date {
+          font-family: var(--font-body);
+          font-size: 0.8125rem;
+          color: var(--color-foreground-subtle);
+          margin-bottom: 0.625rem;
+        }
+
         .blog-card-title {
           font-family: var(--font-heading);
           font-size: 1.125rem;
-          font-weight: 650;
+          font-weight: 600;
           letter-spacing: -0.02em;
           color: var(--color-foreground);
           line-height: 1.3;

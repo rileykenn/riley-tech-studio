@@ -1,8 +1,13 @@
+---
+datePublished: 2026-05-17
+dateModified: 2026-08-19
+---
+
 # How to Protect Your App Idea Before You Hire a Developer
 
-You've got a solid idea for an app or a software product. Now you need a developer to build it. But before you start sharing the details with anyone, a reasonable question surfaces — how do I protect this idea?
+To protect your app idea before hiring a developer: ask for an NDA before sharing the details, get a written scope agreement that states you own 100% of the intellectual property, never pay 100% upfront — 50% to commence with the balance on delivery is fair — and document every decision in writing. An idea on its own has very limited legal protection in Australia, so these practical safeguards matter more than patents for most founders.
 
-It's a legitimate concern and one worth taking seriously. Here's a practical guide to protecting yourself before, during, and after the development process.
+You've got a solid idea for an app or a software product, and now you need a developer to build it. Here's a practical guide to protecting yourself before, during, and after the development process.
 
 ## First — How Protected Does an Idea Actually Need to Be?
 
@@ -72,7 +77,7 @@ Check their existing portfolio and references before sharing anything sensitive.
 
 ## A Note on Offshore Developers
 
-The IP and payment protections above are even more important when working with offshore developers. Enforcing an agreement against someone in another country is significantly harder than enforcing it against someone operating under Australian law.
+The IP and payment protections above are even more important when [working with offshore developers](/blog/where-to-hire-a-software-developer-australia). Enforcing an agreement against someone in another country is significantly harder than enforcing it against someone operating under Australian law.
 
 This doesn't mean offshore developers can't be trusted — but it does mean the risk profile is higher, and the practical ability to pursue legal remedies if something goes wrong is much lower.
 
@@ -92,6 +97,10 @@ If any of these show up early, they'll only get worse once money has changed han
 
 The right developer will welcome a scope agreement because it protects them too — clear expectations mean fewer disputes, fewer scope arguments, and a better outcome for everyone.
 
+Once those protections are in place, the next step is the build itself — here's [how to turn your idea into an app](/blog/how-to-turn-idea-into-app).
+
+*Related reading: [What is SaaS? A plain English guide for business owners](/blog/what-is-saas)*
+
 ---
 
-*Every project at Riley Tech Studio starts with a clear scope agreement, fair payment terms, and full IP ownership transferred to the client. [Get in touch](/contact) to talk about your project.*
+*Every project at Riley Tech Studio starts with a clear scope agreement, fair payment terms, and full IP ownership transferred to the client. [Get in touch](/#contact) to talk about your project.*

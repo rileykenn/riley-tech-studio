@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { getAllSlugs, getPostBySlug } from '@/lib/blog';
+import { getAllSlugs, getPostBySlug, formatPostDate } from '@/lib/blog';
 import { marked } from 'marked';
 
 // ── Marked configuration ────────────────────────────────────────────────────
@@ -11,10 +11,12 @@ import { marked } from 'marked';
 // (we render the H1 ourselves in the page layout for visual control).
 const renderer = new marked.Renderer();
 
-// Override heading: suppress H1 (we render it manually), pass through H2–H6
-renderer.heading = function ({ text, depth }) {
+// Override heading: suppress H1 (we render it manually), pass through H2–H6.
+// Inline tokens are parsed via the parser (matching marked's default renderer)
+// so inline markdown renders and special characters are escaped correctly.
+renderer.heading = function ({ tokens, depth }) {
   if (depth === 1) return ''; // H1 handled by page title display
-  return `<h${depth}>${text}</h${depth}>\n`;
+  return `<h${depth}>${this.parser.parseInline(tokens)}</h${depth}>\n`;
 };
 
 marked.setOptions({
@@ -48,6 +50,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${post.title} | Riley Tech Studio`,
       description: post.excerpt,
       type: 'article',
+      publishedTime: post.datePublished,
+      modifiedTime: post.dateModified,
       url: canonical,
       siteName: 'Riley Tech Studio',
       images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
@@ -72,17 +76,56 @@ export default async function BlogPostPage({ params }: Props) {
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.excerpt,
+    image: ['https://www.rileytechstudio.com.au/og-image.jpg'],
+    ...(post.datePublished && { datePublished: post.datePublished }),
+    ...(post.dateModified && { dateModified: post.dateModified }),
     author: {
       '@type': 'Person',
       name: 'Riley Kennedy',
+      url: 'https://www.rileytechstudio.com.au/about',
     },
     publisher: {
       '@type': 'Organization',
       name: 'Riley Tech Studio',
       url: 'https://www.rileytechstudio.com.au',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.rileytechstudio.com.au/rts-logo-black.webp',
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonical,
     },
     url: canonical,
   };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.rileytechstudio.com.au',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: 'https://www.rileytechstudio.com.au/blog',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.title,
+      },
+    ],
+  };
+
+  const showUpdated =
+    post.dateModified && post.dateModified !== post.datePublished;
 
   return (
     <main style={{ overflowX: 'hidden', width: '100%', maxWidth: '100%' }}>
@@ -90,6 +133,10 @@ export default async function BlogPostPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
       <Navbar />
@@ -125,16 +172,45 @@ export default async function BlogPostPage({ params }: Props) {
           {/* Post title */}
           <h1 className="blog-post-title">{post.title}</h1>
 
-          {/* Author byline */}
-          <p style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: '0.8125rem',
-            color: 'var(--color-foreground-subtle)',
-            marginBottom: '2.5rem',
-            marginTop: '-1.75rem',
-          }}>
-            By Riley Kennedy &middot; Riley Tech Studio
-          </p>
+          {/* Author byline + dates */}
+          <div style={{ marginBottom: '2.5rem' }}>
+            <p style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.8125rem',
+              color: 'var(--color-foreground-subtle)',
+              marginBottom: post.datePublished || showUpdated ? '0.375rem' : 0,
+              marginTop: 0,
+            }}>
+              By Riley Kennedy &middot; Riley Tech Studio
+            </p>
+            {(post.datePublished || showUpdated) && (
+              <p style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.8125rem',
+                color: 'var(--color-foreground-subtle)',
+                marginBottom: 0,
+                marginTop: 0,
+              }}>
+                {post.datePublished && (
+                  <>
+                    Published{' '}
+                    <time dateTime={post.datePublished}>
+                      {formatPostDate(post.datePublished)}
+                    </time>
+                  </>
+                )}
+                {post.datePublished && showUpdated && ' · '}
+                {showUpdated && (
+                  <>
+                    Updated{' '}
+                    <time dateTime={post.dateModified}>
+                      {formatPostDate(post.dateModified!)}
+                    </time>
+                  </>
+                )}
+              </p>
+            )}
+          </div>
 
           {/* Article body */}
           <article
@@ -152,11 +228,11 @@ export default async function BlogPostPage({ params }: Props) {
                 Ready to grow your business online?
               </h2>
               <p className="blog-cta-subtext">
-                Get in touch with Riley Tech Studio — web design and development
-                for businesses across the Shoalhaven and Illawarra.
+                Custom software and websites for businesses across the Shoalhaven
+                and Illawarra. Free fixed quote, no obligation.
               </p>
               <Link href="/#contact" className="btn-primary blog-cta-btn">
-                Start a project
+                Get My Free Quote
                 <svg
                   width="16"
                   height="16"
@@ -221,7 +297,7 @@ export default async function BlogPostPage({ params }: Props) {
           letter-spacing: -0.03em;
           color: var(--color-foreground);
           line-height: 1.15;
-          margin-bottom: 2.5rem;
+          margin-bottom: 0.75rem;
         }
 
         /* ── CTA box ── */
@@ -229,7 +305,7 @@ export default async function BlogPostPage({ params }: Props) {
           margin-top: 4rem;
           padding: 0.375rem;
           border-radius: var(--radius-2xl);
-          background: rgba(241, 245, 249, 0.6);
+          background: var(--color-muted-bg);
           border: 1px solid var(--color-border);
         }
         .blog-cta-inner {
@@ -239,7 +315,7 @@ export default async function BlogPostPage({ params }: Props) {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          box-shadow: var(--shadow-sm), inset 0 1px 1px rgba(255,255,255,0.8);
+          box-shadow: var(--shadow-sm);
         }
         .blog-cta-heading {
           font-family: var(--font-heading);

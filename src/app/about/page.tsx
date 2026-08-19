@@ -4,7 +4,7 @@ import Navbar from '@/components/Navbar';
 
 export const metadata: Metadata = {
   title: 'About Riley Tech Studio | Web Designer & Developer — South Coast NSW',
-  description: 'Riley Tech Studio is a one-person software studio based on the South Coast of Australia. Apps, SaaS platforms, and high-converting websites built properly from day one.',
+  description: 'Riley Tech Studio is a software studio based on the South Coast of Australia. Custom software, booking systems and high-converting websites built properly from day one.',
   alternates: {
     canonical: 'https://www.rileytechstudio.com.au/about',
   },
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'About Riley Tech Studio | Web Designer & Developer — South Coast NSW',
-    description: 'Riley Tech Studio is a one-person software studio based on the South Coast of Australia. Apps, SaaS platforms, and high-converting websites built properly from day one.',
+    description: 'Riley Tech Studio is a software studio based on the South Coast of Australia. Custom software, booking systems and high-converting websites built properly from day one.',
     type: 'website',
     url: 'https://www.rileytechstudio.com.au/about',
     siteName: 'Riley Tech Studio',
@@ -23,7 +23,9 @@ export const metadata: Metadata = {
 };
 
 const About = dynamic(() => import('@/components/About'));
-const Process = dynamic(() => import('@/components/Process'));
+const Services = dynamic(() => import('@/components/Services'));
+const HowItWorks = dynamic(() => import('@/components/HowItWorks'));
+const Faq = dynamic(() => import('@/components/Faq'));
 const Footer = dynamic(() => import('@/components/Footer'));
 
 
@@ -37,9 +39,11 @@ export default function AboutPage() {
       }}
     >
       <Navbar />
-      <div style={{ paddingTop: '8rem' }}>
+      <div>
         <About />
-        <Process />
+        <Services />
+        <HowItWorks />
+        <Faq />
       </div>
       <Footer />
     </main>

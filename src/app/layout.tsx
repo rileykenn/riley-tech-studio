@@ -1,23 +1,43 @@
 import type { Metadata } from "next";
-import { DM_Sans, Space_Grotesk } from "next/font/google";
+import { Cinzel, Cormorant_Garamond, DM_Sans, Space_Grotesk } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
-  display: "optional",
-  variable: "--font-body",
+  display: "swap",
+  variable: "--font-body-gf",
 });
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  display: "optional",
-  variable: "--font-heading",
+  display: "swap",
+  variable: "--font-heading-gf",
+});
+
+// Sussex Inlet Golf Club's display serif, used only inside its showcase section
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+  preload: false,
+  variable: "--font-sigc",
+});
+
+// Stone Grill Huskisson's display serif, used only inside its showcase section
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  weight: ["700"],
+  display: "swap",
+  preload: false,
+  variable: "--font-cinzel",
 });
 
 export const metadata: Metadata = {
   title: "Riley Tech Studio | Web Design & Development — Shoalhaven & Illawarra",
   description:
-    "Web design and development for local businesses in the Shoalhaven and Illawarra. Fast, modern websites built in React and Next.js that get results.",
+    "Custom software and web design for businesses across the Shoalhaven and Illawarra. Fast, modern websites and software built in React and Next.js that get results.",
   keywords: [
     "web design Shoalhaven",
     "web design Illawarra",
@@ -38,7 +58,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Riley Tech Studio | Web Design — Shoalhaven & Illawarra",
     description:
-      "Fast, modern websites for local businesses in the Shoalhaven and Illawarra. Built in Next.js, designed to convert.",
+      "Custom software and fast, modern websites for businesses across the Shoalhaven and Illawarra. Built in Next.js, designed to convert.",
     type: "website",
     url: "https://www.rileytechstudio.com.au",
     siteName: "Riley Tech Studio",
@@ -51,26 +71,30 @@ export const metadata: Metadata = {
       },
     ],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Riley Tech Studio | Web Design — Shoalhaven & Illawarra",
-    description:
-      "Fast, modern websites for local businesses in the Shoalhaven and Illawarra.",
-    images: ["/og-image.jpg"],
-  },
 };
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": ["LocalBusiness", "ProfessionalService"],
+  "@id": "https://www.rileytechstudio.com.au/#business",
   "name": "Riley Tech Studio",
   "url": "https://www.rileytechstudio.com.au",
-  "logo": "https://www.rileytechstudio.com.au/logo.png",
-  "image": "https://www.rileytechstudio.com.au/og-image.jpg",
-  "description": "Web design and development for local businesses in the Shoalhaven and Illawarra. Fast, modern websites and custom software built in React and Next.js.",
+  "logo": "https://www.rileytechstudio.com.au/rts-logo-black.webp",
+  "image": "https://www.rileytechstudio.com.au/rts-logo-black.webp",
+  "description": "Custom software and web design for businesses across the Shoalhaven and Illawarra. Fast, modern websites and custom software built in React and Next.js.",
   "telephone": "+61499545069",
   "email": "contactrileykennedy@gmail.com",
   "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "addressRegion": "NSW",
+    "addressCountry": "AU",
+  },
+  "founder": {
+    "@type": "Person",
+    "name": "Riley Kennedy",
+    "url": "https://www.rileytechstudio.com.au/about",
+  },
   "areaServed": [
     { "@type": "AdministrativeArea", "name": "Shoalhaven" },
     { "@type": "AdministrativeArea", "name": "Illawarra" },
@@ -101,21 +125,34 @@ const localBusinessSchema = {
   },
 };
 
+const webSiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Riley Tech Studio",
+  "url": "https://www.rileytechstudio.com.au",
+  "publisher": { "@id": "https://www.rileytechstudio.com.au/#business" },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" className={`${dmSans.variable} ${spaceGrotesk.variable} ${cinzel.variable} ${cormorant.variable}`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
+        />
       </head>
-      <body className="grain-overlay">
+      <body>
         {children}
+        <Analytics />
       </body>
     </html>
   );
