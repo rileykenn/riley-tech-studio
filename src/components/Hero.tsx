@@ -3,7 +3,7 @@ import ClientLogoGrid from './ClientLogoGrid';
 import HeroCourseMap from './HeroCourseMap';
 import HeroPlug from './HeroPlug';
 
-// Proof-led hero: the 50+ claim is the headline, the static client-logo grid
+// Proof-led hero: the regional claim is the headline, the static client-logo grid
 // directly below is its receipts, and the visual is a compact copy of the
 // SIGC interactive 3D course map (the full-size one stays in the case-study
 // section). One number claim, one primary CTA.
@@ -14,7 +14,9 @@ export default function Hero() {
       id="hero"
       style={{
         position: 'relative',
-        overflow: 'hidden',
+        // x-only clip: review bubbles may hang below the logo band
+        overflowX: 'clip',
+        overflowY: 'visible',
         background: 'var(--color-background)',
       }}
     >
@@ -78,8 +80,8 @@ export default function Hero() {
                 maxWidth: '46ch',
               }}
             >
-              Custom websites, mobile apps and business automation software,
-              saving admin work for 50+ businesses and growing.
+              Custom websites, mobile apps and business automation software
+              for businesses across the Shoalhaven &amp; Illawarra.
             </p>
 
             <div

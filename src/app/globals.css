@@ -249,38 +249,40 @@ p {
   background: rgba(241, 245, 249, 0.5);
   border-color: rgba(93, 127, 88, 0.28) !important;
 }
-.hero-map-credit {
+.hero-map-heading {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 0.375rem 0.625rem;
-  margin-top: 0.75rem;
-  padding-left: 0.25rem;
+  gap: 0.875rem;
   max-width: 640px;
+  margin-bottom: 1rem;
 }
-.hero-map-credit b {
-  font-family: var(--font-heading);
+.hero-map-heading-title {
+  margin: 0;
+  font-family: var(--font-sigc);
+  font-size: clamp(1.75rem, 2.6vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.005em;
+  color: #0a1628;
+}
+.hero-map-heading-title em {
+  color: #b0873a;
+  font-style: italic;
+}
+.hero-map-heading-link {
+  display: inline-block;
+  margin-top: 0.375rem;
   font-size: 0.875rem;
   font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--color-foreground);
-}
-.hero-map-credit-desc {
-  font-size: 0.8125rem;
-  color: var(--color-foreground-subtle);
-}
-.hero-map-credit-link {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--color-foreground);
+  color: #0a1628;
   text-decoration: underline;
   text-underline-offset: 3px;
-  text-decoration-color: var(--color-border);
+  text-decoration-color: rgba(176, 135, 58, 0.55);
   transition: color 200ms ease, text-decoration-color 200ms ease;
 }
-.hero-map-credit-link:hover {
-  color: var(--color-primary);
-  text-decoration-color: var(--color-primary);
+.hero-map-heading-link:hover {
+  color: #b0873a;
+  text-decoration-color: #b0873a;
 }
 @media (max-width: 900px) {
   .hero-map-shell {
@@ -360,32 +362,42 @@ p {
   align-items: center;
 }
 
-/* Logo receipts band under the hero message */
+/* Client marquee ribbon under the hero: full-bleed cobalt, white logos,
+   drifting right-to-left. Two identical rows inside the track; the
+   animation slides -50% for a seamless loop. Hover pauses it. */
 .hero-logo-band {
   display: block;
+  /* lifted above following sections so bubbles can hang below the bar */
+  position: relative;
+  z-index: 5;
   margin-top: clamp(3rem, 6vh, 4.5rem);
-  padding: 1.75rem 0 2.5rem;
-  border-top: 1px solid var(--color-border-subtle);
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding: 1.125rem 0;
+  background: var(--color-primary);
+  /* clip the drifting track horizontally but let review bubbles pop above */
+  overflow-x: clip;
+  overflow-y: visible;
   text-decoration: none;
 }
-.hero-logo-grid {
+.hero-logo-track {
+  display: flex;
+  width: max-content;
+  animation: hero-logo-marquee 36s linear infinite;
+}
+.hero-logo-row {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
 }
 .hero-logo-item {
   display: flex;
   align-items: center;
   gap: 0.625rem;
-  opacity: 0.75;
-  transition: opacity 200ms ease;
-  min-width: 0;
-}
-.hero-logo-band:hover .hero-logo-item {
-  opacity: 0.95;
+  margin-right: 3.5rem;
+  flex-shrink: 0;
 }
 .hero-logo-mark {
   width: 30px;
@@ -393,9 +405,8 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-muted-bg);
-  border: 1px solid var(--color-border);
-  color: var(--color-foreground-subtle);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  color: #ffffff;
   font-family: var(--font-heading);
   font-size: 0.75rem;
   font-weight: 700;
@@ -405,16 +416,22 @@ p {
   font-family: var(--font-heading);
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--color-foreground-subtle);
+  color: #ffffff;
   letter-spacing: -0.01em;
   line-height: 1.25;
+  white-space: nowrap;
 }
-@media (max-width: 1100px) {
-  .hero-logo-grid {
-    grid-template-columns: repeat(4, 1fr);
+@keyframes hero-logo-marquee {
+  from {
+    transform: translateX(0);
   }
-  .hero-logo-item:nth-child(n + 9) {
-    display: none;
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-logo-track {
+    animation: none;
   }
 }
 @media (max-width: 900px) {

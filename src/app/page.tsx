@@ -11,8 +11,8 @@ const Contact = dynamic(() => import('@/components/Contact'));
 const Footer = dynamic(() => import('@/components/Footer'));
 const StickyQuoteBar = dynamic(() => import('@/components/StickyQuoteBar'));
 
-// Homepage: hero with proof -> work as evidence (relatable local venues
-// first, then the SaaS-style builds) -> reviews -> the one ask. Each
+// Homepage: hero with proof -> work as evidence (CleanRoute Pro first,
+// then SIGC and the venue builds) -> reviews -> the one ask. Each
 // showcase carries its own closer, so no re-offer band between sections.
 // Services, process and FAQ live on /about. One CTA string everywhere.
 
@@ -27,9 +27,9 @@ export default function Home() {
     >
       <Navbar />
       <Hero />
+      <CleanRouteShowcase />
       <FeaturedWork />
       <StonegrillShowcase />
-      <CleanRouteShowcase />
       <StashShowcase />
       <GoogleReviews />
       <Contact />

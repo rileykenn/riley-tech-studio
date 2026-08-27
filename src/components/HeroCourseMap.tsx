@@ -79,6 +79,26 @@ export default function HeroCourseMap() {
 
   return (
     <div ref={ref}>
+      {/* SIGC lockup above the viewer, in the club's own brand — same
+          gold/navy/Cormorant language as the case-study section below */}
+      <div className="hero-map-heading">
+        <Image
+          src="/casestudy/sigc-logo.png"
+          alt=""
+          width={60}
+          height={60}
+          style={{ objectFit: 'contain', flexShrink: 0 }}
+        />
+        <div>
+          <p className="hero-map-heading-title">
+            Sussex Inlet <em>Golf Club</em>
+          </p>
+          <Link href="/#sigc" className="hero-map-heading-link">
+            See the full case study
+          </Link>
+        </div>
+      </div>
+
       <div className="card-shell hero-map-shell">
         <div className="card-core" style={{ position: 'relative', overflow: 'hidden' }}>
           {mount ? (
@@ -93,24 +113,6 @@ export default function HeroCourseMap() {
             <MapPoster />
           )}
         </div>
-      </div>
-
-      {/* the club's byline: map stays clean, credit sits under the card */}
-      <div className="hero-map-credit">
-        <Image
-          src="/casestudy/sigc-logo.png"
-          alt="Sussex Inlet Golf Club crest"
-          width={24}
-          height={24}
-          style={{ objectFit: 'contain', flexShrink: 0 }}
-        />
-        <b>Sussex Inlet Golf Club</b>
-        <span className="hero-map-credit-desc">
-          Interactive 3D course map and website.
-        </span>
-        <Link href="/#work" className="hero-map-credit-link">
-          See the full case study
-        </Link>
       </div>
     </div>
   );

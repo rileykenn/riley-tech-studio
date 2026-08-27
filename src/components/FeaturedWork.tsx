@@ -75,7 +75,7 @@ export default function FeaturedWork() {
   return (
     <MotionConfig reducedMotion="user">
       <section
-        id="work"
+        id="sigc"
         style={{
           paddingTop: 'var(--section-gap)',
           paddingBottom: 'var(--section-gap)',

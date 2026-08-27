@@ -1,25 +1,29 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowUpRight, User } from '@phosphor-icons/react';
+import { ArrowUpRight, Star, User } from '@phosphor-icons/react';
 import ScheduleDemo from './cleanroute/ScheduleDemo';
 
-// TODO(riley): fill in the real client testimonial (a quote lifted from a
-// Google review works, attributed "via Google review"), then flip `ready`
-// to true. The card stays hidden until then.
+// Sarah's Google review, posted in full — house rule: client reviews are
+// never trimmed without Riley's sign-off.
 const TESTIMONIAL = {
-  ready: false,
-  avatarSrc: null as string | null,
-  name: 'Client name goes here',
-  role: 'Owner, The Cleaning Co Shellharbour',
-  quote:
-    'Placeholder for the client’s words about working with Riley Tech Studio. Swap this out for the real testimonial.',
+  ready: true,
+  avatarSrc: '/casestudy/sarah-pfp.jpg' as string | null,
+  name: 'Sarah',
+  role: 'Owner, The Cleaning Co Shellharbour · via Google review',
+  quote: [
+    'I run a growing cleaning business with multiple teams travelling between jobs each day, and as the business grew, scheduling and administration became increasingly difficult to manage. I was using different systems for scheduling, travel, staff hours and payroll, with a lot of manual work involved.',
+    'Riley built CleanRoute Pro specifically around the way my business operates. It manages our teams and daily schedules, calculates travel between jobs, allows us to save and reuse our rotating schedules, tracks staff hours for payroll and includes a customised checklist and form system linked directly to our clients and bookings.',
+    'The development process was quite involved and there were definitely some challenges along the way, particularly given how customised the system became, but Riley continued working through the issues and changes needed to get the functionality right.',
+    'The biggest benefit is having so many of our operational processes brought together into one system rather than trying to piece everything together manually across multiple platforms. As we move fully onto CleanRoute Pro, I expect it to significantly reduce the amount of administration involved in managing our teams each week.',
+    'I’d recommend custom software like this to service-based businesses that have outgrown generic scheduling programs and need something built around the way their business actually operates.',
+  ],
 };
 
 export default function CleanRouteShowcase() {
   return (
     <section
-      id="cleanroute"
+      id="work"
       style={{
         paddingTop: 'var(--section-gap)',
         paddingBottom: 'var(--section-gap)',
@@ -38,11 +42,18 @@ export default function CleanRouteShowcase() {
         <g
           fill="none"
           stroke="var(--color-primary)"
-          strokeWidth="2"
+          strokeWidth="2.5"
           strokeDasharray="2 10"
           strokeLinecap="round"
-          opacity="0.09"
+          opacity="0.2"
         >
+          {/* entry route: drops out from under the hero's blue client bar
+              and sweeps toward the section heading, guiding the eye down */}
+          <path
+            className="crp-bg-route"
+            style={{ animationDuration: '18s' }}
+            d="M 900 -30 C 880 150, 520 210, 440 380 S 300 520, 280 600"
+          />
           <path className="crp-bg-route" d="M -40 170 C 300 70, 520 250, 820 150 S 1300 230, 1500 110" />
           <path
             className="crp-bg-route"
@@ -55,7 +66,9 @@ export default function CleanRouteShowcase() {
             d="M 1180 -30 C 1120 180, 1360 340, 1240 560"
           />
         </g>
-        <g fill="var(--color-primary)" opacity="0.14">
+        <g fill="var(--color-primary)" opacity="0.28">
+          <circle className="crp-bg-dot" style={{ animationDelay: '-2.6s' }} cx="893" cy="55" r="5" />
+          <circle className="crp-bg-dot" style={{ animationDelay: '-1.5s' }} cx="452" cy="360" r="5" />
           <circle className="crp-bg-dot" cx="300" cy="122" r="5" />
           <circle className="crp-bg-dot" style={{ animationDelay: '-1.2s' }} cx="820" cy="150" r="5" />
           <circle className="crp-bg-dot" style={{ animationDelay: '-2.3s' }} cx="1210" cy="186" r="5" />
@@ -63,27 +76,39 @@ export default function CleanRouteShowcase() {
           <circle className="crp-bg-dot" style={{ animationDelay: '-1.8s' }} cx="900" cy="710" r="5" />
           <circle className="crp-bg-dot" style={{ animationDelay: '-2.9s' }} cx="1287" cy="252" r="5" />
         </g>
-        <g fill="none" stroke="var(--color-primary)" opacity="0.16" strokeWidth="2">
+        <g fill="none" stroke="var(--color-primary)" opacity="0.3" strokeWidth="2">
+          <circle className="crp-bg-ping" cx="893" cy="55" r="10" />
           <circle className="crp-bg-ping" cx="300" cy="122" r="10" />
           <circle className="crp-bg-ping" style={{ animationDelay: '-1.7s' }} cx="900" cy="710" r="10" />
         </g>
       </svg>
 
       <div className="section-container" style={{ position: 'relative', zIndex: 1 }}>
-        <motion.h2
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
+          className="eyebrow"
+          style={{ marginBottom: '1rem' }}
+        >
+          CleanRoute Pro &mdash; custom build
+        </motion.div>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.7, delay: 0.05, ease: [0.32, 0.72, 0, 1] }}
           style={{
-            textAlign: 'center',
-            fontSize: 'clamp(2rem, 4vw, 3.25rem)',
-            fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+            fontSize: 'clamp(2.25rem, 4.5vw, 3.5rem)',
+            fontFamily: 'var(--font-heading)',
             fontWeight: 700,
             letterSpacing: '-0.03em',
-            lineHeight: 1.1,
+            lineHeight: 1.05,
             color: 'var(--color-foreground)',
             marginBottom: '1.25rem',
+            maxWidth: '22ch',
           }}
         >
           The software that runs
@@ -111,11 +136,11 @@ export default function CleanRouteShowcase() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.32, 0.72, 0, 1] }}
           style={{
-            textAlign: 'center',
             fontSize: '1.0625rem',
+            lineHeight: 1.65,
             color: 'var(--color-foreground-muted)',
-            maxWidth: '48ch',
-            margin: '0 auto 3.5rem',
+            maxWidth: '52ch',
+            margin: '0 0 3.5rem',
           }}
         >
           Custom software running their whole operation: schedules with live Google routes,
@@ -141,56 +166,98 @@ export default function CleanRouteShowcase() {
                 }}
               >
                 {TESTIMONIAL.ready ? (
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1.25rem' }}>
-                  <div
+                <div style={{ position: 'relative' }}>
+                  {/* oversized quote glyph anchoring the card */}
+                  <span
+                    aria-hidden="true"
                     style={{
-                      flexShrink: 0,
-                      width: 56,
-                      height: 56,
-                      borderRadius: '50%',
-                      background: 'var(--color-primary-ultra-light)',
-                      border: '1px solid var(--color-primary-light)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      overflow: 'hidden',
+                      display: 'block',
+                      fontFamily: 'Georgia, "Times New Roman", serif',
+                      fontSize: '4.5rem',
+                      lineHeight: 0.6,
+                      color: 'var(--color-primary-light)',
+                      userSelect: 'none',
+                      marginBottom: '0.75rem',
                     }}
                   >
-                    {TESTIMONIAL.avatarSrc ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={TESTIMONIAL.avatarSrc}
-                        alt={TESTIMONIAL.name}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                      />
-                    ) : (
-                      <User size={26} weight="duotone" color="var(--color-primary)" />
-                    )}
+                    &ldquo;
+                  </span>
+
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '1rem',
+                      marginBottom: '1.25rem',
+                    }}
+                  >
+                    <div
+                      style={{
+                        flexShrink: 0,
+                        width: 56,
+                        height: 56,
+                        borderRadius: '50%',
+                        background: 'var(--color-primary-ultra-light)',
+                        border: '1px solid var(--color-primary-light)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        overflow: 'hidden',
+                      }}
+                    >
+                      {TESTIMONIAL.avatarSrc ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={TESTIMONIAL.avatarSrc}
+                          alt={TESTIMONIAL.name}
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        />
+                      ) : (
+                        <User size={26} weight="duotone" color="var(--color-primary)" />
+                      )}
+                    </div>
+                    <div style={{ minWidth: 0 }}>
+                      <div
+                        role="img"
+                        aria-label="Rated 5 out of 5 stars"
+                        style={{ display: 'flex', gap: '2px', marginBottom: '0.25rem' }}
+                      >
+                        {[0, 1, 2, 3, 4].map((i) => (
+                          <Star key={i} size={16} weight="fill" color="#F5A623" />
+                        ))}
+                      </div>
+                      <p
+                        style={{
+                          fontSize: '0.875rem',
+                          color: 'var(--color-foreground-muted)',
+                          margin: 0,
+                        }}
+                      >
+                        <strong style={{ color: 'var(--color-foreground)' }}>{TESTIMONIAL.name}</strong>
+                        {' · '}
+                        {TESTIMONIAL.role}
+                      </p>
+                    </div>
                   </div>
+
                   <div style={{ minWidth: 0 }}>
-                    <p
-                      style={{
-                        fontSize: '1.0625rem',
-                        lineHeight: 1.65,
-                        color: 'var(--color-foreground)',
-                        fontStyle: 'italic',
-                        margin: 0,
-                        maxWidth: '52ch',
-                      }}
-                    >
-                      &ldquo;{TESTIMONIAL.quote}&rdquo;
-                    </p>
-                    <p
-                      style={{
-                        fontSize: '0.875rem',
-                        color: 'var(--color-foreground-muted)',
-                        margin: '0.75rem 0 0',
-                      }}
-                    >
-                      <strong style={{ color: 'var(--color-foreground)' }}>{TESTIMONIAL.name}</strong>
-                      {' · '}
-                      {TESTIMONIAL.role}
-                    </p>
+                    {TESTIMONIAL.quote.map((para, i) => (
+                      <p
+                        key={i}
+                        style={{
+                          fontSize: '1.0625rem',
+                          lineHeight: 1.65,
+                          color: 'var(--color-foreground)',
+                          fontStyle: 'italic',
+                          margin: i === 0 ? 0 : '0.875rem 0 0',
+                          maxWidth: '52ch',
+                        }}
+                      >
+                        {i === 0 && <>&ldquo;</>}
+                        {para}
+                        {i === TESTIMONIAL.quote.length - 1 && <>&rdquo;</>}
+                      </p>
+                    ))}
                     <a
                       href="https://cleanroutepro.com.au"
                       target="_blank"
